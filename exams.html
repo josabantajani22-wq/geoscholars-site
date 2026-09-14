@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Official Exam Links — CSIR NET, UPSC Geo-Scientist, GATE — Geo Scholars Academy</title>
+<meta name="description" content="Official links for CSIR NET Earth Science, UPSC Combined Geo-Scientist, GATE Geology & Geophysics, IIT JAM Geology, CUET-PG and PSU geologist recruitment portals.">
+<link rel="canonical" href="https://geoscholarsacademy.org/exams.html"><meta property="og:site_name" content="Geo Scholars Academy"><meta property="og:image" content="https://geoscholarsacademy.org/assets/logo.png"><link rel="icon" href="assets/logo.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="site-header"></div>
+<section>
+  <div class="wrap">
+    <div class="section-head"><div class="eyebrow">Exam references</div><h1>Official websites, one place</h1><p class="muted">Bookmark these. Notifications, syllabus, application forms, admit cards and results always come from these official portals — never from forwarded PDFs.</p></div>
+    <div class="grid two" id="res"></div>
+  </div>
+</section>
+<section class="band"><div class="wrap center"><h2>Preparing for one of these?</h2><p style="color:#c9d1d8">Our Advanced Batch covers GSI/CGS, NET, GATE and PSU patterns together.</p><a class="btn primary" href="courses.html">See courses</a> <a class="btn ghost" style="color:#fff;border-color:#4b5763" href="tests.html">Free mock tests</a></div></section>
+<div id="site-footer"></div>
+<script src="js/config.js"></script><script src="data/site.js"></script><script src="data/tests.js"></script><script src="js/store.js"></script><script src="js/app.js"></script>
+<script>
+document.addEventListener("gsa:ready", () => {
+  const { esc } = GSA.ui;
+  document.getElementById("res").innerHTML = GSA_SITE.examResources.map(r => `<div class="card"><h3>${esc(r.exam)}</h3><p class="muted small">${esc(r.org)}</p><div class="res-list">${r.links.map(l => `<a href="${esc(l.url)}" target="_blank" rel="noopener">🔗 ${esc(l.label)}<br><span class="small muted">${esc(l.url.replace(/^https?:\/\//, ""))}</span></a>`).join("")}</div>${r.note ? `<p class="small" style="margin:.8rem 0 0;color:var(--ink-2)">${esc(r.note)}</p>` : ""}</div>`).join("");
+});
+</script>
+</body></html>

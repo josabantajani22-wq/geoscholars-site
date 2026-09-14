@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Test Series — Geo Scholars Academy</title>
+<meta name="description" content="Free geology mock tests online: ONGC Geologist CBT pattern (85 questions), Geology hard sets — timed, auto-graded with solutions. Practise for IIT JAM, GATE GG, CSIR NET and UPSC Geo-Scientist.">
+<link rel="canonical" href="https://geoscholarsacademy.org/tests.html"><meta property="og:site_name" content="Geo Scholars Academy"><meta property="og:image" content="https://geoscholarsacademy.org/assets/logo.png"><link rel="icon" href="assets/logo.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="site-header"></div>
+<section>
+  <div class="wrap">
+    <div class="section-head"><div class="eyebrow">Free test series</div><h1>Mock tests</h1><p class="muted">Timed, auto-graded, with worked solutions after submission. Sign in to save attempts and track progress on your dashboard.</p></div>
+    <div class="toolbar"><input id="search" placeholder="Search tests…"><select id="cat"><option value="">All categories</option></select></div>
+    <div class="grid" id="tests"><p class="muted">Loading…</p></div>
+  </div>
+</section>
+<div id="site-footer"></div>
+<script src="js/config.js"></script><script src="data/site.js"></script><script src="data/tests.js"></script><script src="js/store.js"></script><script src="js/app.js"></script>
+<script>
+document.addEventListener("gsa:ready", async ({ detail: { user } }) => {
+  const { esc } = GSA.ui, store = GSA.store;
+  const tests = await store.listTests();
+  const attempts = user ? await store.listAttempts(user.uid) : [];
+  const cats = [...new Set(tests.map(t => t.category).filter(Boolean))];
+  document.getElementById("cat").innerHTML += cats.map(c => `<option>${esc(c)}</option>`).join("");
+  function render() {
+    const q = document.getElementById("search").value.toLowerCase(), c = document.getElementById("cat").value;
+    const list = tests.filter(t => (!c || t.category === c) && (!q || (t.title + " " + (t.description || "")).toLowerCase().includes(q)));
+    document.getElementById("tests").innerHTML = list.length ? list.map(t => {
+      const mine = attempts.filter(a => a.testId === t.id);
+      const best = mine.length ? Math.max(...mine.map(a => a.score)) : null;
+      const max = t.questions.reduce((n, x) => n + (x.marks || 1), 0);
+      return `<div class="card">
+        <div style="display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:.6rem"><span class="badge">${esc(t.category || "Test")}</span>${t.difficulty ? `<span class="badge ${t.difficulty === "Hard" ? "red" : "grey"}">${esc(t.difficulty)}</span>` : ""}${t.builtin ? "" : '<span class="badge moss">New</span>'}</div>
+        <h3>${esc(t.title)}</h3>
+        ${t.description ? `<p class="small muted">${esc(t.description)}</p>` : ""}
+        <div class="meta"><span>📝 ${t.questions.length} questions</span><span>⏱ ${t.durationMinutes} min</span><span>🎯 ${max} marks</span>${t.sections?.length ? `<span>📚 ${t.sections.length} sections</span>` : ""}</div>
+        ${best !== null ? `<p class="small"><strong>Your best:</strong> ${best} / ${max} · ${mine.length} attempt${mine.length > 1 ? "s" : ""}</p>` : ""}
+        <div class="spacer"></div>
+        <a class="btn primary" href="test.html?id=${encodeURIComponent(t.id)}">${best !== null ? "Attempt again" : "Start test"}</a>
+      </div>`; }).join("") : "<p class='muted'>No tests match.</p>";
+  }
+  document.getElementById("search").oninput = render; document.getElementById("cat").onchange = render; render();
+});
+</script>
+</body></html>

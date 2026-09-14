@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My Dashboard — Geo Scholars Academy</title>
+<link rel="icon" href="assets/logo.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="site-header"></div>
+<section><div class="wrap" id="dash"><p class="muted">Loading…</p></div></section>
+<div id="site-footer"></div>
+<script src="js/config.js"></script><script src="data/site.js"></script><script src="data/tests.js"></script><script src="js/store.js"></script><script src="js/app.js"></script>
+<script>
+document.addEventListener("gsa:ready", async ({ detail: { user } }) => {
+  const { esc, fmtDT, requireAuth } = GSA.ui, store = GSA.store;
+  if (!requireAuth(user, "Sign in to see your dashboard.")) return;
+  const [attempts, tests] = await Promise.all([store.listAttempts(user.uid), store.listTests()]);
+  const byTest = {};
+  attempts.forEach(a => { (byTest[a.testId] = byTest[a.testId] || []).push(a); });
+  const avgAcc = attempts.length ? Math.round(attempts.reduce((n, a) => n + (a.correct + a.wrong ? a.correct / (a.correct + a.wrong) : 0), 0) / attempts.length * 100) : 0;
+  const notTaken = tests.filter(t => !byTest[t.id]);
+  document.getElementById("dash").innerHTML = `
+    <div class="eyebrow">Student dashboard</div>
+    <h1>Hello, ${esc(user.name || user.email)}</h1>
+    <div class="kpis">
+      <div class="stat"><b>${attempts.length}</b><span>Attempts</span></div>
+      <div class="stat"><b>${Object.keys(byTest).length} / ${tests.length}</b><span>Tests taken</span></div>
+      <div class="stat"><b>${avgAcc}%</b><span>Average accuracy</span></div>
+      <div class="stat"><b>${attempts.reduce((n, a) => n + a.correct + a.wrong, 0)}</b><span>Questions answered</span></div>
+    </div>
+    ${Object.keys(byTest).length ? `<h2>Your best scores</h2><div class="grid" style="margin-bottom:2.5rem">${Object.entries(byTest).map(([id, list]) => {
+      const best = list.reduce((b, a) => a.score > b.score ? a : b, list[0]); const pct = Math.max(0, Math.round(100 * best.score / best.maxMarks));
+      const trend = list.slice().sort((a, b) => a.at - b.at).map(a => a.score);
+      return `<div class="card"><h3 style="font-size:1.05rem">${esc(best.testTitle)}</h3><div style="font-family:var(--serif);font-size:1.8rem;color:var(--ochre-dark)">${best.score} <span class="small muted">/ ${best.maxMarks}</span></div><div class="bar" style="margin:.5rem 0"><i style="width:${pct}%"></i></div><p class="small muted">${list.length} attempt${list.length > 1 ? "s" : ""} · scores: ${trend.join(" → ")}</p><div class="spacer"></div><div style="display:flex;gap:.5rem"><a class="btn ghost sm" href="test.html?id=${encodeURIComponent(id)}&review=${best.id}">Review best</a><a class="btn sm" href="test.html?id=${encodeURIComponent(id)}">Retake</a></div></div>`; }).join("")}</div>` : `<div class="alert info">You haven't attempted any test yet. <a href="tests.html">Start with a free mock test →</a></div>`}
+    ${notTaken.length ? `<h2>Not yet attempted</h2><p>${notTaken.map(t => `<a class="btn ghost sm" style="margin:0 .4rem .4rem 0" href="test.html?id=${encodeURIComponent(t.id)}">${esc(t.title)}</a>`).join("")}</p>` : ""}
+    ${attempts.length ? `<h2 style="margin-top:2rem">All attempts</h2><div class="table-wrap"><table><tr><th>Date</th><th>Test</th><th>Score</th><th>Correct</th><th>Wrong</th><th>Skipped</th><th>Accuracy</th><th></th></tr>
+      ${attempts.map(a => `<tr><td>${fmtDT(a.at)}</td><td>${esc(a.testTitle)}</td><td><strong>${a.score}</strong> / ${a.maxMarks}</td><td>${a.correct}</td><td>${a.wrong}</td><td>${a.unattempted}</td><td>${a.correct + a.wrong ? Math.round(100 * a.correct / (a.correct + a.wrong)) : 0}%</td><td><a href="test.html?id=${encodeURIComponent(a.testId)}&review=${a.id}">Review</a></td></tr>`).join("")}</table></div>` : ""}`;
+});
+</script>
+</body></html>

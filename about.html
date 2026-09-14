@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About — Geo Scholars Academy</title>
+<link rel="canonical" href="https://geoscholarsacademy.org/about.html"><meta property="og:site_name" content="Geo Scholars Academy"><meta property="og:image" content="https://geoscholarsacademy.org/assets/logo.png"><link rel="icon" href="assets/logo.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="site-header"></div>
+<section>
+  <div class="wrap split">
+    <div>
+      <div class="eyebrow">About us</div>
+      <h1>Geo Scholars Academy</h1>
+      <p class="lead" style="font-size:1.1rem;color:var(--ink-2)">GSA is a coaching institute dedicated to one thing: helping geology graduates and postgraduates clear the competitive exams that lead to geologist careers — ONGC, GATE, UPSC Combined Geo-Scientist and state PSC / PSU recruitments.</p>
+      <p>Our teaching starts from the exam backwards. We study the paper pattern, the marking scheme and the topics that actually appear, then build the syllabus, the practice sets and the mock tests around that. Every question in our test series carries a worked solution so that a wrong answer becomes a lesson, not just a lost mark.</p>
+      <p>Classes run online with live sessions and recordings, so working candidates and students in remote colleges can prepare on their own schedule while still getting live doubt-clearing and mentoring.</p>
+    </div>
+    <div>
+      <img src="assets/logo.png" alt="Geo Scholars Academy logo" style="width:min(320px,100%);display:block;margin:0 auto 1.5rem;mix-blend-mode:multiply">
+      <div class="card">
+        <h3>What we stand for</h3>
+        <ul>
+          <li><strong>Exam-fidelity</strong> — practise on the real pattern, with real time pressure.</li>
+          <li><strong>Concept before tricks</strong> — geology rewards understanding; shortcuts come after.</li>
+          <li><strong>Feedback loops</strong> — attempts, analytics and mentoring so you know what to fix next.</li>
+          <li><strong>Access</strong> — a free test series open to every aspirant, not only enrolled students.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="faculty-section" class="hidden" style="padding-top:0">
+  <div class="wrap"><div class="eyebrow">Faculty</div><h2>Meet the mentors</h2><div class="grid" id="faculty"></div></div>
+</section>
+<section class="band"><div class="wrap center"><h2>Talk to us</h2><p style="color:#c9d1d8">Questions about batches, fees or which exam to target? We reply within a working day.</p><a class="btn primary" href="contact.html">Contact / enquire</a></div></section>
+<div id="site-footer"></div>
+<script src="js/config.js"></script><script src="data/site.js"></script><script src="data/tests.js"></script><script src="js/store.js"></script><script src="js/app.js"></script>
+<script>
+document.addEventListener("gsa:ready", () => {
+  const { esc } = GSA.ui, f = GSA_SITE.faculty || [];
+  if (f.length) {
+    document.getElementById("faculty-section").classList.remove("hidden");
+    document.getElementById("faculty").innerHTML = f.map(p => `<div class="card">${p.photo ? `<img src="${esc(p.photo)}" alt="${esc(p.name)}" style="width:96px;height:96px;border-radius:50%;object-fit:cover;margin-bottom:1rem">` : ""}<h3>${esc(p.name)}</h3><p class="muted small">${esc(p.role)}</p><p class="small">${esc(p.bio)}</p></div>`).join("");
+  }
+});
+</script>
+</body></html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Courses — Geo Scholars Academy</title>
+<meta name="description" content="Geology coaching batches 2026-27: Advanced Batch for GSI, CSIR NET, GATE GG and PSUs; IIT JAM + CUET batch; Crystallography & Mineralogy and Numerical premium modules. Enrol on Classplus.">
+<link rel="canonical" href="https://geoscholarsacademy.org/courses.html"><meta property="og:site_name" content="Geo Scholars Academy"><meta property="og:image" content="https://geoscholarsacademy.org/assets/logo.png"><link rel="icon" href="assets/logo.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="site-header"></div>
+<section>
+  <div class="wrap">
+    <div class="section-head"><div class="eyebrow">Programmes</div><h1>Courses</h1><p class="muted">Every course includes live classes, recordings, study material and the full test series for that exam. Fees and batch dates are shared on enquiry.</p></div>
+    <div class="classplus" id="classplus"></div>
+    <div id="courses" class="grid two"></div>
+  </div>
+</section>
+<section class="band"><div class="wrap center"><h2>Not sure which track fits you?</h2><p style="color:#c9d1d8">Tell us your background and target exam — we'll suggest a plan.</p><a class="btn primary" href="contact.html">Get guidance</a></div></section>
+<div id="site-footer"></div>
+<script src="js/config.js"></script><script src="data/site.js"></script><script src="data/tests.js"></script><script src="js/store.js"></script><script src="js/app.js"></script>
+<script>
+document.addEventListener("gsa:ready", () => {
+  const { esc } = GSA.ui, cp = GSA_CONFIG.classplus || {};
+  document.getElementById("classplus").innerHTML = `<div style="flex:1;min-width:240px"><strong>Batches run on the Classplus app.</strong><div class="small muted">Install the app, enter org code <code>${esc(cp.orgCode || "")}</code>, and sign in with your mobile number — or use the web version.</div></div>
+    ${cp.android ? `<a class="btn primary sm" href="${esc(cp.android)}" target="_blank" rel="noopener">Get the Android app</a>` : ""}${cp.web ? `<a class="btn ghost sm" href="${esc(cp.web)}" target="_blank" rel="noopener">Open on web</a>` : ""}`;
+  document.getElementById("courses").innerHTML = GSA_SITE.courses.map(c => `
+    <div class="card" id="${c.id}">
+      <div style="display:flex;gap:.5rem;align-items:center;margin-bottom:.5rem">${c.badge ? `<span class="badge">${esc(c.badge)}</span>` : ""}<span class="badge grey">${esc(c.mode)}</span></div>
+      <h3>${esc(c.name)}</h3><p class="muted small">${esc(c.exam)}</p>
+      <p>${esc(c.summary)}</p>
+      <ul>${c.highlights.map(h => `<li>${esc(h)}</li>`).join("")}</ul>
+      <div class="meta"><span>⏱ ${esc(c.duration)}</span><span>💳 ${esc(c.fee)}</span>${c.students ? `<span>👥 ${c.students} enrolled</span>` : ""}</div>
+      <div class="spacer"></div>
+      <div style="display:flex;gap:.5rem;flex-wrap:wrap"><a class="btn primary sm" href="contact.html?course=${encodeURIComponent(c.name)}">Enquire / join</a>${cp.web ? `<a class="btn ghost sm" href="${esc(cp.web)}" target="_blank" rel="noopener">Enroll on Classplus</a>` : ""}</div>
+    </div>`).join("");
+  if (location.hash) document.querySelector(location.hash)?.scrollIntoView();
+});
+</script>
+</body></html>

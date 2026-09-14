@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sign in — Geo Scholars Academy</title>
+<link rel="canonical" href="https://geoscholarsacademy.org/login.html"><meta property="og:site_name" content="Geo Scholars Academy"><meta property="og:image" content="https://geoscholarsacademy.org/assets/logo.png"><link rel="icon" href="assets/logo.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="site-header"></div>
+<div class="wrap">
+  <div class="auth-box card">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem"><h2 style="margin:0">Student account</h2><span class="mode-pill" id="mode-pill"></span></div>
+    <p class="muted small">Save your test attempts, track progress and access your dashboard.</p>
+    <div id="auth-msg" class="alert hidden"></div>
+    <div class="tabs"><button class="active" data-tab="in">Sign in</button><button data-tab="up">Create account</button></div>
+    <form id="form-in">
+      <div class="field"><label>Email</label><input name="email" type="email" required autocomplete="email"></div>
+      <div class="field"><label>Password</label><input name="password" type="password" required autocomplete="current-password"></div>
+      <button class="btn primary" style="width:100%" type="submit">Sign in</button>
+      <p class="small center" style="margin-top:.8rem"><a href="#" id="forgot">Forgot password?</a></p>
+    </form>
+    <form id="form-up" class="hidden">
+      <div class="field"><label>Full name</label><input name="name" required autocomplete="name"></div>
+      <div class="field"><label>Email</label><input name="email" type="email" required autocomplete="email"></div>
+      <div class="field"><label>Phone (optional)</label><input name="phone" type="tel" autocomplete="tel"></div>
+      <div class="field"><label>Password (min 6 characters)</label><input name="password" type="password" minlength="6" required autocomplete="new-password"></div>
+      <button class="btn primary" style="width:100%" type="submit">Create account</button>
+    </form>
+  </div>
+</div>
+<div id="site-footer"></div>
+<script src="js/config.js"></script><script src="data/site.js"></script><script src="data/tests.js"></script><script src="js/store.js"></script><script src="js/app.js"></script>
+<script>
+document.addEventListener("gsa:ready", ({ detail: { user } }) => {
+  const { qs, toast } = GSA.ui, store = GSA.store, msg = document.getElementById("auth-msg");
+  const next = qs("next") || "dashboard.html";
+  if (user) { location.replace(next); return; }
+  document.getElementById("mode-pill").textContent = store.mode === "local" ? "Demo mode · this browser only" : "Secure login";
+  if (qs("msg")) toast(msg, "info", qs("msg"));
+  document.querySelectorAll(".tabs button").forEach(b => b.onclick = () => {
+    document.querySelectorAll(".tabs button").forEach(x => x.classList.toggle("active", x === b));
+    document.getElementById("form-in").classList.toggle("hidden", b.dataset.tab !== "in");
+    document.getElementById("form-up").classList.toggle("hidden", b.dataset.tab !== "up");
+  });
+  const run = async (fn) => { try { await fn(); location.href = next; } catch (e) { toast(msg, "err", (e.message || String(e)).replace(/^Firebase: /, "").replace(/\(auth.*\)\.?/, "")); } };
+  document.getElementById("form-in").onsubmit = (e) => { e.preventDefault(); const f = e.target; run(() => store.signIn(f.email.value, f.password.value)); };
+  document.getElementById("form-up").onsubmit = (e) => { e.preventDefault(); const f = e.target; run(() => store.signUp(f.email.value, f.password.value, f.name.value, f.phone.value)); };
+  document.getElementById("forgot").onclick = async (e) => {
+    e.preventDefault(); const email = document.querySelector("#form-in [name=email]").value;
+    if (!email) return toast(msg, "info", "Enter your email above first, then click Forgot password.");
+    try { await store.resetPassword(email); toast(msg, "ok", "Password reset email sent."); } catch (err) { toast(msg, "err", err.message); }
+  };
+});
+</script>
+</body></html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact &amp; Admission Enquiry — Geo Scholars Academy</title>
+<meta name="description" content="Enquire about admission to Geo Scholars Academy geology coaching batches — IIT JAM, GATE GG, CSIR NET, GSI. Join our Telegram community.">
+<link rel="canonical" href="https://geoscholarsacademy.org/contact.html"><meta property="og:site_name" content="Geo Scholars Academy"><meta property="og:image" content="https://geoscholarsacademy.org/assets/logo.png"><link rel="icon" href="assets/logo.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="site-header"></div>
+<section>
+  <div class="wrap split">
+    <div>
+      <div class="eyebrow">Get in touch</div>
+      <h1>Enquiry &amp; admission</h1>
+      <p class="muted">Fill in the form and we'll get back to you with batch details, fees and a suggested preparation plan.</p>
+      <div id="contact-details"></div>
+      <div id="groups" style="margin-top:1.5rem"></div>
+    </div>
+    <div class="card">
+      <form id="enq-form">
+        <div class="form-row">
+          <div class="field"><label>Full name *</label><input name="name" required></div>
+          <div class="field"><label>Phone *</label><input name="phone" required type="tel" placeholder="+91"></div>
+        </div>
+        <div class="field"><label>Email</label><input name="email" type="email"></div>
+        <div class="form-row">
+          <div class="field"><label>Interested in *</label><select name="course" required id="course-select"></select></div>
+          <div class="field"><label>Qualification</label><select name="qualification"><option>B.Sc. Geology (pursuing)</option><option>B.Sc. Geology (completed)</option><option>M.Sc. Geology / Applied Geology (pursuing)</option><option>M.Sc. Geology / Applied Geology (completed)</option><option>M.Tech / Ph.D.</option><option>Other</option></select></div>
+        </div>
+        <div class="field"><label>Message</label><textarea name="message" placeholder="Target exam year, current preparation, questions…"></textarea></div>
+        <div id="enq-msg" class="alert hidden"></div>
+        <button class="btn primary" type="submit" id="enq-btn">Send enquiry</button>
+      </form>
+    </div>
+  </div>
+</section>
+<div id="site-footer"></div>
+<script src="js/config.js"></script><script src="data/site.js"></script><script src="data/tests.js"></script><script src="js/store.js"></script><script src="js/app.js"></script>
+<script>
+document.addEventListener("gsa:ready", ({ detail: { user } }) => {
+  const { esc, qs, toast } = GSA.ui, C = GSA_CONFIG;
+  const sel = document.getElementById("course-select");
+  sel.innerHTML = [...GSA_SITE.courses.map(c => c.name), "General enquiry"].map(n => `<option>${esc(n)}</option>`).join("");
+  if (qs("course")) sel.value = qs("course");
+  const rows = [C.phone && `<p><strong>Phone:</strong> <a href="tel:${esc(C.phone)}">${esc(C.phone)}</a></p>`, C.telegram && `<p><strong>Telegram:</strong> <a target="_blank" rel="noopener" href="${esc(C.telegram)}">@geoscholarsacademy</a></p>`, C.email && `<p><strong>Email:</strong> <a href="mailto:${esc(C.email)}">${esc(C.email)}</a></p>`, C.address && `<p><strong>Address:</strong> ${esc(C.address)}</p>`].filter(Boolean).join("");
+  const g = (C.whatsappGroups || []).map(x => `<a class="btn ghost sm" style="margin:0 .4rem .4rem 0" href="${esc(x.url)}" target="_blank" rel="noopener">💬 ${esc(x.label)}</a>`).join("");
+  const soc = [C.youtube && `<a class="btn ghost sm" style="margin:0 .4rem .4rem 0" href="${esc(C.youtube)}" target="_blank" rel="noopener">▶ YouTube</a>`, C.telegram && `<a class="btn ghost sm" style="margin:0 .4rem .4rem 0" href="${esc(C.telegram)}" target="_blank" rel="noopener">✈ Telegram</a>`, C.instagram && `<a class="btn ghost sm" style="margin:0 .4rem .4rem 0" href="${esc(C.instagram)}" target="_blank" rel="noopener">◎ Instagram</a>`].filter(Boolean).join("");
+  const tg = C.telegram ? `<a class="btn primary sm" style="margin:0 .4rem .4rem 0" href="${esc(C.telegram)}" target="_blank" rel="noopener">✈ Join our Telegram channel</a>` : "";
+  document.getElementById("groups").innerHTML = `<h3>Join our student community</h3><p class="small muted">Notifications, vacancies, doubts and daily practice — free to join.</p><p>${tg}${g}</p>` + (soc ? `<h3 style="margin-top:1rem">Follow us</h3><p>${soc}</p>` : "");
+  document.getElementById("contact-details").innerHTML = rows || `<p class="small muted">Add your phone, email and address in <code>js/config.js</code> to show them here.</p>`;
+  const f = document.getElementById("enq-form");
+  if (user) { f.name.value = user.name || ""; f.email.value = user.email || ""; f.phone.value = user.phone || ""; }
+  f.onsubmit = async (e) => {
+    e.preventDefault(); const btn = document.getElementById("enq-btn"); btn.disabled = true;
+    const d = Object.fromEntries(new FormData(f).entries());
+    try {
+      await GSA.store.saveEnquiry({ id: GSA.store.newId(), ...d, uid: user ? user.uid : null, at: Date.now(), status: "new" });
+      toast(document.getElementById("enq-msg"), "ok", "Thank you! Your enquiry has been received. We'll contact you shortly.");
+      f.reset();
+    } catch (err) { toast(document.getElementById("enq-msg"), "err", "Could not send: " + err.message); }
+    btn.disabled = false;
+  };
+});
+</script>
+</body></html>

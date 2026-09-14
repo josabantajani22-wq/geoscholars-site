@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Classes — Geo Scholars Academy</title>
+<meta name="description" content="Free full-length geology class videos from Geo Scholars Academy — optical mineralogy, sedimentology and more.">
+<link rel="canonical" href="https://geoscholarsacademy.org/classes.html"><meta property="og:site_name" content="Geo Scholars Academy"><meta property="og:image" content="https://geoscholarsacademy.org/assets/logo.png"><link rel="icon" href="assets/logo.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="site-header"></div>
+<section>
+  <div class="wrap">
+    <div class="section-head"><div class="eyebrow">Free classes</div><h1>Watch a full GSA class</h1><p class="muted">Sample lectures from our batches, free for every aspirant. Full courses with live doubt sessions run on Classplus.</p></div>
+    <div class="grid two" id="videos"></div>
+    <p class="small muted" style="margin-top:1.5rem">More lectures on our <a id="yt" target="_blank" rel="noopener">YouTube channel ↗</a>.</p>
+  </div>
+</section>
+<div id="site-footer"></div>
+<script src="js/config.js"></script><script src="data/site.js"></script><script src="data/tests.js"></script><script src="js/store.js"></script><script src="js/app.js"></script>
+<script>
+document.addEventListener("gsa:ready", async () => {
+  const { esc } = GSA.ui, yt = GSA_CONFIG.youtube || "#";
+  document.getElementById("yt").href = yt;
+  const videos = await GSA.store.listAllVideos();
+  const fallback = (v) => `<div class="video-fallback"><div><strong>${esc(v.title)}</strong><br><span class="small">This lecture is being uploaded to our YouTube channel.</span></div><a class="btn primary sm" href="${esc(yt)}" target="_blank" rel="noopener">▶ Watch on YouTube</a></div>`;
+  document.getElementById("videos").innerHTML = videos.map(v => `<div class="card" id="${esc(v.id)}">
+    <div class="video-frame" data-id="${esc(v.id)}">${v.youtube ? `<iframe src="https://www.youtube-nocookie.com/embed/${esc(v.youtube)}?rel=0" title="${esc(v.title)}" allow="accelerometer; autoplay; encrypted-media; picture-in-picture" allowfullscreen loading="lazy"></iframe>` : v.file ? `<video controls preload="metadata" src="${encodeURI(v.file)}"></video>` : fallback(v)}</div>
+    <div style="margin-top:1rem"><span class="badge">${esc(v.topic || "Geology")}</span><h3 style="margin-top:.5rem">${esc(v.title)}</h3><p class="small muted">${esc(v.description || "")}</p></div>
+  </div>`).join("") || "<p class='muted'>No classes published yet.</p>";
+  // If a local file is missing (e.g. on the live site), swap in the YouTube fallback instead of a black box.
+  document.querySelectorAll(".video-frame video").forEach(el => el.addEventListener("error", () => { const v = videos.find(x => x.id === el.closest(".video-frame").dataset.id); el.closest(".video-frame").innerHTML = fallback(v); }));
+});
+</script>
+</body></html>
