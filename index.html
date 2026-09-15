@@ -15,21 +15,8 @@
 <div id="site-header"></div>
 <div class="ticker" id="ticker"><span class="label">LATEST</span><div class="track" id="ticker-track"></div></div>
 
-<section class="hero">
-  <svg class="contours" viewBox="0 0 1200 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-    <g fill="none" stroke="#b8751f" stroke-width="1" opacity=".35">
-      <path d="M-50 420 C 150 380, 250 470, 450 420 S 750 360, 950 420 S 1150 470, 1300 420"/>
-      <path d="M-50 380 C 150 330, 280 430, 480 380 S 760 310, 960 380 S 1160 430, 1300 380"/>
-      <path d="M-50 340 C 160 280, 300 390, 500 340 S 770 260, 970 340 S 1170 390, 1300 340"/>
-      <path d="M-50 300 C 170 230, 320 350, 520 300 S 780 210, 980 300 S 1180 350, 1300 300"/>
-      <path d="M-50 260 C 180 180, 340 310, 540 260 S 790 160, 990 260 S 1190 310, 1300 260"/>
-      <path d="M-50 220 C 190 130, 360 270, 560 220 S 800 110, 1000 220 S 1200 270, 1300 220"/>
-      <path d="M-50 180 C 200 80, 380 230, 580 180 S 810 60, 1010 180 S 1210 230, 1300 180"/>
-      <path d="M-50 140 C 210 30, 400 190, 600 140 S 820 10, 1020 140 S 1220 190, 1300 140"/>
-      <path d="M-50 100 C 220 -20, 420 150, 620 100 S 830 -40, 1030 100 S 1230 150, 1300 100"/>
-    </g>
-  </svg>
-  <svg class="ridge-svg" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true"><path d="M0 120 L0 78 L120 40 L210 70 L330 22 L420 58 L520 30 L640 72 L740 18 L860 64 L960 36 L1080 70 L1180 28 L1300 60 L1440 20 L1440 120 Z" fill="#1b2229"/></svg>
+<section class="hero" id="hero">
+  <div class="hero-bg contours-bg" aria-hidden="true"></div>
   <div class="wrap">
     <div>
       <div class="pill-live"><i></i> Admissions open · 2026-27 batches</div>
@@ -85,18 +72,29 @@
   </div>
 </section>
 
-<section class="stories-section" style="padding-top:0">
+<section class="stories-section">
   <div class="wrap">
-    <div class="section-head" style="margin-bottom:1.25rem"><div class="eyebrow">Success stories</div><h2>Our students, in their words</h2></div>
-    <div class="story-slider" id="stories">
-      <div class="story-track" id="stories-track"></div>
-      <button class="story-arrow prev" id="st-prev" aria-label="Previous story">‹</button>
-      <button class="story-arrow next" id="st-next" aria-label="Next story">›</button>
-      <div class="story-progress"><i id="st-bar"></i></div>
+    <div class="section-head center" style="margin:0 auto 1.5rem"><div class="eyebrow" style="justify-content:center;display:flex">Success stories</div><h2>Our achievers, wall of fame</h2><p class="muted">Real results from real GSA students. Tap any name on the honour wall to spotlight them; click the poster to enlarge.</p></div>
+  </div>
+  <div class="wrap">
+    <div class="hall" id="hall">
+      <article class="spotlight" id="spot" aria-live="polite">
+        <div class="spot-bg" id="spot-bg"></div>
+        <div class="spot-photo" id="spot-photo" title="Click to enlarge"><img id="spot-img" alt=""></div>
+        <div class="spot-body">
+          <div class="spot-ach" id="spot-ach"></div>
+          <h3 id="spot-name"></h3>
+          <p class="spot-batch" id="spot-batch"></p>
+          <p class="spot-quote" id="spot-quote"></p>
+          <div class="spot-nav"><button class="spot-btn" id="spot-prev" aria-label="Previous">‹</button><div class="spot-dots" id="spot-dots"></div><button class="spot-btn" id="spot-next" aria-label="Next">›</button></div>
+        </div>
+      </article>
+      <div class="honour" id="honour"></div>
     </div>
-    <div class="slider-nav"><div class="dots" id="st-dots"></div><span class="small muted" id="st-count"></span></div>
+    <div class="center" style="margin-top:1.5rem"><a class="btn primary" href="contact.html">Your name could be next — enquire</a></div>
   </div>
 </section>
+<div class="lightbox" id="lb" hidden><div class="lb-card"><button class="lb-close" id="lb-close" aria-label="Close">×</button><div class="lb-img"><img id="lb-img" alt=""></div><div class="lb-body"><div class="story-ach" id="lb-ach"></div><h3 id="lb-name"></h3><p class="small muted" id="lb-batch"></p><p id="lb-text"></p><button class="btn ghost sm" id="lb-prev">‹ Previous</button> <button class="btn ghost sm" id="lb-next">Next ›</button></div></div></div>
 
 <section style="padding-top:0">
   <div class="wrap split">
@@ -143,6 +141,7 @@
 <script>
 document.addEventListener("gsa:ready", async () => {
   const { esc } = GSA.ui, S = GSA_SITE;
+  if (GSA_CONFIG.heroImage) document.querySelector(".hero-bg").style.backgroundImage = `linear-gradient(180deg, rgba(15,22,32,.55), rgba(15,22,32,.75)), url("${GSA_CONFIG.heroImage}")`;
   const ICON = { target: '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/>', book: '<path d="M4 4h7a3 3 0 0 1 3 3v13a2 2 0 0 0-2-2H4z"/><path d="M20 4h-7a3 3 0 0 0-3 3v13a2 2 0 0 1 2-2h8z"/>', chart: '<path d="M4 20V10"/><path d="M10 20V4"/><path d="M16 20v-7"/><path d="M22 20H2"/>', people: '<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><circle cx="17" cy="9" r="2.5"/><path d="M15.5 14.5a5 5 0 0 1 6 5"/>' };
   const svg = (k) => `<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${ICON[k] || ICON.target}</svg>`;
   const ach = (S.achievements || []); const achHtml = ach.map(a => `<span class="ach"><b>${esc(a.big)}</b><small>${esc(a.small)}</small></span>`).join("");
@@ -157,41 +156,40 @@ document.addEventListener("gsa:ready", async () => {
   const tests = await GSA.store.listTests();
   document.getElementById("stat-tests").dataset.count = tests.length;
   document.getElementById("stat-questions").dataset.count = tests.reduce((n, t) => n + (t.questions || []).length, 0);
-  // ---- success stories slider (photo-first, one at a time) ----
+  // ---- success stories v5: spotlight + honour wall + lightbox ----
   const stories = await GSA.store.listAllStories();
-  const track = document.getElementById("stories-track");
   if (!stories.length) document.querySelector(".stories-section").classList.add("hidden");
   else {
-    const placeholder = (st) => `<div class="story-ph"><span>${esc((st.name || "?").trim()[0] || "?")}</span><small>Add photo</small></div>`;
-    track.innerHTML = stories.map(st => `<div class="story-slide"><article class="story-hero">
-      <div class="story-photo ${st.fit === "contain" ? "contain" : ""}">${st.photo ? `<img src="${esc(st.photo)}" alt="${esc(st.name)}" loading="lazy">` : placeholder(st)}${st.sample ? '<span class="badge grey sample-tag">Sample</span>' : ""}</div>
-      <div class="story-body ${st.quote ? "has-quote" : ""}">
-        <div class="story-ach">${esc(st.achievement)}</div>
-        ${st.quote ? `<blockquote>${esc(st.quote)}</blockquote>` : `<p class="story-text">${esc(st.text || "")}</p>`}
-        <div class="story-name"><b>${esc(st.name)}</b>${st.batch ? `<span>${esc(st.batch)}</span>` : ""}</div>
-      </div></article></div>`).join("");
-    let idx = 0, timer, t0 = 0;
-    const DUR = 6000, n = stories.length;
-    const dots = document.getElementById("st-dots"), bar = document.getElementById("st-bar"), cnt = document.getElementById("st-count");
-    const paint = () => {
-      track.style.transform = `translateX(-${idx * 100}%)`;
-      dots.innerHTML = stories.map((_, i) => `<i class="${i === idx ? "on" : ""}" data-i="${i}"></i>`).join("");
-      dots.querySelectorAll("i").forEach(d => d.onclick = () => { idx = +d.dataset.i; paint(); restart(); });
-      cnt.textContent = `${idx + 1} / ${n}`;
-      bar.style.transition = "none"; bar.style.width = "0"; requestAnimationFrame(() => requestAnimationFrame(() => { bar.style.transition = `width ${DUR}ms linear`; bar.style.width = "100%"; }));
+    const honour = document.getElementById("honour"), dots = document.getElementById("spot-dots"), lb = document.getElementById("lb");
+    const short = (a) => (a || "").split("·")[0].trim();
+    honour.innerHTML = stories.map((st, i) => `<button class="honour-tile" data-i="${i}" type="button"><span class="ht-photo">${st.photo ? `<img src="${esc(st.photo)}" alt="" loading="lazy">` : esc((st.name || "?")[0])}</span><span class="ht-text"><b>${esc(st.name)}</b><small>${esc(short(st.achievement))}</small></span><span class="ht-no">${String(i + 1).padStart(2, "0")}</span></button>`).join("");
+    dots.innerHTML = stories.map((_, i) => `<i data-i="${i}"></i>`).join("");
+    let cur = 0, timer = null;
+    const spot = (i, user) => {
+      cur = (i + stories.length) % stories.length; const st = stories[cur];
+      const body = document.querySelector(".spot-body"), ph = document.getElementById("spot-photo");
+      body.classList.remove("swap"); ph.classList.remove("swap"); void body.offsetWidth; body.classList.add("swap"); ph.classList.add("swap");
+      document.getElementById("spot-img").src = st.photo || ""; document.getElementById("spot-img").alt = st.name || "";
+      document.getElementById("spot-bg").style.backgroundImage = st.photo ? `url("${st.photo}")` : "";
+      document.getElementById("spot-ach").textContent = st.achievement || ""; document.getElementById("spot-name").textContent = st.name || "";
+      document.getElementById("spot-batch").textContent = st.batch || ""; document.getElementById("spot-quote").textContent = st.quote ? "“" + st.quote + "”" : (st.text || "");
+      honour.querySelectorAll(".honour-tile").forEach(t => t.classList.toggle("on", +t.dataset.i === cur));
+      dots.querySelectorAll("i").forEach(d => d.classList.toggle("on", +d.dataset.i === cur));
+      if (user) restart();
     };
-    const step = (d) => { idx = (idx + d + n) % n; paint(); };
-    const restart = () => { clearInterval(timer); timer = setInterval(() => step(1), DUR); };
-    document.getElementById("st-prev").onclick = () => { step(-1); restart(); };
-    document.getElementById("st-next").onclick = () => { step(1); restart(); };
-    const box = document.getElementById("stories");
-    box.onmouseenter = () => { clearInterval(timer); bar.style.transition = "none"; };
-    box.onmouseleave = () => { paint(); restart(); };
-    let sx = null;
-    box.addEventListener("pointerdown", e => { sx = e.clientX; });
-    box.addEventListener("pointerup", e => { if (sx === null) return; const dx = e.clientX - sx; sx = null; if (Math.abs(dx) > 40) { step(dx < 0 ? 1 : -1); restart(); } });
-    document.addEventListener("keydown", e => { if (e.key === "ArrowRight") { step(1); restart(); } if (e.key === "ArrowLeft") { step(-1); restart(); } });
-    paint(); restart();
+    const restart = () => { clearInterval(timer); timer = setInterval(() => spot(cur + 1), 5000); };
+    honour.querySelectorAll(".honour-tile").forEach(t => t.onclick = () => spot(+t.dataset.i, true));
+    dots.querySelectorAll("i").forEach(d => d.onclick = () => spot(+d.dataset.i, true));
+    document.getElementById("spot-prev").onclick = () => spot(cur - 1, true); document.getElementById("spot-next").onclick = () => spot(cur + 1, true);
+    const hall = document.getElementById("hall"); hall.onmouseenter = () => clearInterval(timer); hall.onmouseleave = restart;
+    spot(0); restart();
+    // lightbox
+    const show = (i) => { cur = (i + stories.length) % stories.length; const st = stories[cur]; document.getElementById("lb-img").src = st.photo || ""; document.getElementById("lb-ach").textContent = st.achievement || ""; document.getElementById("lb-name").textContent = st.name; document.getElementById("lb-batch").textContent = st.batch || ""; document.getElementById("lb-text").textContent = st.quote ? "“" + st.quote + "”" : (st.text || ""); lb.hidden = false; document.body.style.overflow = "hidden"; clearInterval(timer); };
+    const hide = () => { lb.hidden = true; document.body.style.overflow = ""; spot(cur); restart(); };
+    document.getElementById("spot-photo").onclick = () => show(cur);
+    document.getElementById("lb-close").onclick = hide; lb.onclick = (e) => { if (e.target === lb) hide(); };
+    document.getElementById("lb-prev").onclick = () => show(cur - 1); document.getElementById("lb-next").onclick = () => show(cur + 1);
+    document.addEventListener("keydown", (e) => { if (lb.hidden) return; if (e.key === "Escape") hide(); if (e.key === "ArrowRight") show(cur + 1); if (e.key === "ArrowLeft") show(cur - 1); });
   }
   // ---- vacancies teaser ----
   const vacs = (await GSA.store.listAllVacancies()).map(v => ({ ...v, days: v.lastDate ? Math.ceil((new Date(v.lastDate + "T23:59:59") - Date.now()) / 86400000) : null }))

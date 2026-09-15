@@ -7,7 +7,21 @@ enquiry form and an admin panel. No build step — upload the `site/` folder to 
 Just open `index.html` in a browser. Everything works in **local demo mode**
 (data is stored in that browser's localStorage).
 
-Demo admin: sign in with `admin@geoscholars.in` and any password (local mode only).
+Admin login: `manager@geoscholarsacademy.org` (or `geoscholarsacademy@gmail.com`) with the admin password. The password is
+stored only as a SHA-256 hash in `js/config.js → adminPasswordHash`; to change it, hash the new password at
+https://emn178.github.io/online-tools/sha256.html and paste the hash. In Firebase mode sign up once with the admin email
+and the same password.
+
+## Visitor counter
+Admin → Overview shows **Total visitors to geoscholarsacademy.org** — a site-wide number that works on GitHub Pages without
+Firebase (free public counter keyed by `js/config.js → visitCounterKey`; one count per visitor session). The 30-day
+breakdown, student and enquiry lists become site-wide only with Firebase.
+
+## Daily automatic job updates
+Needs the two files in `.github/workflows/` to exist in the GitHub repo (`pages.yml`, `vacancies.yml`). If GitHub's
+uploader skipped the hidden `.github` folder, create them by hand: repo → Add file → Create new file → type the path
+`.github/workflows/vacancies.yml` → paste the file's contents → Commit. Then Actions tab → "I understand… enable" → the
+"Update geology vacancies" workflow runs every morning (07:00 IST) and can be run now with "Run workflow".
 
 ## What's new (v2)
 - Real batches from Classplus on the Courses page, with app/web enrol links (`js/config.js` → `classplus`).
@@ -106,6 +120,28 @@ Free, and it also runs the FreeJobAlert vacancy refresh every morning.
    - `CNAME` www  <your-github-username>.github.io
    DNS takes 10 min – 24 h to spread. Then the site is live at https://geoscholarsacademy.org.
 7. Repo → Actions → enable workflows. "Update geology vacancies" runs daily at 07:00 IST and commits `data/vacancies.js`.
+
+## Enquiries → your email and phone
+- **Email** (on by default): the contact form posts to formsubmit.co → `geoscholarsacademy@gmail.com` (set in `js/config.js → enquiryEmail`).
+  **One-time step:** the very first enquiry makes FormSubmit send an "Activate" email to that address — open it and click
+  Activate. From then on every enquiry arrives instantly (Gmail app on your phone = phone notification).
+- **Telegram push to your phone** (optional, 3 minutes): in Telegram open @BotFather → `/newbot` → copy the token.
+  Create a private group, add the bot, send one message in it, then open
+  `https://api.telegram.org/bot<TOKEN>/getUpdates` in a browser and copy the `"chat":{"id":-100…}` number.
+  Put both into `js/config.js → telegramNotify`. Every enquiry then pings that group.
+- Every enquiry is also stored for Admin → Enquiries (site-wide once Firebase is on) with an "Emailed" yes/no flag.
+
+## LinkedIn industry jobs
+`tools/fetch_linkedin.py` reads LinkedIn's public (logged-out) job search for geologist / geology / hydrogeologist /
+mining geologist / geophysicist / exploration geologist in India, keeps geology-relevant titles, and merges them into the
+board tagged "LinkedIn" (shown under the *Industry (LinkedIn)* filter, expiring 30 days after posting). It runs in the daily
+workflow after the FreeJobAlert fetcher and fails soft if LinkedIn changes its markup. A "Search geologist jobs on LinkedIn"
+button on the vacancies page always works regardless.
+
+## Look & feel
+Hero uses a built-in sunrise-mountains scene (`assets/hero-scene.svg`); to use your own photo, put a wide JPG in `assets/`
+and set `js/config.js → heroImage: "assets/hero.jpg"`. Pages carry a faint contour texture (`assets/bg-contours.svg`).
+Success stories: spotlight card (auto-rotates every 5 s) + honour wall; click a name to spotlight, click the poster to enlarge. Hero keeps the light contour-line background.
 
 ## Get found on Google ("geology vacancy", "geologist jobs" …)
 Built in: keyword titles/descriptions on every page, canonical URLs, `sitemap.xml`, `robots.txt`, Organization + FAQ +

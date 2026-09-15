@@ -82,7 +82,7 @@
   // Fire gsa:ready only after the store is ready AND the page's own scripts have run.
   const domReady = new Promise(r => document.readyState === "loading" ? document.addEventListener("DOMContentLoaded", r) : r());
   function analytics() {
-    if (page !== "admin.html") store.recordVisit(page).catch(() => {});
+    if (page !== "admin.html") { store.recordVisit(page).catch(() => {}); store.bumpGlobalCounter(); }
     if (CFG.googleAnalyticsId) {
       const g = document.createElement("script"); g.async = true; g.src = "https://www.googletagmanager.com/gtag/js?id=" + CFG.googleAnalyticsId; document.head.appendChild(g);
       window.dataLayer = window.dataLayer || []; window.gtag = function () { dataLayer.push(arguments); }; gtag("js", new Date()); gtag("config", CFG.googleAnalyticsId);

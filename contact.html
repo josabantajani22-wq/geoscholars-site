@@ -55,11 +55,28 @@ document.addEventListener("gsa:ready", ({ detail: { user } }) => {
   f.onsubmit = async (e) => {
     e.preventDefault(); const btn = document.getElementById("enq-btn"); btn.disabled = true;
     const d = Object.fromEntries(new FormData(f).entries());
-    try {
-      await GSA.store.saveEnquiry({ id: GSA.store.newId(), ...d, uid: user ? user.uid : null, at: Date.now(), status: "new" });
-      toast(document.getElementById("enq-msg"), "ok", "Thank you! Your enquiry has been received. We'll contact you shortly.");
-      f.reset();
-    } catch (err) { toast(document.getElementById("enq-msg"), "err", "Could not send: " + err.message); }
+    const enq = { id: GSA.store.newId(), ...d, uid: user ? user.uid : null, at: Date.now(), status: "new", page: location.href };
+    let delivered = false, problem = "";
+    // 1) Email via formsubmit.co (no backend needed)
+    if (C.enquiryEmail) {
+      try {
+        const r = await fetch("https://formsubmit.co/ajax/" + encodeURIComponent(C.enquiryEmail), { method: "POST", headers: { "Content-Type": "application/json", "Accept": "application/json" },
+          body: JSON.stringify({ _subject: `New enquiry: ${d.name} — ${d.course}`, _template: "table", _captcha: "false", Name: d.name, Phone: d.phone, Email: d.email || "-", Course: d.course, Qualification: d.qualification || "-", Message: d.message || "-", Received: new Date().toLocaleString("en-IN") }) });
+        const j = await r.json().catch(() => ({})); delivered = r.ok && (j.success === "true" || j.success === true); if (!delivered) problem = j.message || ("email relay " + r.status);
+      } catch (err) { problem = err.message; }
+    }
+    // 2) Optional Telegram ping
+    if (C.telegramNotify && C.telegramNotify.botToken && C.telegramNotify.chatId) {
+      try {
+        const text = `📩 New enquiry\n👤 ${d.name}\n📞 ${d.phone}\n✉️ ${d.email || "-"}\n🎓 ${d.course}\n📚 ${d.qualification || "-"}\n💬 ${d.message || "-"}`;
+        const r = await fetch(`https://api.telegram.org/bot${C.telegramNotify.botToken}/sendMessage`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ chat_id: C.telegramNotify.chatId, text }) });
+        if (r.ok) delivered = true;
+      } catch (err) {}
+    }
+    // 3) Always keep a copy in the site's own store (admin → Enquiries)
+    try { await GSA.store.saveEnquiry({ ...enq, delivered }); } catch (err) {}
+    if (delivered || !C.enquiryEmail) { toast(document.getElementById("enq-msg"), "ok", "Thank you! Your enquiry has been sent. We'll contact you shortly."); f.reset(); }
+    else toast(document.getElementById("enq-msg"), "err", "We saved your enquiry but could not email it (" + problem + "). Please also message us on Telegram.");
     btn.disabled = false;
   };
 });

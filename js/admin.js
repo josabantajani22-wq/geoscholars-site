@@ -42,7 +42,7 @@ document.addEventListener("gsa:ready", async ({ detail: { user } }) => {
   /* ---------- PAGES ---------- */
   const pages = {
     async overview() {
-      const [tests, enq, users, attempts, notices, stats] = await Promise.all([store.listTests(), store.listEnquiries(), store.listUsers(), store.listAllAttempts(), store.listNotices(), store.visitStats(30)]);
+      const [tests, enq, users, attempts, notices, stats, globalVisits] = await Promise.all([store.listTests(), store.listEnquiries(), store.listUsers(), store.listAllAttempts(), store.listNotices(), store.visitStats(30), store.globalCounter()]);
       const views = stats.reduce((n, d) => n + (d.views || 0), 0), visitors = stats.reduce((n, d) => n + (d.visitors || 0), 0);
       const today = new Date().toISOString().slice(0, 10), td = stats.find(d => d.day === today) || { views: 0, visitors: 0 };
       const max = Math.max(1, ...stats.map(d => d.views || 0));
@@ -50,7 +50,8 @@ document.addEventListener("gsa:ready", async ({ detail: { user } }) => {
       const topPages = Object.entries(pageTotals).sort((a, b) => b[1] - a[1]).slice(0, 6);
       const week = Date.now() - 7 * 86400000;
       panel.innerHTML = `<h1>Admin overview</h1>
-        ${store.mode === "local" ? `<div class="alert info"><strong>Local demo mode.</strong> Visitor numbers below count only <em>this</em> browser. Switch on Firebase (Help tab) to count every visitor, student and enquiry across the live site.</div>` : ""}
+        <div class="kpis"><div class="stat" style="grid-column: span 2; background: var(--ink); color: #fff"><b style="color:#ffd58a; font-size:2.2rem">${globalVisits === null ? "—" : globalVisits.toLocaleString("en-IN")}</b><span style="color:#c9d1d8">Total visitors to geoscholarsacademy.org (all devices, since launch)${globalVisits === null ? " · counter unreachable right now" : ""}</span></div></div>
+        ${store.mode === "local" ? `<div class="alert info small">The big number above is site-wide. The 30-day breakdown below, student list and enquiry list are from <em>this browser only</em> until Firebase is switched on (Help tab).</div>` : ""}
         <h3>Website traffic — last 30 days</h3>
         <div class="kpis">
           <div class="stat"><b>${visitors}</b><span>Visitors (sessions)</span></div><div class="stat"><b>${views}</b><span>Page views</span></div><div class="stat"><b>${td.visitors || 0} / ${td.views || 0}</b><span>Today: visitors / views</span></div><div class="stat"><b>${enq.length}</b><span>Enquiries total</span></div><div class="stat"><b>${enq.filter(e => e.at > week).length}</b><span>Enquiries this week</span></div>
@@ -138,7 +139,7 @@ document.addEventListener("gsa:ready", async ({ detail: { user } }) => {
     async enquiries() {
       const enq = await store.listEnquiries();
       panel.innerHTML = `<h1>Enquiries <span class="badge">${enq.length}</span></h1>
-        ${enq.length ? `<div class="toolbar"><button class="btn ghost sm" id="csv">Download CSV</button></div><div class="table-wrap"><table><tr><th>When</th><th>Name</th><th>Contact</th><th>Course</th><th>Qualification</th><th>Message</th></tr>${enq.map(e => `<tr><td style="white-space:nowrap">${fmtDT(e.at)}</td><td>${esc(e.name)}</td><td>${esc(e.phone)}<br><span class="small muted">${esc(e.email || "")}</span></td><td>${esc(e.course)}</td><td>${esc(e.qualification || "")}</td><td class="small">${esc(e.message || "")}</td></tr>`).join("")}</table></div>` : "<p class='muted'>No enquiries yet.</p>"}`;
+        ${enq.length ? `<div class="toolbar"><button class="btn ghost sm" id="csv">Download CSV</button></div><div class="table-wrap"><table><tr><th>When</th><th>Name</th><th>Contact</th><th>Course</th><th>Qualification</th><th>Message</th><th>Emailed</th></tr>${enq.map(e => `<tr><td style="white-space:nowrap">${fmtDT(e.at)}</td><td>${esc(e.name)}</td><td>${esc(e.phone)}<br><span class="small muted">${esc(e.email || "")}</span></td><td>${esc(e.course)}</td><td>${esc(e.qualification || "")}</td><td class="small">${esc(e.message || "")}</td><td>${e.delivered ? '<span class="badge moss">yes</span>' : '<span class="badge grey">no</span>'}</td></tr>`).join("")}</table></div>` : "<p class='muted'>No enquiries yet.</p>"}`;
       const c = document.getElementById("csv"); if (c) c.onclick = () => {
         const rows = [["When", "Name", "Phone", "Email", "Course", "Qualification", "Message"], ...enq.map(e => [fmtDT(e.at), e.name, e.phone, e.email, e.course, e.qualification, e.message])];
         const csv = rows.map(r => r.map(v => `"${String(v ?? "").replace(/"/g, '""')}"`).join(",")).join("\n");

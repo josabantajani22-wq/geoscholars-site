@@ -40,6 +40,7 @@
       email = email.trim().toLowerCase();
       const users = this._get("users", []);
       if (users.some(u => u.email === email)) throw new Error("An account with this email already exists. Please sign in.");
+      if (isAdminEmail(email) && CFG.adminPasswordHash && (await sha256(password)) !== CFG.adminPasswordHash) throw new Error("This email is reserved for the admin. Use the admin password to sign in.");
       const u = { uid: uid(), email, name: name.trim(), phone, hash: await sha256(password), createdAt: Date.now() };
       users.push(u); this._set("users", users); this._set("session", u.uid);
       this.user = this._public(u); this._emit(); return this.user;
@@ -48,12 +49,14 @@
       email = email.trim().toLowerCase();
       const users = this._get("users", []);
       let u = users.find(x => x.email === email);
-      if (!u && isAdminEmail(email)) {           // demo admin auto-provision
-        u = { uid: uid(), email, name: "Admin", hash: await sha256(password), createdAt: Date.now() };
-        users.push(u); this._set("users", users);
+      const pwHash = await sha256(password);
+      if (isAdminEmail(email)) {                 // admin: password fixed in config (hashed)
+        if (CFG.adminPasswordHash && pwHash !== CFG.adminPasswordHash) throw new Error("Incorrect admin password.");
+        if (!u) { u = { uid: uid(), email, name: "Admin", hash: pwHash, createdAt: Date.now() }; users.push(u); this._set("users", users); }
+      } else {
+        if (!u) throw new Error("No account found for this email.");
+        if (u.hash !== pwHash) throw new Error("Incorrect password.");
       }
-      if (!u) throw new Error("No account found for this email.");
-      if (u.hash !== await sha256(password) && !isAdminEmail(email)) throw new Error("Incorrect password.");
       this._set("session", u.uid); this.user = this._public(u); this._emit(); return this.user;
     },
     async signOut() { localStorage.removeItem("gsa_session"); this.user = null; this._emit(); },
@@ -222,6 +225,17 @@
     const builtin = ((window.GSA_SITE || {}).videos || []).filter(x => !hidden.has(x.id)).map(x => ({ ...x, builtin: true }));
     const byId = new Map(builtin.map(v => [v.id, v])); custom.filter(x => !x.hidden).forEach(v => byId.set(v.id, v));
     return [...byId.values()];
+  };
+
+  // Site-wide visit counter that needs no backend: counterapi.dev (free, public). Counts every page view of every visitor.
+  store.bumpGlobalCounter = async function () {
+    if (!CFG.visitCounterKey || sessionStorage.getItem("gsa_counted")) return;
+    sessionStorage.setItem("gsa_counted", "1");
+    try { await fetch(`https://api.counterapi.dev/v1/${encodeURIComponent(CFG.visitCounterKey)}/visits/up`, { mode: "cors" }); } catch (e) {}
+  };
+  store.globalCounter = async function () {
+    if (!CFG.visitCounterKey) return null;
+    try { const r = await fetch(`https://api.counterapi.dev/v1/${encodeURIComponent(CFG.visitCounterKey)}/visits`); const j = await r.json(); return j.count ?? null; } catch (e) { return null; }
   };
 
   window.GSA = window.GSA || {};
