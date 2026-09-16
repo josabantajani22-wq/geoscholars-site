@@ -34,11 +34,14 @@ PAGES = [
     "/upsc-jobs/",
     "/government-jobs/",
 ]
-KEYWORDS = re.compile(
+# A row is kept when the POST NAME or QUALIFICATION mentions geology (POST_KEYWORDS), or when the recruiting
+# BOARD is a core geoscience employer (GEO_BOARDS) — for other PSUs (SAIL, Oil India, NHPC …) the post itself
+# must be geology-related, otherwise nurses/advisors at SAIL would leak in.
+POST_KEYWORDS = re.compile(
     r"geolog|geo-?scien|geophys|hydro-?geolog|earth science|petroleum|mining engineer|mines? (officer|inspector)|"
-    r"\bongc\b|\bgsi\b|geological survey|\bcgwb\b|ground water|\bnmdc\b|coal india|\bmecl\b|mineral exploration|"
-    r"oil india|hindustan copper|\buranium\b|\bucil\b|\bamd\b|atomic minerals|\bgmdc\b|\bsail\b|\bnhpc\b|"
-    r"drilling|survey of india|csir.?net", re.I)
+    r"mineral|drilling|\bgeo\b|seismic|exploration|reservoir|\bcsir.?net\b|scientist.{0,20}(geo|earth)", re.I)
+GEO_BOARDS = re.compile(r"\bgsi\b|geological survey|\bcgwb\b|ground ?water|\bmecl\b|mineral exploration|atomic minerals|\bamd\b|\bgmdc\b|survey of india", re.I)
+KEYWORDS = POST_KEYWORDS  # backwards-compat
 UA = {"User-Agent": "Mozilla/5.0 (GSA vacancy bot; +https://geoscholarsacademy)"}
 
 
@@ -146,8 +149,9 @@ def main():
             print("skip (no response):", p); continue
         n = 0
         for row in parse_listing(html):
-            hay = f"{row['board']} {row['post']} {row['qualification']}"
-            if not KEYWORDS.search(hay) or row["url"] in seen:
+            if row["url"] in seen:
+                continue
+            if not (POST_KEYWORDS.search(f"{row['post']} {row['qualification']}") or GEO_BOARDS.search(row["board"])):
                 continue
             seen.add(row["url"]); found.append(row); n += 1
         print(f"{p}: {n} geology rows")
@@ -158,12 +162,17 @@ def main():
         extra = enrich(r["url"]) if i < a.max_enrich else {}
         last = parse_date(r["lastDate"])
         art_id = re.search(r"-(\d+)/?$", r["url"])
+        post_txt = re.sub(r"\s+", " ", r["post"]).strip()
+        m_posts = re.search(r"[–\-]\s*(\d[\d,]*)\s*posts?\s*$", post_txt, re.I)
+        if m_posts:
+            post_txt = post_txt[:m_posts.start()].strip(" –-")
+        n_posts = extra.get("posts") or (int(m_posts.group(1).replace(",", "")) if m_posts else None)
         items.append({
             "id": "fja-" + (art_id.group(1) if art_id else slug(r["board"] + "-" + r["post"])),
-            "title": f"{r['board']} — {r['post']}",
-            "organisation": r["board"],
-            "posts": extra.get("posts"),
-            "postNames": r["post"],
+            "title": f"{r['board'].strip()} — {post_txt}",
+            "organisation": r["board"].strip(),
+            "posts": n_posts,
+            "postNames": post_txt,
             "qualification": extra.get("qualification") or r["qualification"],
             "ageLimit": extra.get("ageLimit", ""),
             "fee": extra.get("fee", ""),
@@ -190,8 +199,13 @@ def main():
             old.update({k: v for k, v in it.items() if v not in ("", None, [])})
         else:
             by_id[it["id"]] = it
+    # Re-apply the geology filter to items this script added earlier (cleans up rows that an older, looser
+    # keyword list let through). Hand-added / locked items are never touched.
     kept = []
     for x in by_id.values():
+        if x.get("source") == "freejobalert" and not x.get("locked"):
+            if not (POST_KEYWORDS.search(f"{x.get('postNames', '')} {x.get('title', '')} {x.get('qualification', '')}") or GEO_BOARDS.search(x.get("organisation", ""))):
+                continue
         if x.get("lastDate"):
             try:
                 if (today - dt.date.fromisoformat(x["lastDate"])).days > a.keep_days:
