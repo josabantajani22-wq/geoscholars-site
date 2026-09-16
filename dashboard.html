@@ -20,9 +20,49 @@ document.addEventListener("gsa:ready", async ({ detail: { user } }) => {
   attempts.forEach(a => { (byTest[a.testId] = byTest[a.testId] || []).push(a); });
   const avgAcc = attempts.length ? Math.round(attempts.reduce((n, a) => n + (a.correct + a.wrong ? a.correct / (a.correct + a.wrong) : 0), 0) / attempts.length * 100) : 0;
   const notTaken = tests.filter(t => !byTest[t.id]);
-  document.getElementById("dash").innerHTML = `
-    <div class="eyebrow">Student dashboard</div>
-    <h1>Hello, ${esc(user.name || user.email)}</h1>
+  const S = window.GSA_SITE || {}, courseList = S.courses || [];
+  const chips = (arr, cls) => (arr || []).length ? arr.map(x => `<span class="badge ${cls || ""}">${esc(x)}</span>`).join(" ") : "<span class='muted small'>—</span>";
+  const courseName = (id) => (courseList.find(c => c.id === id) || {}).name || id;
+  const render = (u) => {
+    const pc = store.profileCompleteness(u);
+    document.getElementById("dash").innerHTML = `
+    <div class="dash-head">
+      <div class="dash-id">
+        <div class="avatar">${u.photo ? `<img src="${esc(u.photo)}" alt="">` : esc((u.name || u.email || "?")[0].toUpperCase())}</div>
+        <div><div class="eyebrow">Student dashboard</div><h1 style="margin:0">${esc(u.name || u.email)}</h1>
+          <p class="small muted" style="margin:.25rem 0 0">${esc(u.email)}${u.phone ? " · " + esc(u.phone) : ""}${u.city ? " · " + esc(u.city) + (u.state ? ", " + esc(u.state) : "") : ""}</p>
+          <p style="margin:.4rem 0 0">${chips(u.targetExams, "moss")}</p></div>
+      </div>
+      <div class="card profile-meter"><div style="display:flex;justify-content:space-between;align-items:baseline"><b>Profile ${pc}% complete</b><a href="#" id="edit-profile" class="small">Edit profile</a></div><div class="bar" style="margin:.5rem 0"><i style="width:${pc}%"></i></div><p class="small muted" style="margin:0">${pc < 100 ? "Complete your profile so we can guide you for the right exam and batch." : "Thanks — your profile is complete."}</p></div>
+    </div>
+
+    <div class="profile-grid" id="profile-view">
+      <div class="card"><h3>About me</h3>
+        <dl class="dl"><dt>Age</dt><dd>${esc(u.age || "—")}</dd><dt>Gender</dt><dd>${esc(u.gender || "—")}</dd><dt>City</dt><dd>${esc([u.city, u.state].filter(Boolean).join(", ") || "—")}</dd><dt>Phone</dt><dd>${esc(u.phone || "—")}</dd></dl></div>
+      <div class="card"><h3>Education</h3>
+        <dl class="dl"><dt>Qualification</dt><dd>${esc(u.qualification || "—")}</dd><dt>College / University</dt><dd>${esc(u.college || "—")}</dd><dt>Graduation year</dt><dd>${esc(u.gradYear || "—")}</dd></dl></div>
+      <div class="card"><h3>Exam plan</h3>
+        <dl class="dl"><dt>Target exams</dt><dd>${chips(u.targetExams, "moss")}</dd><dt>Attempt year</dt><dd>${esc(u.attemptYear || "—")}</dd><dt>Study hours / day</dt><dd>${esc(u.hours || "—")}</dd><dt>My goal</dt><dd>${esc(u.goal || "—")}</dd></dl></div>
+      <div class="card"><h3>My GSA courses</h3>
+        ${(u.courses || []).length ? `<ul class="clean">${u.courses.map(id => `<li>✅ ${esc(courseName(id))}</li>`).join("")}</ul>` : `<p class="small muted">No course added yet. If you have joined a batch on Classplus, add it in <a href="#" data-edit>Edit profile</a>; otherwise <a href="courses.html">see our batches →</a></p>`}</div>
+    </div>
+
+    <div class="card hidden" id="profile-edit"><h3>Edit profile</h3>
+      <form id="pf">
+        <div class="form-row"><div class="field"><label>Full name *</label><input name="name" required value="${esc(u.name || "")}"></div><div class="field"><label>Phone / WhatsApp *</label><input name="phone" required value="${esc(u.phone || "")}" placeholder="+91 …"></div></div>
+        <div class="form-row"><div class="field"><label>Age</label><input name="age" type="number" min="14" max="60" value="${esc(u.age || "")}"></div><div class="field"><label>Gender</label><select name="gender"><option value="">Prefer not to say</option>${["Male", "Female", "Other"].map(g => `<option ${u.gender === g ? "selected" : ""}>${g}</option>`).join("")}</select></div></div>
+        <div class="form-row"><div class="field"><label>City</label><input name="city" value="${esc(u.city || "")}"></div><div class="field"><label>State</label><input name="state" value="${esc(u.state || "")}"></div></div>
+        <div class="form-row"><div class="field"><label>Highest qualification</label><select name="qualification"><option value="">Select…</option>${store.QUALIFICATIONS.map(q => `<option ${u.qualification === q ? "selected" : ""}>${q}</option>`).join("")}</select></div><div class="field"><label>College / University</label><input name="college" value="${esc(u.college || "")}"></div></div>
+        <div class="form-row"><div class="field"><label>Graduation year</label><input name="gradYear" type="number" min="2000" max="2035" value="${esc(u.gradYear || "")}"></div><div class="field"><label>Planned attempt year</label><input name="attemptYear" type="number" min="2026" max="2035" value="${esc(u.attemptYear || "")}"></div></div>
+        <div class="field"><label>Target exams (select all that apply)</label><div class="checks">${store.EXAMS.map(e => `<label class="check"><input type="checkbox" name="targetExams" value="${esc(e)}" ${(u.targetExams || []).includes(e) ? "checked" : ""}> ${esc(e)}</label>`).join("")}</div></div>
+        <div class="field"><label>Courses purchased from GSA (on Classplus)</label><div class="checks">${courseList.map(c => `<label class="check"><input type="checkbox" name="courses" value="${esc(c.id)}" ${(u.courses || []).includes(c.id) ? "checked" : ""}> ${esc(c.name)}</label>`).join("")}</div></div>
+        <div class="form-row"><div class="field"><label>Study hours per day</label><select name="hours"><option value="">Select…</option>${["< 2", "2–4", "4–6", "6–8", "8+"].map(h => `<option ${u.hours === h ? "selected" : ""}>${h}</option>`).join("")}</select></div><div class="field"><label>Profile photo</label><input type="file" id="pf-photo" accept="image/*"><input type="hidden" name="photo" value="${esc(u.photo || "")}"></div></div>
+        <div class="field"><label>My goal (one line)</label><input name="goal" maxlength="160" value="${esc(u.goal || "")}" placeholder="e.g. Crack GATE GG 2027 and join ONGC"></div>
+        <div id="pf-msg" class="alert hidden"></div>
+        <button class="btn primary" type="submit">Save profile</button> <button class="btn ghost" type="button" id="pf-cancel">Cancel</button>
+      </form></div>
+
+    <h2 style="margin-top:2rem">My performance</h2>
     <div class="kpis">
       <div class="stat"><b>${attempts.length}</b><span>Attempts</span></div>
       <div class="stat"><b>${Object.keys(byTest).length} / ${tests.length}</b><span>Tests taken</span></div>
@@ -36,6 +76,21 @@ document.addEventListener("gsa:ready", async ({ detail: { user } }) => {
     ${notTaken.length ? `<h2>Not yet attempted</h2><p>${notTaken.map(t => `<a class="btn ghost sm" style="margin:0 .4rem .4rem 0" href="test.html?id=${encodeURIComponent(t.id)}">${esc(t.title)}</a>`).join("")}</p>` : ""}
     ${attempts.length ? `<h2 style="margin-top:2rem">All attempts</h2><div class="table-wrap"><table><tr><th>Date</th><th>Test</th><th>Score</th><th>Correct</th><th>Wrong</th><th>Skipped</th><th>Accuracy</th><th></th></tr>
       ${attempts.map(a => `<tr><td>${fmtDT(a.at)}</td><td>${esc(a.testTitle)}</td><td><strong>${a.score}</strong> / ${a.maxMarks}</td><td>${a.correct}</td><td>${a.wrong}</td><td>${a.unattempted}</td><td>${a.correct + a.wrong ? Math.round(100 * a.correct / (a.correct + a.wrong)) : 0}%</td><td><a href="test.html?id=${encodeURIComponent(a.testId)}&review=${a.id}">Review</a></td></tr>`).join("")}</table></div>` : ""}`;
+
+    const editBox = document.getElementById("profile-edit"), view = document.getElementById("profile-view");
+    const openEdit = (e) => { if (e) e.preventDefault(); editBox.classList.remove("hidden"); view.classList.add("hidden"); editBox.scrollIntoView({ behavior: "smooth", block: "start" }); };
+    document.getElementById("edit-profile").onclick = openEdit; document.querySelectorAll("[data-edit]").forEach(a => a.onclick = openEdit);
+    document.getElementById("pf-cancel").onclick = () => { editBox.classList.add("hidden"); view.classList.remove("hidden"); };
+    document.getElementById("pf-photo").onchange = (e) => { const f = e.target.files[0]; if (!f) return; const img = new Image(); img.onload = () => { const c = document.createElement("canvas"), s = 160, m = Math.min(img.width, img.height); c.width = c.height = s; c.getContext("2d").drawImage(img, (img.width - m) / 2, (img.height - m) / 2, m, m, 0, 0, s, s); document.querySelector("#pf [name=photo]").value = c.toDataURL("image/jpeg", .82); }; img.src = URL.createObjectURL(f); };
+    document.getElementById("pf").onsubmit = async (e) => {
+      e.preventDefault(); const fd = new FormData(e.target), data = {};
+      store.PROFILE_KEYS.forEach(k => { if (k === "targetExams" || k === "courses") data[k] = fd.getAll(k); else if (fd.has(k)) data[k] = String(fd.get(k)).trim(); });
+      try { const nu = await store.updateProfile(data); render(nu); document.getElementById("dash").scrollIntoView(); }
+      catch (err) { GSA.ui.toast(document.getElementById("pf-msg"), "error", err.message); }
+    };
+    if (pc < 40 && !sessionStorage.getItem("gsa_pf_nag")) { sessionStorage.setItem("gsa_pf_nag", "1"); openEdit(); }
+  };
+  render(user);
 });
 </script>
 </body></html>

@@ -12,6 +12,13 @@ stored only as a SHA-256 hash in `js/config.js → adminPasswordHash`; to change
 https://emn178.github.io/online-tools/sha256.html and paste the hash. In Firebase mode sign up once with the admin email
 and the same password.
 
+## Student profiles
+Students complete a profile from their dashboard (name, phone, age, gender, city/state, qualification, college, graduation
+year, target exams, planned attempt year, GSA courses purchased, study hours, goal, photo). A completeness meter nudges them;
+the edit form opens automatically for new accounts. Admin → Students & results shows every field, searches across them, and
+the CSV export includes them. Field list: `js/store.js → PROFILE_KEYS`; exam and qualification options: `store.EXAMS`,
+`store.QUALIFICATIONS`; course choices come from `data/site.js → courses`.
+
 ## Visitor counter
 Admin → Overview shows **Total visitors to geoscholarsacademy.org** — a site-wide number that works on GitHub Pages without
 Firebase (free public counter keyed by `js/config.js → visitCounterKey`; one count per visitor session). The 30-day

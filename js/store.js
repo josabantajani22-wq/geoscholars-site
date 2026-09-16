@@ -8,6 +8,9 @@
   const CFG = window.GSA_CONFIG || {};
   const useFirebase = !!(CFG.firebase && CFG.firebase.apiKey);
   const isAdminEmail = (e) => !!e && (CFG.adminEmails || []).map(x => x.toLowerCase()).includes(e.toLowerCase());
+  // Student profile fields (editable from the dashboard, visible to admin)
+  const PROFILE_KEYS = ["name", "phone", "age", "gender", "city", "state", "qualification", "college", "gradYear", "targetExams", "courses", "attemptYear", "hours", "goal", "photo"];
+  const pickProfile = (d) => { const o = {}; PROFILE_KEYS.forEach(k => { if (d && d[k] !== undefined) o[k] = d[k]; }); return o; };
   const uid = () => Math.random().toString(36).slice(2, 10) + Date.now().toString(36);
 
   async function sha256(str) {
@@ -32,7 +35,13 @@
       if (this.user) this.user = this._public(this.user);
       return this.user;
     },
-    _public(u) { return { uid: u.uid, email: u.email, name: u.name, phone: u.phone || "", isAdmin: isAdminEmail(u.email), createdAt: u.createdAt }; },
+    _public(u) { return { ...pickProfile(u), uid: u.uid, email: u.email, name: u.name, phone: u.phone || "", targetExams: u.targetExams || [], courses: u.courses || [], isAdmin: isAdminEmail(u.email), createdAt: u.createdAt, updatedAt: u.updatedAt || 0 }; },
+    async updateProfile(fields) {
+      if (!this.user) throw new Error("Sign in first.");
+      const users = this._get("users", []); const u = users.find(x => x.uid === this.user.uid); if (!u) throw new Error("Account not found.");
+      Object.assign(u, pickProfile(fields), { updatedAt: Date.now() }); this._set("users", users);
+      this.user = this._public(u); this._emit(); return this.user;
+    },
     _emit() { this._listeners.forEach(f => f(this.user)); },
     onAuth(cb) { this._listeners.push(cb); cb(this.user); },
 
@@ -124,7 +133,14 @@
     async _profile(u) {
       const snap = await this._db.collection("users").doc(u.uid).get();
       const d = snap.exists ? snap.data() : {};
-      return { uid: u.uid, email: u.email, name: d.name || u.displayName || "", phone: d.phone || "", isAdmin: isAdminEmail(u.email), createdAt: d.createdAt || 0 };
+      return { ...pickProfile(d), uid: u.uid, email: u.email, name: d.name || u.displayName || "", phone: d.phone || "", targetExams: d.targetExams || [], courses: d.courses || [], isAdmin: isAdminEmail(u.email), createdAt: d.createdAt || 0, updatedAt: d.updatedAt || 0 };
+    },
+    async updateProfile(fields) {
+      const u = this._auth.currentUser; if (!u) throw new Error("Sign in first.");
+      const data = { ...pickProfile(fields), updatedAt: Date.now() };
+      await this._db.collection("users").doc(u.uid).set(data, { merge: true });
+      if (data.name) await u.updateProfile({ displayName: data.name });
+      this.user = await this._profile(u); this._listeners.forEach(f => f(this.user)); return this.user;
     },
     onAuth(cb) { this._listeners.push(cb); cb(this.user); },
     async signUp(email, password, name, phone) {
@@ -183,6 +199,10 @@
 
   /* ---------------- SHARED HELPERS ---------------- */
   store.isAdminEmail = isAdminEmail;
+  store.PROFILE_KEYS = PROFILE_KEYS;
+  store.EXAMS = ["IIT JAM Geology", "CUET-PG Geology", "GATE Geology & Geophysics", "CSIR NET Earth Science", "UPSC Combined Geo-Scientist", "GSI / Geologist", "ONGC Geologist", "CGWB / State PSC", "Other"];
+  store.QUALIFICATIONS = ["B.Sc. (pursuing)", "B.Sc. (completed)", "M.Sc. (pursuing)", "M.Sc. (completed)", "M.Tech / Ph.D.", "Other"];
+  store.profileCompleteness = (u) => { const req = ["name", "phone", "age", "city", "qualification", "college", "targetExams", "attemptYear", "goal"]; const done = req.filter(k => Array.isArray(u[k]) ? u[k].length : (u[k] !== undefined && u[k] !== "" && u[k] !== null)).length; return Math.round(100 * done / req.length); };
   store.newId = uid;
   store.ready = store.init().catch(err => { console.error("Store init failed", err); return null; });
 
