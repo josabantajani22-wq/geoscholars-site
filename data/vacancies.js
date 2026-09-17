@@ -1,7 +1,7 @@
 // Geology vacancy board. Refreshed daily by tools/fetch_freejobalert.py + tools/fetch_linkedin.py (GitHub Actions); edit by hand or add from Admin → Vacancies.
 // status is derived on the page from lastDate: open / closing soon (≤7 days) / closed. Set "upcoming": true for expected notifications.
 window.GSA_VACANCIES = {
-  "updatedAt": "2026-09-16",
+  "updatedAt": "2026-09-17",
   "items": [
     {
       "id": "csir-net-dec-2026",
@@ -73,6 +73,29 @@ window.GSA_VACANCIES = {
       "source": "linkedin"
     },
     {
+      "id": "li-4454121650",
+      "title": "Senior Geophysicist — bp",
+      "organisation": "bp",
+      "posts": null,
+      "postNames": "Senior Geophysicist",
+      "qualification": "See the LinkedIn posting",
+      "ageLimit": "",
+      "fee": "",
+      "startDate": "2026-08-20",
+      "lastDate": "2026-09-19",
+      "upcoming": false,
+      "examDate": "",
+      "location": "Agra, Uttar Pradesh, India",
+      "tags": [
+        "LinkedIn",
+        "Industry"
+      ],
+      "applyUrl": "https://in.linkedin.com/jobs/view/senior-geophysicist-at-bp-4454121650",
+      "sourceUrl": "https://in.linkedin.com/jobs/view/senior-geophysicist-at-bp-4454121650",
+      "summary": "Industry opening listed on LinkedIn (Agra, Uttar Pradesh, India). Posted 2026-08-20. Apply on LinkedIn; the closing date shown here is an estimate (30 days from posting).",
+      "source": "linkedin"
+    },
+    {
       "id": "li-4454602329",
       "title": "Geophysical Engineer — Sweco",
       "organisation": "Sweco",
@@ -123,7 +146,7 @@ window.GSA_VACANCIES = {
       "title": "UPSC — Assistant Chemist, Geologist and More",
       "organisation": "UPSC",
       "posts": 127,
-      "postNames": "Assistant Chemist, Geologist and More – 127 Posts",
+      "postNames": "Assistant Chemist, Geologist and More",
       "qualification": "(10TH | 12TH | Diploma | ITI | Graduate, Etc)",
       "ageLimit": "A candidate must have attained 21 years and must not have attained 32 years as on 1 January 2027 - i.e., born not earlie",
       "fee": "₹200 (Female/SC/ST/PwBD exempted)",
@@ -192,7 +215,7 @@ window.GSA_VACANCIES = {
       "title": "GMDC — DGM, Manager and More",
       "organisation": "GMDC",
       "posts": 7,
-      "postNames": "DGM, Manager and More – 7 Posts",
+      "postNames": "DGM, Manager and More",
       "qualification": "Degree in Mechanical Engineering, Degree in Chemical Engineering, Degree in Mining/Mechanical/Chemical Engineering",
       "ageLimit": "Download GMDC Job 2026 Notification PDF",
       "fee": "No, there is no application fee mentioned for any category (General/OBC, SC/ST) for this GMDC recruitment.",
@@ -214,7 +237,7 @@ window.GSA_VACANCIES = {
       "title": "GMDC — Manager, DGM",
       "organisation": "GMDC",
       "posts": 7,
-      "postNames": "Manager, DGM – 7 Posts",
+      "postNames": "Manager, DGM",
       "qualification": "Degree in Chemical Engineering, Degree in Mechanical Engineering, Degree in Mining/Mechanical/Chemical Engineering",
       "ageLimit": "GMDC Recruitment 2026 - Overview",
       "fee": "Category",
@@ -393,11 +416,34 @@ window.GSA_VACANCIES = {
       "source": "linkedin"
     },
     {
+      "id": "li-4464320401",
+      "title": "Geoscientist - Petrophysicist — ExxonMobil India Careers",
+      "organisation": "ExxonMobil India Careers",
+      "posts": null,
+      "postNames": "Geoscientist - Petrophysicist",
+      "qualification": "See the LinkedIn posting",
+      "ageLimit": "",
+      "fee": "",
+      "startDate": "2026-09-07",
+      "lastDate": "2026-10-07",
+      "upcoming": false,
+      "examDate": "",
+      "location": "Bengaluru, Karnataka, India",
+      "tags": [
+        "LinkedIn",
+        "Industry"
+      ],
+      "applyUrl": "https://in.linkedin.com/jobs/view/geoscientist-petrophysicist-at-exxonmobil-india-careers-4464320401",
+      "sourceUrl": "https://in.linkedin.com/jobs/view/geoscientist-petrophysicist-at-exxonmobil-india-careers-4464320401",
+      "summary": "Industry opening listed on LinkedIn (Bengaluru, Karnataka, India). Posted 2026-09-07. Apply on LinkedIn; the closing date shown here is an estimate (30 days from posting).",
+      "source": "linkedin"
+    },
+    {
       "id": "fja-3065843",
       "title": "OPSC — Geologist",
       "organisation": "OPSC",
       "posts": 5,
-      "postNames": "Geologist – 5 Posts",
+      "postNames": "Geologist",
       "qualification": "Second-Class Master's Degree in Geology or Applied Geology or Earth Science from any recognized University in India",
       "ageLimit": "Min: 21 years, Max: 42 years",
       "fee": "Category",
@@ -580,7 +626,7 @@ window.GSA_VACANCIES = {
       "title": "MECL — Technician, Assistant and More",
       "organisation": "MECL",
       "posts": 122,
-      "postNames": "Technician, Assistant and More – 122 Posts",
+      "postNames": "Technician, Assistant and More",
       "qualification": "Candidates can download the official notification PDF and apply online through the direct links provided below in this article.",
       "ageLimit": "30 years as per the prescribed cut-off date",
       "fee": "The application registration fee is",
@@ -757,6 +803,29 @@ window.GSA_VACANCIES = {
       "applyUrl": "https://in.linkedin.com/jobs/view/pf-mines-oprn-geology-at-ultratech-cement-4467975727",
       "sourceUrl": "https://in.linkedin.com/jobs/view/pf-mines-oprn-geology-at-ultratech-cement-4467975727",
       "summary": "Industry opening listed on LinkedIn (Rajasthan, India). Posted 2026-09-16. Apply on LinkedIn; the closing date shown here is an estimate (30 days from posting).",
+      "source": "linkedin"
+    },
+    {
+      "id": "li-4466876238",
+      "title": "Specialist Geophysicist Analysis (SGA) - TSI — GeoCareerGo",
+      "organisation": "GeoCareerGo",
+      "posts": null,
+      "postNames": "Specialist Geophysicist Analysis (SGA) - TSI",
+      "qualification": "See the LinkedIn posting",
+      "ageLimit": "",
+      "fee": "",
+      "startDate": "2026-09-16",
+      "lastDate": "2026-10-16",
+      "upcoming": false,
+      "examDate": "",
+      "location": "Pune/Pimpri-Chinchwad Area",
+      "tags": [
+        "LinkedIn",
+        "Industry"
+      ],
+      "applyUrl": "https://in.linkedin.com/jobs/view/specialist-geophysicist-analysis-sga-tsi-at-geocareergo-4466876238",
+      "sourceUrl": "https://in.linkedin.com/jobs/view/specialist-geophysicist-analysis-sga-tsi-at-geocareergo-4466876238",
+      "summary": "Industry opening listed on LinkedIn (Pune/Pimpri-Chinchwad Area). Posted 2026-09-16. Apply on LinkedIn; the closing date shown here is an estimate (30 days from posting).",
       "source": "linkedin"
     }
   ]
