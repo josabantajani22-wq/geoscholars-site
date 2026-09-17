@@ -28,11 +28,6 @@ DATA = os.path.join(HERE, "..", "data", "vacancies.js")
 BASE = "https://www.freejobalert.com"
 PAGES = [
     "/latest-notifications/",
-    "/search-jobs/msc-government-jobs/",
-    "/search-jobs/m-sc-geology-government-jobs/",
-    "/psu-jobs/",
-    "/upsc-jobs/",
-    "/government-jobs/",
 ]
 # A row is kept when the POST NAME or QUALIFICATION mentions geology (POST_KEYWORDS), or when the recruiting
 # BOARD is a core geoscience employer (GEO_BOARDS) — for other PSUs (SAIL, Oil India, NHPC …) the post itself

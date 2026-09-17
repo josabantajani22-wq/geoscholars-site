@@ -15,7 +15,6 @@ jobs:
         with: { python-version: "3.12" }
       - run: pip install requests beautifulsoup4 lxml
       - run: python tools/fetch_freejobalert.py --keep-days 30
-      - run: python tools/fetch_linkedin.py --keep-days 30 || true
       - run: python tools/render_static.py
       - name: Commit if changed
         run: |

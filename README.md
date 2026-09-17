@@ -141,8 +141,7 @@ Free, and it also runs the FreeJobAlert vacancy refresh every morning.
 ## LinkedIn industry jobs
 `tools/fetch_linkedin.py` reads LinkedIn's public (logged-out) job search for geologist / geology / hydrogeologist /
 mining geologist / geophysicist / exploration geologist in India, keeps geology-relevant titles, and merges them into the
-board tagged "LinkedIn" (shown under the *Industry (LinkedIn)* filter, expiring 30 days after posting). It runs in the daily
-workflow after the FreeJobAlert fetcher and fails soft if LinkedIn changes its markup. A "Search geologist jobs on LinkedIn"
+board tagged "LinkedIn" (shown under the *Industry (LinkedIn)* filter, expiring 30 days after posting). It is NOT part of the daily workflow (removed on request — the site shows a single "Search on LinkedIn" link instead); run it by hand only if you want LinkedIn jobs merged in. A "Search geologist jobs on LinkedIn"
 button on the vacancies page always works regardless.
 
 ## Look & feel
@@ -167,7 +166,7 @@ click any name for the full report (score trend, per-test best, section-wise str
 **These counts are site-wide only in Firebase mode** — in local demo mode each browser counts itself.
 
 ## FreeJobAlert vacancy fetcher
-`tools/fetch_freejobalert.py` reads FreeJobAlert's listing tables (Post Date · Board · Post · Qualification · Advt · Last Date),
+`tools/fetch_freejobalert.py` reads the FreeJobAlert latest-notifications page table (Post Date · Board · Post · Qualification · Advt · Last Date),
 keeps geology/geoscience rows (keyword list at the top of the script), opens each article for posts/age/fee/official link,
 and merges into `data/vacancies.js`. Run by hand with `pip install requests beautifulsoup4 lxml` then
 `python tools/fetch_freejobalert.py`; or let the GitHub workflow do it daily.
