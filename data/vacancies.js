@@ -1,7 +1,7 @@
 // Geology vacancy board. Refreshed daily by tools/fetch_freejobalert.py + tools/fetch_linkedin.py (GitHub Actions); edit by hand or add from Admin → Vacancies.
 // status is derived on the page from lastDate: open / closing soon (≤7 days) / closed. Set "upcoming": true for expected notifications.
 window.GSA_VACANCIES = {
-  "updatedAt": "2026-09-18",
+  "updatedAt": "2026-09-19",
   "items": [
     {
       "id": "csir-net-dec-2026",
@@ -117,29 +117,6 @@ window.GSA_VACANCIES = {
       "sourceUrl": "https://www.freejobalert.com/articles/upsc-cgse-2027-combined-geo-scientist-examination-notification-3066005",
       "summary": "Listed on FreeJobAlert on 03/09/2026. Qualification: M.Sc. Verify details on the official notification before applying.",
       "source": "freejobalert"
-    },
-    {
-      "id": "li-4401618303",
-      "title": "Geophysicist - DP — SLB",
-      "organisation": "SLB",
-      "posts": null,
-      "postNames": "Geophysicist - DP",
-      "qualification": "See the LinkedIn posting",
-      "ageLimit": "",
-      "fee": "",
-      "startDate": "2026-08-28",
-      "lastDate": "2026-09-27",
-      "upcoming": false,
-      "examDate": "",
-      "location": "Navi Mumbai, Maharashtra, India",
-      "tags": [
-        "LinkedIn",
-        "Industry"
-      ],
-      "applyUrl": "https://in.linkedin.com/jobs/view/geophysicist-dp-at-slb-4401618303",
-      "sourceUrl": "https://in.linkedin.com/jobs/view/geophysicist-dp-at-slb-4401618303",
-      "summary": "Industry opening listed on LinkedIn (Navi Mumbai, Maharashtra, India). Posted 2026-08-28. Apply on LinkedIn; the closing date shown here is an estimate (30 days from posting).",
-      "source": "linkedin"
     },
     {
       "id": "li-4453010160",
@@ -757,6 +734,29 @@ window.GSA_VACANCIES = {
       "applyUrl": "https://in.linkedin.com/jobs/view/senior-geophysicist-at-bp-4454121650",
       "sourceUrl": "https://in.linkedin.com/jobs/view/senior-geophysicist-at-bp-4454121650",
       "summary": "Industry opening listed on LinkedIn (Agra, Uttar Pradesh, India). Posted 2026-09-17. Apply on LinkedIn; the closing date shown here is an estimate (30 days from posting).",
+      "source": "linkedin"
+    },
+    {
+      "id": "li-4401618303",
+      "title": "Geophysicist - DP — SLB",
+      "organisation": "SLB",
+      "posts": null,
+      "postNames": "Geophysicist - DP",
+      "qualification": "See the LinkedIn posting",
+      "ageLimit": "",
+      "fee": "",
+      "startDate": "2026-09-18",
+      "lastDate": "2026-10-18",
+      "upcoming": false,
+      "examDate": "",
+      "location": "Navi Mumbai, Maharashtra, India",
+      "tags": [
+        "LinkedIn",
+        "Industry"
+      ],
+      "applyUrl": "https://in.linkedin.com/jobs/view/geophysicist-dp-at-slb-4401618303",
+      "sourceUrl": "https://in.linkedin.com/jobs/view/geophysicist-dp-at-slb-4401618303",
+      "summary": "Industry opening listed on LinkedIn (Navi Mumbai, Maharashtra, India). Posted 2026-09-18. Apply on LinkedIn; the closing date shown here is an estimate (30 days from posting).",
       "source": "linkedin"
     }
   ]
