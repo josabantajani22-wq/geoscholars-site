@@ -1,7 +1,7 @@
 // Geology vacancy board. Refreshed daily by tools/fetch_freejobalert.py + tools/fetch_linkedin.py (GitHub Actions); edit by hand or add from Admin → Vacancies.
 // status is derived on the page from lastDate: open / closing soon (≤7 days) / closed. Set "upcoming": true for expected notifications.
 window.GSA_VACANCIES = {
-  "updatedAt": "2026-09-19",
+  "updatedAt": "2026-09-20",
   "items": [
     {
       "id": "csir-net-dec-2026",
@@ -229,6 +229,29 @@ window.GSA_VACANCIES = {
       "applyUrl": "https://in.linkedin.com/jobs/view/consultant-geology-at-erm-4460718892",
       "sourceUrl": "https://in.linkedin.com/jobs/view/consultant-geology-at-erm-4460718892",
       "summary": "Industry opening listed on LinkedIn (Bengaluru, Karnataka, India). Posted 2026-09-03. Apply on LinkedIn; the closing date shown here is an estimate (30 days from posting).",
+      "source": "linkedin"
+    },
+    {
+      "id": "li-4460483450",
+      "title": "Geophysical Engineer 1 — Fugro",
+      "organisation": "Fugro",
+      "posts": null,
+      "postNames": "Geophysical Engineer 1",
+      "qualification": "See the LinkedIn posting",
+      "ageLimit": "",
+      "fee": "",
+      "startDate": "2026-09-03",
+      "lastDate": "2026-10-03",
+      "upcoming": false,
+      "examDate": "",
+      "location": "Navi Mumbai, Maharashtra, India",
+      "tags": [
+        "LinkedIn",
+        "Industry"
+      ],
+      "applyUrl": "https://in.linkedin.com/jobs/view/geophysical-engineer-1-at-fugro-4460483450",
+      "sourceUrl": "https://in.linkedin.com/jobs/view/geophysical-engineer-1-at-fugro-4460483450",
+      "summary": "Industry opening listed on LinkedIn (Navi Mumbai, Maharashtra, India). Posted 2026-09-03. Apply on LinkedIn; the closing date shown here is an estimate (30 days from posting).",
       "source": "linkedin"
     },
     {
@@ -757,6 +780,29 @@ window.GSA_VACANCIES = {
       "applyUrl": "https://in.linkedin.com/jobs/view/geophysicist-dp-at-slb-4401618303",
       "sourceUrl": "https://in.linkedin.com/jobs/view/geophysicist-dp-at-slb-4401618303",
       "summary": "Industry opening listed on LinkedIn (Navi Mumbai, Maharashtra, India). Posted 2026-09-18. Apply on LinkedIn; the closing date shown here is an estimate (30 days from posting).",
+      "source": "linkedin"
+    },
+    {
+      "id": "li-4466961901",
+      "title": "Manager - Engineering Geologist — ReNew",
+      "organisation": "ReNew",
+      "posts": null,
+      "postNames": "Manager - Engineering Geologist",
+      "qualification": "See the LinkedIn posting",
+      "ageLimit": "",
+      "fee": "",
+      "startDate": "2026-09-19",
+      "lastDate": "2026-10-19",
+      "upcoming": false,
+      "examDate": "",
+      "location": "Gurugram, Haryana, India",
+      "tags": [
+        "LinkedIn",
+        "Industry"
+      ],
+      "applyUrl": "https://in.linkedin.com/jobs/view/manager-engineering-geologist-at-renew-4466961901",
+      "sourceUrl": "https://in.linkedin.com/jobs/view/manager-engineering-geologist-at-renew-4466961901",
+      "summary": "Industry opening listed on LinkedIn (Gurugram, Haryana, India). Posted 2026-09-19. Apply on LinkedIn; the closing date shown here is an estimate (30 days from posting).",
       "source": "linkedin"
     }
   ]
