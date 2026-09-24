@@ -1,7 +1,7 @@
 // Geology vacancy board. Refreshed daily by tools/fetch_freejobalert.py + tools/fetch_linkedin.py (GitHub Actions); edit by hand or add from Admin → Vacancies.
 // status is derived on the page from lastDate: open / closing soon (≤7 days) / closed. Set "upcoming": true for expected notifications.
 window.GSA_VACANCIES = {
-  "updatedAt": "2026-09-23",
+  "updatedAt": "2026-09-24",
   "items": [
     {
       "id": "csir-net-dec-2026",
@@ -117,6 +117,29 @@ window.GSA_VACANCIES = {
       "sourceUrl": "https://www.freejobalert.com/articles/upsc-cgse-2027-combined-geo-scientist-examination-notification-3066005",
       "summary": "Listed on FreeJobAlert on 03/09/2026. Qualification: M.Sc. Verify details on the official notification before applying.",
       "source": "freejobalert"
+    },
+    {
+      "id": "li-4462062645",
+      "title": "FLE Mines (Geology) — UltraTech Cement",
+      "organisation": "UltraTech Cement",
+      "posts": null,
+      "postNames": "FLE Mines (Geology)",
+      "qualification": "See the LinkedIn posting",
+      "ageLimit": "",
+      "fee": "",
+      "startDate": "2026-09-01",
+      "lastDate": "2026-10-01",
+      "upcoming": false,
+      "examDate": "",
+      "location": "Rajasthan, India",
+      "tags": [
+        "LinkedIn",
+        "Industry"
+      ],
+      "applyUrl": "https://in.linkedin.com/jobs/view/fle-mines-geology-at-ultratech-cement-4462062645",
+      "sourceUrl": "https://in.linkedin.com/jobs/view/fle-mines-geology-at-ultratech-cement-4462062645",
+      "summary": "Industry opening listed on LinkedIn (Rajasthan, India). Posted 2026-09-01. Apply on LinkedIn; the closing date shown here is an estimate (30 days from posting).",
+      "source": "linkedin"
     },
     {
       "id": "li-4453010160",
