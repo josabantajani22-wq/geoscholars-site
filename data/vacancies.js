@@ -1,7 +1,7 @@
 // Geology vacancy board. Refreshed daily by tools/fetch_freejobalert.py + tools/fetch_linkedin.py (GitHub Actions); edit by hand or add from Admin → Vacancies.
 // status is derived on the page from lastDate: open / closing soon (≤7 days) / closed. Set "upcoming": true for expected notifications.
 window.GSA_VACANCIES = {
-  "updatedAt": "2026-09-24",
+  "updatedAt": "2026-09-25",
   "items": [
     {
       "id": "csir-net-dec-2026",
@@ -119,52 +119,6 @@ window.GSA_VACANCIES = {
       "source": "freejobalert"
     },
     {
-      "id": "li-4462062645",
-      "title": "FLE Mines (Geology) — UltraTech Cement",
-      "organisation": "UltraTech Cement",
-      "posts": null,
-      "postNames": "FLE Mines (Geology)",
-      "qualification": "See the LinkedIn posting",
-      "ageLimit": "",
-      "fee": "",
-      "startDate": "2026-09-01",
-      "lastDate": "2026-10-01",
-      "upcoming": false,
-      "examDate": "",
-      "location": "Rajasthan, India",
-      "tags": [
-        "LinkedIn",
-        "Industry"
-      ],
-      "applyUrl": "https://in.linkedin.com/jobs/view/fle-mines-geology-at-ultratech-cement-4462062645",
-      "sourceUrl": "https://in.linkedin.com/jobs/view/fle-mines-geology-at-ultratech-cement-4462062645",
-      "summary": "Industry opening listed on LinkedIn (Rajasthan, India). Posted 2026-09-01. Apply on LinkedIn; the closing date shown here is an estimate (30 days from posting).",
-      "source": "linkedin"
-    },
-    {
-      "id": "li-4453010160",
-      "title": "Development Geoscientist - Preference for U.S. lower-48 experience — Stronghold Investment Management",
-      "organisation": "Stronghold Investment Management",
-      "posts": null,
-      "postNames": "Development Geoscientist - Preference for U.S. lower-48 experience",
-      "qualification": "See the LinkedIn posting",
-      "ageLimit": "",
-      "fee": "",
-      "startDate": "2026-09-02",
-      "lastDate": "2026-10-02",
-      "upcoming": false,
-      "examDate": "",
-      "location": "Bengaluru, Karnataka, India",
-      "tags": [
-        "LinkedIn",
-        "Industry"
-      ],
-      "applyUrl": "https://in.linkedin.com/jobs/view/development-geoscientist-preference-for-u-s-lower-48-experience-at-stronghold-investment-management-4453010160",
-      "sourceUrl": "https://in.linkedin.com/jobs/view/development-geoscientist-preference-for-u-s-lower-48-experience-at-stronghold-investment-management-4453010160",
-      "summary": "Industry opening listed on LinkedIn (Bengaluru, Karnataka, India). Posted 2026-09-02. Apply on LinkedIn; the closing date shown here is an estimate (30 days from posting).",
-      "source": "linkedin"
-    },
-    {
       "id": "fja-3066202",
       "title": "GMDC — DGM, Manager and More",
       "organisation": "GMDC",
@@ -252,29 +206,6 @@ window.GSA_VACANCIES = {
       "applyUrl": "https://in.linkedin.com/jobs/view/consultant-geology-at-erm-4460718892",
       "sourceUrl": "https://in.linkedin.com/jobs/view/consultant-geology-at-erm-4460718892",
       "summary": "Industry opening listed on LinkedIn (Bengaluru, Karnataka, India). Posted 2026-09-03. Apply on LinkedIn; the closing date shown here is an estimate (30 days from posting).",
-      "source": "linkedin"
-    },
-    {
-      "id": "li-4460483450",
-      "title": "Geophysical Engineer 1 — Fugro",
-      "organisation": "Fugro",
-      "posts": null,
-      "postNames": "Geophysical Engineer 1",
-      "qualification": "See the LinkedIn posting",
-      "ageLimit": "",
-      "fee": "",
-      "startDate": "2026-09-03",
-      "lastDate": "2026-10-03",
-      "upcoming": false,
-      "examDate": "",
-      "location": "Navi Mumbai, Maharashtra, India",
-      "tags": [
-        "LinkedIn",
-        "Industry"
-      ],
-      "applyUrl": "https://in.linkedin.com/jobs/view/geophysical-engineer-1-at-fugro-4460483450",
-      "sourceUrl": "https://in.linkedin.com/jobs/view/geophysical-engineer-1-at-fugro-4460483450",
-      "summary": "Industry opening listed on LinkedIn (Navi Mumbai, Maharashtra, India). Posted 2026-09-03. Apply on LinkedIn; the closing date shown here is an estimate (30 days from posting).",
       "source": "linkedin"
     },
     {
@@ -826,6 +757,98 @@ window.GSA_VACANCIES = {
       "applyUrl": "https://in.linkedin.com/jobs/view/manager-engineering-geologist-at-renew-4466961901",
       "sourceUrl": "https://in.linkedin.com/jobs/view/manager-engineering-geologist-at-renew-4466961901",
       "summary": "Industry opening listed on LinkedIn (Gurugram, Haryana, India). Posted 2026-09-19. Apply on LinkedIn; the closing date shown here is an estimate (30 days from posting).",
+      "source": "linkedin"
+    },
+    {
+      "id": "li-4448165427",
+      "title": "PF Mines OPs (Geology Pphrt) — UltraTech Cement",
+      "organisation": "UltraTech Cement",
+      "posts": null,
+      "postNames": "PF Mines OPs (Geology Pphrt)",
+      "qualification": "See the LinkedIn posting",
+      "ageLimit": "",
+      "fee": "",
+      "startDate": "2026-09-19",
+      "lastDate": "2026-10-19",
+      "upcoming": false,
+      "examDate": "",
+      "location": "Madhya Pradesh, India",
+      "tags": [
+        "LinkedIn",
+        "Industry"
+      ],
+      "applyUrl": "https://in.linkedin.com/jobs/view/pf-mines-ops-geology-pphrt-at-ultratech-cement-4448165427",
+      "sourceUrl": "https://in.linkedin.com/jobs/view/pf-mines-ops-geology-pphrt-at-ultratech-cement-4448165427",
+      "summary": "Industry opening listed on LinkedIn (Madhya Pradesh, India). Posted 2026-09-19. Apply on LinkedIn; the closing date shown here is an estimate (30 days from posting).",
+      "source": "linkedin"
+    },
+    {
+      "id": "li-4462062645",
+      "title": "FLE Mines (Geology) — UltraTech Cement",
+      "organisation": "UltraTech Cement",
+      "posts": null,
+      "postNames": "FLE Mines (Geology)",
+      "qualification": "See the LinkedIn posting",
+      "ageLimit": "",
+      "fee": "",
+      "startDate": "2026-09-24",
+      "lastDate": "2026-10-24",
+      "upcoming": false,
+      "examDate": "",
+      "location": "Rajasthan, India",
+      "tags": [
+        "LinkedIn",
+        "Industry"
+      ],
+      "applyUrl": "https://in.linkedin.com/jobs/view/fle-mines-geology-at-ultratech-cement-4462062645",
+      "sourceUrl": "https://in.linkedin.com/jobs/view/fle-mines-geology-at-ultratech-cement-4462062645",
+      "summary": "Industry opening listed on LinkedIn (Rajasthan, India). Posted 2026-09-24. Apply on LinkedIn; the closing date shown here is an estimate (30 days from posting).",
+      "source": "linkedin"
+    },
+    {
+      "id": "li-4453010160",
+      "title": "Development Geoscientist - Preference for U.S. lower-48 experience — Stronghold Investment Management",
+      "organisation": "Stronghold Investment Management",
+      "posts": null,
+      "postNames": "Development Geoscientist - Preference for U.S. lower-48 experience",
+      "qualification": "See the LinkedIn posting",
+      "ageLimit": "",
+      "fee": "",
+      "startDate": "2026-09-24",
+      "lastDate": "2026-10-24",
+      "upcoming": false,
+      "examDate": "",
+      "location": "Bengaluru, Karnataka, India",
+      "tags": [
+        "LinkedIn",
+        "Industry"
+      ],
+      "applyUrl": "https://in.linkedin.com/jobs/view/development-geoscientist-preference-for-u-s-lower-48-experience-at-stronghold-investment-management-4453010160",
+      "sourceUrl": "https://in.linkedin.com/jobs/view/development-geoscientist-preference-for-u-s-lower-48-experience-at-stronghold-investment-management-4453010160",
+      "summary": "Industry opening listed on LinkedIn (Bengaluru, Karnataka, India). Posted 2026-09-24. Apply on LinkedIn; the closing date shown here is an estimate (30 days from posting).",
+      "source": "linkedin"
+    },
+    {
+      "id": "li-4460483450",
+      "title": "Geophysical Engineer 1 — Fugro",
+      "organisation": "Fugro",
+      "posts": null,
+      "postNames": "Geophysical Engineer 1",
+      "qualification": "See the LinkedIn posting",
+      "ageLimit": "",
+      "fee": "",
+      "startDate": "2026-09-24",
+      "lastDate": "2026-10-24",
+      "upcoming": false,
+      "examDate": "",
+      "location": "Navi Mumbai, Maharashtra, India",
+      "tags": [
+        "LinkedIn",
+        "Industry"
+      ],
+      "applyUrl": "https://in.linkedin.com/jobs/view/geophysical-engineer-1-at-fugro-4460483450",
+      "sourceUrl": "https://in.linkedin.com/jobs/view/geophysical-engineer-1-at-fugro-4460483450",
+      "summary": "Industry opening listed on LinkedIn (Navi Mumbai, Maharashtra, India). Posted 2026-09-24. Apply on LinkedIn; the closing date shown here is an estimate (30 days from posting).",
       "source": "linkedin"
     }
   ]
