@@ -1,7 +1,7 @@
 // Geology vacancy board. Refreshed daily by tools/fetch_freejobalert.py + tools/fetch_linkedin.py (GitHub Actions); edit by hand or add from Admin → Vacancies.
 // status is derived on the page from lastDate: open / closing soon (≤7 days) / closed. Set "upcoming": true for expected notifications.
 window.GSA_VACANCIES = {
-  "updatedAt": "2026-09-25",
+  "updatedAt": "2026-09-26",
   "items": [
     {
       "id": "csir-net-dec-2026",
@@ -438,6 +438,29 @@ window.GSA_VACANCIES = {
       "source": "linkedin"
     },
     {
+      "id": "fja-3061230",
+      "title": "MECL — Executive Trainee",
+      "organisation": "MECL",
+      "posts": 13,
+      "postNames": "Executive Trainee",
+      "qualification": "MECL Executive Trainee Qualification",
+      "ageLimit": "MECL Executive Trainee Recruitment 2026 Notification PDF",
+      "fee": "An application registration fee of ₹500 is applicable for General/OBC/EWS candidates. The fee is not applicable for SC/ST/PwD/Ex-Servicemen/Departmental candida",
+      "startDate": "2026-09-25",
+      "lastDate": "2026-10-08",
+      "upcoming": false,
+      "examDate": "",
+      "location": "India",
+      "tags": [
+        "FreeJobAlert",
+        "PSU"
+      ],
+      "applyUrl": "https://mecl.co.in/writereaddata/meclpdf/Corrig4.pdf",
+      "sourceUrl": "https://www.freejobalert.com/articles/mecl-executive-trainee-recruitment-2026-3061230",
+      "summary": "Listed on FreeJobAlert on 25/09/2026. Qualification: B.Tech/B.E. Verify details on the official notification before applying.",
+      "source": "freejobalert"
+    },
+    {
       "id": "li-4463004504",
       "title": "Associate - Hydrogeology — WSP in India",
       "organisation": "WSP in India",
@@ -849,6 +872,29 @@ window.GSA_VACANCIES = {
       "applyUrl": "https://in.linkedin.com/jobs/view/geophysical-engineer-1-at-fugro-4460483450",
       "sourceUrl": "https://in.linkedin.com/jobs/view/geophysical-engineer-1-at-fugro-4460483450",
       "summary": "Industry opening listed on LinkedIn (Navi Mumbai, Maharashtra, India). Posted 2026-09-24. Apply on LinkedIn; the closing date shown here is an estimate (30 days from posting).",
+      "source": "linkedin"
+    },
+    {
+      "id": "li-4469375808",
+      "title": "Experienced Senior Airborne Survey Geophysicist Wanted Immediately  Open to applicants worldwide / any location. — Advanced Technologies",
+      "organisation": "Advanced Technologies",
+      "posts": null,
+      "postNames": "Experienced Senior Airborne Survey Geophysicist Wanted Immediately  Open to applicants worldwide / any location.",
+      "qualification": "See the LinkedIn posting",
+      "ageLimit": "",
+      "fee": "",
+      "startDate": "2026-09-25",
+      "lastDate": "2026-10-25",
+      "upcoming": false,
+      "examDate": "",
+      "location": "Telangana, India",
+      "tags": [
+        "LinkedIn",
+        "Industry"
+      ],
+      "applyUrl": "https://in.linkedin.com/jobs/view/experienced-senior-airborne-survey-geophysicist-wanted-immediately-open-to-applicants-worldwide-any-location-4469375808",
+      "sourceUrl": "https://in.linkedin.com/jobs/view/experienced-senior-airborne-survey-geophysicist-wanted-immediately-open-to-applicants-worldwide-any-location-4469375808",
+      "summary": "Industry opening listed on LinkedIn (Telangana, India). Posted 2026-09-25. Apply on LinkedIn; the closing date shown here is an estimate (30 days from posting).",
       "source": "linkedin"
     }
   ]
