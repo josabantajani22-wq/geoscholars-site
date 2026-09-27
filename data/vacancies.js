@@ -1,7 +1,7 @@
 // Geology vacancy board. Refreshed daily by tools/fetch_freejobalert.py + tools/fetch_linkedin.py (GitHub Actions); edit by hand or add from Admin → Vacancies.
 // status is derived on the page from lastDate: open / closing soon (≤7 days) / closed. Set "upcoming": true for expected notifications.
 window.GSA_VACANCIES = {
-  "updatedAt": "2026-09-26",
+  "updatedAt": "2026-09-27",
   "items": [
     {
       "id": "csir-net-dec-2026",
@@ -895,6 +895,52 @@ window.GSA_VACANCIES = {
       "applyUrl": "https://in.linkedin.com/jobs/view/experienced-senior-airborne-survey-geophysicist-wanted-immediately-open-to-applicants-worldwide-any-location-4469375808",
       "sourceUrl": "https://in.linkedin.com/jobs/view/experienced-senior-airborne-survey-geophysicist-wanted-immediately-open-to-applicants-worldwide-any-location-4469375808",
       "summary": "Industry opening listed on LinkedIn (Telangana, India). Posted 2026-09-25. Apply on LinkedIn; the closing date shown here is an estimate (30 days from posting).",
+      "source": "linkedin"
+    },
+    {
+      "id": "li-4470161111",
+      "title": "Seismic Engineer – IT ( 5+ Years ) — EICE Technology",
+      "organisation": "EICE Technology",
+      "posts": null,
+      "postNames": "Seismic Engineer – IT ( 5+ Years )",
+      "qualification": "See the LinkedIn posting",
+      "ageLimit": "",
+      "fee": "",
+      "startDate": "2026-09-25",
+      "lastDate": "2026-10-25",
+      "upcoming": false,
+      "examDate": "",
+      "location": "Noida, Uttar Pradesh, India",
+      "tags": [
+        "LinkedIn",
+        "Industry"
+      ],
+      "applyUrl": "https://in.linkedin.com/jobs/view/seismic-engineer-%E2%80%93-it-5%2B-years-at-eice-technology-4470161111",
+      "sourceUrl": "https://in.linkedin.com/jobs/view/seismic-engineer-%E2%80%93-it-5%2B-years-at-eice-technology-4470161111",
+      "summary": "Industry opening listed on LinkedIn (Noida, Uttar Pradesh, India). Posted 2026-09-25. Apply on LinkedIn; the closing date shown here is an estimate (30 days from posting).",
+      "source": "linkedin"
+    },
+    {
+      "id": "li-4472258479",
+      "title": "Senior Geologist — Able Ventures",
+      "organisation": "Able Ventures",
+      "posts": null,
+      "postNames": "Senior Geologist",
+      "qualification": "See the LinkedIn posting",
+      "ageLimit": "",
+      "fee": "",
+      "startDate": "2026-09-26",
+      "lastDate": "2026-10-26",
+      "upcoming": false,
+      "examDate": "",
+      "location": "Andhra Pradesh, India",
+      "tags": [
+        "LinkedIn",
+        "Industry"
+      ],
+      "applyUrl": "https://in.linkedin.com/jobs/view/senior-geologist-at-able-ventures-4472258479",
+      "sourceUrl": "https://in.linkedin.com/jobs/view/senior-geologist-at-able-ventures-4472258479",
+      "summary": "Industry opening listed on LinkedIn (Andhra Pradesh, India). Posted 2026-09-26. Apply on LinkedIn; the closing date shown here is an estimate (30 days from posting).",
       "source": "linkedin"
     }
   ]
