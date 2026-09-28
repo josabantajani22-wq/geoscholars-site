@@ -111,6 +111,15 @@ window.GSA_SITE = {
   // Fill in your actual faculty. Leave empty to hide the section.
   faculty: [],
 
+  // Exam calendar shown on the home page (countdowns) and the Exam Links page. tentative:true shows a "tentative" tag.
+  // Admin → Exam calendar can add/override entries (same id overrides).
+  examCalendar: [
+    { id: "csir-net-dec-2026", exam: "CSIR-UGC NET Dec 2026 (Earth Science)", date: "2026-12-20", note: "Exam 20–21 Dec 2026 · application window awaited", url: "https://csirnet.nta.nic.in", tentative: false },
+    { id: "upsc-cgs-2027-prelims", exam: "UPSC Combined Geo-Scientist 2027 — Prelims", date: "2027-01-10", note: "Apply by 22 Sep 2026", url: "https://upsc.gov.in", tentative: false },
+    { id: "gate-2027", exam: "GATE 2027 (Geology & Geophysics)", date: "2027-02-06", note: "Usually first two weekends of February", url: "https://gate2027.iitk.ac.in", tentative: true },
+    { id: "jam-2027", exam: "IIT JAM 2027 (Geology)", date: "2027-02-14", note: "Usually second Sunday of February", url: "https://jam.iitm.ac.in", tentative: true },
+    { id: "cuet-pg-2027", exam: "CUET-PG 2027 (Geology)", date: "2027-03-15", note: "Usually March–April", url: "https://pgcuet.samarth.ac.in", tentative: true }
+  ],
   faqs: [
     { q: "Are the mock tests really free?", a: "Yes. Every test listed under Free Test Series can be attempted without payment. Create a free account to save your scores and track progress." },
     { q: "Where do the paid batches run?", a: "On the Classplus app — install it from the Play Store or use the web link and org code shown on the Courses page. Enquire with us and we'll add you to the batch." },

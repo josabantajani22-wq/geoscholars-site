@@ -12,6 +12,9 @@ service cloud.firestore {
     match /stories/{id}    { allow read: if true;  allow write: if isAdmin(); }
     match /vacancies/{id}  { allow read: if true;  allow write: if isAdmin(); }
     match /videos/{id}     { allow read: if true;  allow write: if isAdmin(); }
+    match /articles/{id}   { allow read: if true;  allow write: if isAdmin(); }
+    match /examdates/{id}  { allow read: if true;  allow write: if isAdmin(); }
+    match /liveclasses/{id} { allow read: if signedIn(); allow write: if isAdmin(); }
     match /stats/{day}     { allow read: if isAdmin(); allow create, update: if true; }
     match /attempts/{id}   { allow create: if signedIn() && request.resource.data.uid == request.auth.uid;
                              allow read: if signedIn() && (resource.data.uid == request.auth.uid || isAdmin());

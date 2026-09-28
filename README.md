@@ -24,6 +24,40 @@ the edit form opens automatically for new accounts. Admin → Students & results
 the CSV export includes them. Field list: `js/store.js → PROFILE_KEYS`; exam and qualification options: `store.EXAMS`,
 `store.QUALIFICATIONS`; course choices come from `data/site.js → courses`.
 
+## Live classes (Google Calendar + Google Meet)
+Admin → **Live classes** schedules recurring online classes. Students see the next session and a Join button on their
+dashboard and on the Classes page (only signed-in students; batch-specific classes show "Enrol to join" to others).
+Two ways to get the meeting link:
+- **Paste a link** (Meet/Zoom) — works immediately, no setup.
+- **One-click Google Calendar event + Meet link** (recommended). One-time setup, 5 minutes:
+  1. https://console.cloud.google.com → select project *Geo Scholars Academy* → **APIs & Services → Library** → search
+     *Google Calendar API* → **Enable**.
+  2. **APIs & Services → OAuth consent screen** → External → App name `Geo Scholars Academy`, support email
+     geoscholarsacademy@gmail.com → Save. Under *Test users* add geoscholarsacademy@gmail.com (or publish the app).
+  3. **APIs & Services → Credentials → Create credentials → OAuth client ID** → Application type **Web application** →
+     Authorised JavaScript origins: `https://geoscholarsacademy.org` and `https://geo-scholars-academy-ac558.web.app`
+     → Create → copy the **Client ID** (ends with `.apps.googleusercontent.com`).
+  4. Paste it into `js/config.js → googleOAuthClientId` and upload.
+  Then in Admin → Live classes click **Connect Google Calendar**, sign in as geoscholarsacademy@gmail.com, and every
+  schedule you publish is created as a recurring event in that calendar with a Meet link (optionally emailing invitations
+  to registered students). Deleting the schedule deletes the event.
+
+## Vacancies "Refresh now" button
+Admin → Vacancies has a **Refresh now** button that triggers the GitHub workflow immediately (instead of waiting for
+07:00 IST). One-time setup: GitHub → profile photo → Settings → Developer settings → Personal access tokens →
+Fine-grained tokens → Generate: Repository access = only `geoscholars-site`; Permissions → Actions = Read and write →
+paste the token into the box on that tab. It is kept only in that browser's local storage.
+
+## Articles, exam calendar, enquiry pipeline, question of the day
+- **Admin → Articles**: study notes / strategy posts (simple markdown). Listed on `articles.html`, each at
+  `article.html?id=<slug>` with Article structured data for Google. Built-in starters live in `data/articles.js`.
+- **Admin → Exam calendar**: dates shown as countdowns on the home page and on the Exams page (`data/site.js → examCalendar`
+  holds the built-in ones).
+- **Admin → Enquiries**: status (New / Contacted / Follow-up / Joined / Not interested) + notes per enquiry, WhatsApp link.
+- Home page **Question of the day** rotates through the test bank; streak is stored in the visitor's browser.
+- **PWA**: `manifest.json` + `sw.js` make the site installable ("Install app" button appears when the browser allows) and
+  cache the shell for fast repeat visits. Bump `VERSION` in `sw.js` when you change CSS/JS heavily.
+
 ## Visitor counter
 Admin → Overview shows **Total visitors to geoscholarsacademy.org** — a site-wide number that works on GitHub Pages without
 Firebase (free public counter keyed by `js/config.js → visitCounterKey`; one count per visitor session). The 30-day
@@ -106,6 +140,9 @@ service cloud.firestore {
     match /stories/{id}    { allow read: if true;  allow write: if isAdmin(); }
     match /vacancies/{id}  { allow read: if true;  allow write: if isAdmin(); }
     match /videos/{id}     { allow read: if true;  allow write: if isAdmin(); }
+    match /articles/{id}   { allow read: if true;  allow write: if isAdmin(); }
+    match /examdates/{id}  { allow read: if true;  allow write: if isAdmin(); }
+    match /liveclasses/{id} { allow read: if signedIn(); allow write: if isAdmin(); }
     match /stats/{day}     { allow read: if isAdmin(); allow create, update: if true; }
     match /attempts/{id}   { allow create: if signedIn() && request.resource.data.uid == request.auth.uid;
                              allow read: if signedIn() && (resource.data.uid == request.auth.uid || isAdmin());

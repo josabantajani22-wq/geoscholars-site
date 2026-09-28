@@ -480,3 +480,33 @@ details[open] summary::after { transform: rotate(45deg); }
 ul.clean { list-style: none; padding: 0; margin: 0; }
 ul.clean li { padding: .3rem 0; border-bottom: 1px dashed var(--line); font-size: .92rem; }
 @media (max-width: 760px) { .dash-head { grid-template-columns: 1fr; } }
+
+/* ---- articles ---- */
+.article-wrap { max-width: 800px; }
+.article-body { font-size: 1.05rem; line-height: 1.7; }
+.article-body h2 { font-size: 1.35rem; margin: 1.8rem 0 .5rem; }
+.article-body ul { padding-left: 1.2rem; }
+.article-body li { margin: .3rem 0; }
+
+/* ---- daily band: question of the day, countdown, notes ---- */
+.daily-grid { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 1.25rem; }
+.qotd-opts { display: grid; gap: .4rem; }
+.qotd-opt { text-align: left; border: 1px solid var(--line); background: #fff; border-radius: 10px; padding: .55rem .8rem; font: inherit; font-size: .92rem; cursor: pointer; transition: background .2s, border-color .2s; }
+.qotd-opt:hover:not(:disabled) { border-color: var(--ochre); background: var(--ochre-soft); }
+.qotd-opt.right { background: var(--moss-soft); border-color: var(--moss); font-weight: 600; }
+.qotd-opt.wrong { background: var(--red-soft); border-color: var(--red); }
+.cd-row { display: flex; gap: .8rem; align-items: center; padding: .5rem 0; border-bottom: 1px dashed var(--line); }
+.cd-row:last-child { border-bottom: 0; }
+.cd-days { min-width: 58px; text-align: center; background: var(--ink); color: #fff; border-radius: 10px; padding: .3rem .4rem; line-height: 1; }
+.cd-days b { display: block; font-family: var(--serif); font-size: 1.4rem; color: #e0a54c; }
+.cd-days span { font-size: .6rem; letter-spacing: .1em; text-transform: uppercase; }
+@media (max-width: 900px) { .daily-grid { grid-template-columns: 1fr; } }
+
+/* ---- live classes ---- */
+.live-card { border-left: 4px solid var(--ochre); }
+.live-row { display: flex; justify-content: space-between; gap: 1rem; align-items: center; padding: .6rem 0; border-bottom: 1px dashed var(--line); }
+.live-row:last-child { border-bottom: 0; }
+.live-row.soon { background: var(--red-soft); margin: 0 -1rem; padding: .6rem 1rem; border-radius: 10px; }
+
+.install-app { position: fixed; left: 1rem; bottom: 5.2rem; z-index: 60; background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: .5rem .9rem; font: inherit; font-size: .85rem; font-weight: 600; box-shadow: var(--shadow); cursor: pointer; }
+@media (max-width: 1400px) and (min-width: 1141px) { .nav a { font-size: .85rem; padding: .45rem .45rem; } .nav .btn { padding: .45rem .7rem; } .brand small { display: none; } }

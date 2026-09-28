@@ -1,0 +1,10 @@
+{
+  "name": "Geo Scholars Academy",
+  "short_name": "GSA",
+  "description": "Geology coaching: free mock tests, daily geology vacancies, live classes and study notes.",
+  "start_url": "/index.html?src=pwa",
+  "display": "standalone",
+  "background_color": "#FBF8F2",
+  "theme_color": "#1B2229",
+  "icons": [{ "src": "assets/logo.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }]
+}

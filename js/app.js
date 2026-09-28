@@ -9,7 +9,7 @@
   const qs = (k) => new URLSearchParams(location.search).get(k);
 
   function header(user) {
-    const links = [["index.html", "Home"], ["courses.html", "Courses"], ["tests.html", "Tests"], ["classes.html", "Classes"], ["vacancies.html", "Vacancies"], ["exams.html", "Exam Links"], ["about.html", "About"], ["contact.html", "Contact"]];
+    const links = [["index.html", "Home"], ["courses.html", "Courses"], ["tests.html", "Tests"], ["classes.html", "Classes"], ["vacancies.html", "Vacancies"], ["articles.html", "Notes"], ["exams.html", "Exams"], ["about.html", "About"], ["contact.html", "Contact"]];
     if (user) links.push(["dashboard.html", "Dashboard"]);
     if (user && user.isAdmin) links.push(["admin.html", "Admin"]);
     return `
@@ -30,7 +30,7 @@
     <footer class="site-footer"><div class="wrap">
       <div class="cols">
         <div><h4>${esc(c.siteName)}</h4><p>${esc(c.tagline)}. Focused coaching for ONGC Geologist, GATE Geology &amp; Geophysics, UPSC Combined Geo-Scientist and state geologist recruitments.</p>${social ? `<p>${social}</p>` : ""}</div>
-        <div><h4>Explore</h4><p><a href="courses.html">Courses</a><br><a href="tests.html">Free Test Series</a><br><a href="classes.html">Free Classes</a><br><a href="vacancies.html">Geology Vacancies</a><br><a href="exams.html">Official Exam Links</a><br><a href="contact.html">Enquire / Admission</a><br><a href="login.html">Student login</a></p></div>
+        <div><h4>Explore</h4><p><a href="courses.html">Courses</a><br><a href="tests.html">Free Test Series</a><br><a href="classes.html">Free Classes</a><br><a href="vacancies.html">Geology Vacancies</a><br><a href="articles.html">Study notes &amp; articles</a><br><a href="exams.html">Official Exam Links</a><br><a href="contact.html">Enquire / Admission</a><br><a href="login.html">Student login</a></p></div>
         <div><h4>Contact</h4><p>${contact || "Contact details coming soon."}</p></div>
       </div>
       <div class="copy">© ${new Date().getFullYear()} ${esc(c.siteName)}. All rights reserved. <span class="muted">· ${store.mode === "local" ? "Demo mode: data is stored in this browser only" : ""}</span></div>
@@ -88,6 +88,12 @@
       window.dataLayer = window.dataLayer || []; window.gtag = function () { dataLayer.push(arguments); }; gtag("js", new Date()); gtag("config", CFG.googleAnalyticsId);
     }
   }
+  // PWA: register the service worker and offer "Install app" once the browser allows it
+  function pwa() {
+    if ("serviceWorker" in navigator && location.protocol === "https:") navigator.serviceWorker.register("/sw.js").catch(() => {});
+    let deferred = null;
+    window.addEventListener("beforeinstallprompt", (e) => { e.preventDefault(); deferred = e; const b = document.createElement("button"); b.className = "install-app"; b.textContent = "📲 Install app"; b.onclick = async () => { b.remove(); deferred.prompt(); deferred = null; }; document.body.appendChild(b); });
+  }
   function stickyCta() {
     if (["admin.html", "test.html", "login.html", "dashboard.html", "contact.html"].includes(page)) return;
     const bar = document.createElement("div"); bar.className = "sticky-cta";
@@ -95,5 +101,5 @@
     document.body.appendChild(bar);
     window.addEventListener("scroll", () => bar.classList.toggle("show", scrollY > 600), { passive: true });
   }
-  Promise.all([store.ready, domReady]).then(([user]) => { mount(user); telegramFab(); analytics(); stickyCta(); store.onAuth(u => mount(u)); document.dispatchEvent(new CustomEvent("gsa:ready", { detail: { user } })); setTimeout(motion, 50); setTimeout(motion, 600); });
+  Promise.all([store.ready, domReady]).then(([user]) => { mount(user); telegramFab(); analytics(); stickyCta(); pwa(); store.onAuth(u => mount(u)); document.dispatchEvent(new CustomEvent("gsa:ready", { detail: { user } })); setTimeout(motion, 50); setTimeout(motion, 600); });
 })();

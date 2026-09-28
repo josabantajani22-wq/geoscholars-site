@@ -6,7 +6,7 @@
 <title>Geo Scholars Academy — Geology Coaching for IIT JAM, GATE GG, CSIR NET, UPSC Geo-Scientist &amp; Geology Vacancies</title>
 <meta name="description" content="Geo Scholars Academy (GSA): online geology coaching for IIT JAM, GATE Geology & Geophysics, CSIR NET Earth Science, UPSC Combined Geo-Scientist and ONGC/GSI/PSU exams. Free mock tests, daily geology vacancy updates and proven results — AIR 2 CSIR NET, AIR 3 IIT JAM.">
 <!-- Google Search Console: paste the <meta name="google-site-verification" ...> tag on the next line -->
-<link rel="canonical" href="https://geoscholarsacademy.org/"><meta property="og:site_name" content="Geo Scholars Academy"><meta property="og:image" content="https://geoscholarsacademy.org/assets/logo.png"><link rel="icon" href="assets/logo.png">
+<link rel="canonical" href="https://geoscholarsacademy.org/"><meta property="og:site_name" content="Geo Scholars Academy"><meta property="og:image" content="https://geoscholarsacademy.org/assets/logo.png"><link rel="icon" href="assets/logo.png"><link rel="manifest" href="manifest.json"><meta name="theme-color" content="#1B2229">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"EducationalOrganization","name":"Geo Scholars Academy","alternateName":"GSA","url":"https://geoscholarsacademy.org/","logo":"https://geoscholarsacademy.org/assets/logo.png","email":"geoscholarsacademy@gmail.com","telephone":"+91 84569 41639","sameAs":["https://youtube.com/@geoscholarsacademy","https://www.instagram.com/geoscholarsacademy","https://t.me/+EhBrPCtfIjRjYjc9"],"description":"Online geology coaching institute for IIT JAM, GATE Geology & Geophysics, CSIR NET Earth Science, UPSC Combined Geo-Scientist and PSU geologist recruitments, with free mock tests and daily geology vacancy updates."}</script>
@@ -54,6 +54,16 @@
         <ul class="ticks"><li>Free mock tests before you decide</li><li>Fee shared on enquiry — no hidden charges</li><li>Join the Telegram community today, free</li></ul>
         <div style="display:flex;gap:.6rem;flex-wrap:wrap"><a class="btn primary" href="contact.html">Enquire about admission</a><a class="btn ghost" id="join-tg" target="_blank" rel="noopener">Join Telegram</a></div>
       </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0" id="daily">
+  <div class="wrap">
+    <div class="daily-grid">
+      <div class="card qotd"><div class="eyebrow">Question of the day</div><div id="qotd"><p class="muted small">Loading…</p></div></div>
+      <div class="card"><div class="eyebrow">Exam countdown</div><div id="exam-countdown"><p class="muted small">Loading…</p></div><a class="small" href="exams.html">Full calendar &amp; official links →</a></div>
+      <div class="card"><div class="eyebrow">Latest study notes</div><div id="home-articles"><p class="muted small">Loading…</p></div><a class="small" href="articles.html">All articles →</a></div>
     </div>
   </div>
 </section>
@@ -136,7 +146,7 @@
 <script src="js/config.js"></script>
 <script src="data/site.js"></script>
 <script src="data/tests.js"></script>
-<script src="data/vacancies.js"></script>
+<script src="data/vacancies.js"></script><script src="data/articles.js"></script>
 <script src="js/store.js"></script>
 <script src="js/app.js"></script>
 <script>
@@ -192,6 +202,24 @@ document.addEventListener("gsa:ready", async () => {
     document.getElementById("lb-prev").onclick = () => show(cur - 1); document.getElementById("lb-next").onclick = () => show(cur + 1);
     document.addEventListener("keydown", (e) => { if (lb.hidden) return; if (e.key === "Escape") hide(); if (e.key === "ArrowRight") show(cur + 1); if (e.key === "ArrowLeft") show(cur - 1); });
   }
+  // ---- question of the day (rotates daily from the test bank; streak stored locally) ----
+  try {
+    const bank = tests.flatMap(t => (t.questions || []).map(q => ({ ...q, test: t.title }))).filter(q => q.options && q.options.length >= 2 && q.answer != null);
+    if (bank.length) {
+      const dayN = Math.floor(Date.now() / 86400000), q = bank[dayN % bank.length], key = "gsa_qotd_" + dayN;
+      const done = localStorage.getItem(key); const streak = +(localStorage.getItem("gsa_qotd_streak") || 0);
+      const box = document.getElementById("qotd");
+      const render = (picked) => { box.innerHTML = `<p style="margin:.2rem 0 .6rem;font-weight:600">${esc(q.text)}</p><div class="qotd-opts">${q.options.map((o, i) => `<button class="qotd-opt ${picked == null ? "" : i === q.answer ? "right" : i === +picked ? "wrong" : ""}" data-i="${i}" ${picked != null ? "disabled" : ""}>${String.fromCharCode(65 + i)}. ${esc(o)}</button>`).join("")}</div>${picked != null ? `<p class="small" style="margin:.6rem 0 0">${+picked === q.answer ? "✅ Correct!" : "❌ Correct answer: " + String.fromCharCode(65 + q.answer)}${q.solution ? " — " + esc(q.solution).slice(0, 220) : ""}</p><p class="small muted" style="margin:.3rem 0 0">🔥 Streak: ${localStorage.getItem("gsa_qotd_streak") || 0} day(s) · from ${esc(q.test)} · <a href="tests.html">take the full test</a></p>` : `<p class="small muted" style="margin:.6rem 0 0">From ${esc(q.test)} · new question every day</p>`}`;
+        box.querySelectorAll(".qotd-opt").forEach(b => b.onclick = () => { localStorage.setItem(key, b.dataset.i); const last = +(localStorage.getItem("gsa_qotd_last") || 0); localStorage.setItem("gsa_qotd_streak", String(last === dayN - 1 ? streak + 1 : 1)); localStorage.setItem("gsa_qotd_last", String(dayN)); render(b.dataset.i); }); };
+      render(done);
+    } else document.getElementById("qotd").innerHTML = "<p class='muted small'>Tests coming soon.</p>";
+  } catch (e) { document.getElementById("qotd").innerHTML = "<p class='muted small'>—</p>"; }
+  // ---- exam countdown ----
+  const ex = (await GSA.store.listAllExamDates()).filter(x => new Date(x.date + "T23:59:59") >= Date.now()).slice(0, 4);
+  document.getElementById("exam-countdown").innerHTML = ex.length ? ex.map(x => { const d = Math.ceil((new Date(x.date + "T00:00:00") - Date.now()) / 86400000); return `<div class="cd-row"><div class="cd-days"><b>${d}</b><span>days</span></div><div><b>${esc(x.exam)}</b>${x.tentative ? ' <span class="badge grey">tentative</span>' : ""}<br><span class="small muted">${new Date(x.date).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" })}${x.note ? " · " + esc(x.note) : ""}</span></div></div>`; }).join("") : "<p class='muted small'>No upcoming dates listed.</p>";
+  // ---- latest articles ----
+  const arts = (await GSA.store.listAllArticles()).slice(0, 3);
+  document.getElementById("home-articles").innerHTML = arts.length ? arts.map(a => `<p style="margin:0 0 .6rem"><a href="article.html?id=${encodeURIComponent(a.slug || a.id)}" style="color:inherit;font-weight:600">${esc(a.title)}</a><br><span class="small muted">${(a.tags || []).slice(0, 2).map(esc).join(" · ")}</span></p>`).join("") : "<p class='muted small'>Coming soon.</p>";
   // ---- vacancies teaser ----
   const vacs = (await GSA.store.listAllVacancies()).map(v => ({ ...v, days: v.lastDate ? Math.ceil((new Date(v.lastDate + "T23:59:59") - Date.now()) / 86400000) : null }))
     .filter(v => v.upcoming || v.days === null || v.days >= 0).sort((a, b) => (a.days ?? 999) - (b.days ?? 999)).slice(0, 4);

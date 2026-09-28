@@ -15,7 +15,7 @@ window.GSA_VACANCIES = {
       "startDate": "",
       "lastDate": "",
       "upcoming": true,
-      "examDate": "Expected December 2026; notification expected late Sep / Oct 2026",
+      "examDate": "Exam 20–21 December 2026 (NTA); application dates to be announced",
       "location": "All India (CBT)",
       "tags": [
         "CSIR NET",
@@ -24,7 +24,7 @@ window.GSA_VACANCIES = {
       ],
       "applyUrl": "https://csirnet.nta.ac.in",
       "sourceUrl": "https://csirnet.nta.ac.in",
-      "summary": "Watch this space — the December session notification is due shortly. June 2026 session: applications 27 May–19 Jun, exam 17–18 Jul, result 29 Aug."
+      "summary": "NTA has announced the December 2026 exam for 20–21 Dec; the application window is expected to open in late September / October 2026. This entry switches to 'Open' with the real last date the day the notification appears on FreeJobAlert."
     },
     {
       "id": "upsc-cgs-2027",

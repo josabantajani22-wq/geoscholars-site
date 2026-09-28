@@ -51,8 +51,10 @@ def article_mentions_geology(url):
     DEEP_CACHE[url] = ok
     return ok
 KEYWORDS = POST_KEYWORDS  # backwards-compat
+NET_RE = re.compile(r"csir.{0,6}net|ugc.{0,6}net|joint csir", re.I)
 def is_geology(post, qualification, board=""):
-    return bool(QUAL_KEYWORDS.search(qualification or "") or POST_KEYWORDS.search(post or "") or GEO_BOARDS.search(board or ""))
+    hay = f"{board} {post}"
+    return bool(QUAL_KEYWORDS.search(qualification or "") or POST_KEYWORDS.search(post or "") or GEO_BOARDS.search(board or "") or NET_RE.search(hay))
 UA = {"User-Agent": "Mozilla/5.0 (GSA vacancy bot; +https://geoscholarsacademy)"}
 
 
@@ -203,6 +205,9 @@ def main():
         })
 
     board = load_existing()
+    # A real CSIR/UGC NET notification from FreeJobAlert replaces the hand-written "notification expected" placeholder.
+    if any(NET_RE.search(it["title"]) for it in items):
+        board["items"] = [x for x in board["items"] if not (x.get("upcoming") and re.search(r"csir|ugc", x.get("id", ""), re.I))]
     by_id = {x["id"]: x for x in board["items"]}
     today = dt.date.today()
     for it in items:
@@ -218,7 +223,7 @@ def main():
     kept = []
     for x in by_id.values():
         if x.get("source") == "freejobalert" and not x.get("locked"):
-            if not is_geology(f"{x.get('postNames', '')} {x.get('title', '')}", x.get("qualification", ""), x.get("organisation", "")):
+            if not is_geology(f"{x.get('postNames', '')} {x.get('title', '')}", x.get("qualification", ""), x.get("organisation", "") + " " + x.get("title", "")):
                 continue
         if x.get("lastDate"):
             try:

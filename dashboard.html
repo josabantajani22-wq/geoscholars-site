@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>My Dashboard — Geo Scholars Academy</title>
-<link rel="icon" href="assets/logo.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="assets/logo.png"><link rel="manifest" href="manifest.json"><meta name="theme-color" content="#1B2229"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -62,7 +62,10 @@ document.addEventListener("gsa:ready", async ({ detail: { user } }) => {
         <button class="btn primary" type="submit">Save profile</button> <button class="btn ghost" type="button" id="pf-cancel">Cancel</button>
       </form></div>
 
+    <div class="card live-card" id="live-box" style="margin-top:1.5rem"><h3 style="margin-top:0">📡 Live online classes</h3><div id="live-list"><p class="small muted">Loading…</p></div></div>
+
     <h2 style="margin-top:2rem">My performance</h2>
+    ${attempts.length ? (() => { const days = new Set(attempts.map(a => new Date(a.at).toDateString())); let streak = 0; for (let i = 0; i < 60; i++) { const dd = new Date(); dd.setDate(dd.getDate() - i); if (days.has(dd.toDateString())) streak++; else if (i > 0) break; } const secs = {}; attempts.forEach(a => (a.perSec || []).forEach(s => { if (s.name === "All questions") return; secs[s.name] = secs[s.name] || { score: 0, max: 0 }; secs[s.name].score += s.score; secs[s.name].max += s.max; })); const weak = Object.entries(secs).map(([k, s]) => ({ k: k.replace(/^Section\s+/, ""), pct: s.max ? Math.round(100 * s.score / s.max) : 0 })).sort((a, b) => a.pct - b.pct).slice(0, 3); return `<div class="alert info small" style="margin-bottom:1rem">🔥 <b>${streak}-day practice streak</b>${weak.length ? ` · Work on: <b>${weak.map(w => esc(w.k) + " (" + w.pct + "%)").join(", ")}</b>` : ""}${notTaken.length ? ` · Next up: <a href="test.html?id=${encodeURIComponent(notTaken[0].id)}">${esc(notTaken[0].title)}</a>` : ""}</div>`; })() : ""}
     <div class="kpis">
       <div class="stat"><b>${attempts.length}</b><span>Attempts</span></div>
       <div class="stat"><b>${Object.keys(byTest).length} / ${tests.length}</b><span>Tests taken</span></div>
@@ -88,6 +91,13 @@ document.addEventListener("gsa:ready", async ({ detail: { user } }) => {
       try { const nu = await store.updateProfile(data); render(nu); document.getElementById("dash").scrollIntoView(); }
       catch (err) { GSA.ui.toast(document.getElementById("pf-msg"), "error", err.message); }
     };
+    (async () => { try {
+      const courseName2 = (id) => (courseList.find(c => c.id === id) || {}).name || "";
+      const cls = (await store.listLiveClasses()).map(c => ({ ...c, next: store.nextClassAt(c) })).filter(c => c.next).sort((a, b) => a.next - b.next);
+      const mine = cls.filter(c => !c.courseId || (u.courses || []).includes(c.courseId)), others = cls.filter(c => c.courseId && !(u.courses || []).includes(c.courseId));
+      const row = (c, locked) => { const mins = Math.round((c.next - Date.now()) / 60000), soon = mins <= 15 && mins >= -(c.duration || 60); return `<div class="live-row ${soon ? "soon" : ""}"><div><b>${esc(c.title)}</b>${c.courseId ? `<br><span class="small muted">${esc(courseName2(c.courseId))}</span>` : ""}${c.note ? `<br><span class="small">${esc(c.note)}</span>` : ""}</div><div class="small" style="text-align:right;white-space:nowrap">${soon ? "<b style='color:var(--red)'>LIVE NOW</b>" : fmtDT(c.next.getTime())}<br>${locked ? `<a href="courses.html" class="small">Join this batch to attend</a>` : `<a class="btn primary sm" href="${esc(c.link)}" target="_blank" rel="noopener">${soon ? "Join class" : "Join link"}</a>`}</div></div>`; };
+      document.getElementById("live-list").innerHTML = (mine.length || others.length) ? mine.map(c => row(c, false)).join("") + others.map(c => row(c, true)).join("") : "<p class='small muted'>No live classes scheduled right now. Free recorded classes are on the <a href='classes.html'>Classes</a> page.</p>";
+    } catch (e) { document.getElementById("live-list").innerHTML = "<p class='small muted'>Could not load the schedule.</p>"; } })();
     if (pc < 40 && !sessionStorage.getItem("gsa_pf_nag")) { sessionStorage.setItem("gsa_pf_nag", "1"); openEdit(); }
   };
   render(user);

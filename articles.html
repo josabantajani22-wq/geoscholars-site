@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Geology Study Notes & Exam Strategy Articles — Geo Scholars Academy</title>
+<meta name="description" content="Free geology study notes and exam strategy: GATE Geology & Geophysics plan, ONGC Geologist eligibility, CSIR NET Earth Science strategy, IIT JAM Geology tips — from Geo Scholars Academy.">
+<link rel="canonical" href="https://geoscholarsacademy.org/articles.html"><meta property="og:site_name" content="Geo Scholars Academy"><meta property="og:image" content="https://geoscholarsacademy.org/assets/logo.png"><link rel="icon" href="assets/logo.png"><link rel="manifest" href="manifest.json"><meta name="theme-color" content="#1B2229"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="site-header"></div>
+<section>
+  <div class="wrap">
+    <div class="section-head"><div class="eyebrow">Study notes &amp; strategy</div><h1>Articles for geology aspirants</h1><p class="muted">Exam plans, eligibility explainers and preparation strategy written by our faculty and toppers. New posts every week.</p></div>
+    <div class="chips" id="tag-chips" style="margin-bottom:1.2rem"></div>
+    <div class="grid" id="list"><p class="muted">Loading…</p></div>
+  </div>
+</section>
+<div id="site-footer"></div>
+<script src="js/config.js"></script><script src="data/site.js"></script><script src="data/tests.js"></script><script src="data/vacancies.js"></script><script src="data/articles.js"></script><script src="js/store.js"></script><script src="js/app.js"></script>
+<script>
+document.addEventListener("gsa:ready", async () => {
+  const { esc, fmtDate } = GSA.ui; const all = await GSA.store.listAllArticles();
+  const tags = [...new Set(all.flatMap(a => a.tags || []))]; let cur = "";
+  const chips = document.getElementById("tag-chips");
+  chips.innerHTML = ['<span class="chip on" data-t="">All</span>', ...tags.map(t => `<span class="chip" data-t="${esc(t)}">${esc(t)}</span>`)].join("");
+  const render = () => { const list = all.filter(a => !cur || (a.tags || []).includes(cur));
+    document.getElementById("list").innerHTML = list.length ? list.map(a => `<article class="card"><div class="small" style="color:var(--ochre-dark);font-weight:600">${(a.tags || []).map(esc).join(" · ")}</div><h3><a href="article.html?id=${encodeURIComponent(a.slug || a.id)}" style="color:inherit">${esc(a.title)}</a></h3><p class="small muted" style="margin:0 0 .6rem">${esc(a.excerpt || "")}</p><div class="spacer"></div><div class="small muted">${fmtDate(a.at || Date.now())} · ${esc(a.author || "GSA")}</div><a class="btn ghost sm" style="margin-top:.8rem;align-self:flex-start" href="article.html?id=${encodeURIComponent(a.slug || a.id)}">Read →</a></article>`).join("") : "<p class='muted'>No articles yet.</p>"; GSA.ui.motion(); };
+  chips.querySelectorAll(".chip").forEach(c => c.onclick = () => { cur = c.dataset.t; chips.querySelectorAll(".chip").forEach(x => x.classList.toggle("on", x === c)); render(); });
+  render();
+});
+</script>
+</body></html>

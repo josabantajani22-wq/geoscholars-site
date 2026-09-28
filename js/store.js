@@ -107,6 +107,17 @@
     async listVideos() { return this._get("videos", []); },
     async saveVideo(x) { const a = this._get("videos", []).filter(y => y.id !== x.id); a.push(x); this._set("videos", a); },
     async deleteVideo(id) { this._set("videos", this._get("videos", []).filter(x => x.id !== id)); },
+    async updateEnquiry(id, fields) { const a = this._get("enquiries", []); const e = a.find(x => x.id === id); if (e) Object.assign(e, fields); this._set("enquiries", a); },
+    async listArticles() { return this._get("articles", []).sort((x, y) => (y.at || 0) - (x.at || 0)); },
+    async getArticle(id) { return this._get("articles", []).find(x => x.id === id || x.slug === id) || null; },
+    async saveArticle(x) { const a = this._get("articles", []).filter(y => y.id !== x.id); a.push(x); this._set("articles", a); },
+    async deleteArticle(id) { this._set("articles", this._get("articles", []).filter(x => x.id !== id)); },
+    async listLiveClasses() { return this._get("liveclasses", []).sort((a, b) => (a.time || "").localeCompare(b.time || "")); },
+    async saveLiveClass(x) { const a = this._get("liveclasses", []).filter(y => y.id !== x.id); a.push(x); this._set("liveclasses", a); },
+    async deleteLiveClass(id) { this._set("liveclasses", this._get("liveclasses", []).filter(x => x.id !== id)); },
+    async listExamDates() { return this._get("examdates", []); },
+    async saveExamDate(x) { const a = this._get("examdates", []).filter(y => y.id !== x.id); a.push(x); this._set("examdates", a); },
+    async deleteExamDate(id) { this._set("examdates", this._get("examdates", []).filter(x => x.id !== id)); },
 
     // Visits: local mode can only count this browser (demo). Real counts need Firebase.
     async recordVisit(page) {
@@ -191,6 +202,17 @@
     async listVideos() { return this._docs(await this._db.collection("videos").get()); },
     async saveVideo(x) { await this._db.collection("videos").doc(x.id).set(x); },
     async deleteVideo(id) { await this._db.collection("videos").doc(id).delete(); },
+    async updateEnquiry(id, fields) { await this._db.collection("enquiries").doc(id).set(fields, { merge: true }); },
+    async listArticles() { return this._docs(await this._db.collection("articles").get()).sort((x, y) => (y.at || 0) - (x.at || 0)); },
+    async getArticle(id) { const d = await this._db.collection("articles").doc(id).get(); if (d.exists) return { id: d.id, ...d.data() }; const q = await this._db.collection("articles").where("slug", "==", id).limit(1).get(); return q.empty ? null : { id: q.docs[0].id, ...q.docs[0].data() }; },
+    async saveArticle(x) { await this._db.collection("articles").doc(x.id).set(x); },
+    async deleteArticle(id) { await this._db.collection("articles").doc(id).delete(); },
+    async listLiveClasses() { return this._docs(await this._db.collection("liveclasses").get()).sort((a, b) => (a.time || "").localeCompare(b.time || "")); },
+    async saveLiveClass(x) { await this._db.collection("liveclasses").doc(x.id).set(x); },
+    async deleteLiveClass(id) { await this._db.collection("liveclasses").doc(id).delete(); },
+    async listExamDates() { return this._docs(await this._db.collection("examdates").get()); },
+    async saveExamDate(x) { await this._db.collection("examdates").doc(x.id).set(x); },
+    async deleteExamDate(id) { await this._db.collection("examdates").doc(id).delete(); },
 
     async recordVisit(page) {
       const day = new Date().toISOString().slice(0, 10), inc = firebase.firestore.FieldValue.increment;
@@ -249,6 +271,38 @@
     return [...byId.values()];
   };
 
+  // Exam calendar: built-in (data/site.js examCalendar) + admin-added; admin copy of same id wins, hidden removes.
+  store.listAllExamDates = async function () {
+    const custom = await store.listExamDates();
+    const byId = new Map(((window.GSA_SITE || {}).examCalendar || []).map(v => [v.id, { ...v, builtin: true }]));
+    custom.forEach(v => { if (v.hidden) byId.delete(v.id); else byId.set(v.id, v); });
+    return [...byId.values()].filter(x => x.date).sort((a, b) => a.date.localeCompare(b.date));
+  };
+  // Articles: built-in (data/articles.js) + admin-added.
+  store.listAllArticles = async function () {
+    const custom = await store.listArticles();
+    const hidden = new Set(custom.filter(x => x.hidden).map(x => x.id));
+    const builtin = ((window.GSA_ARTICLES || [])).filter(x => !hidden.has(x.id)).map(x => ({ ...x, builtin: true }));
+    const byId = new Map(builtin.map(v => [v.id, v])); custom.filter(x => !x.hidden).forEach(v => byId.set(v.id, v));
+    return [...byId.values()].filter(x => x.published !== false).sort((a, b) => (b.at || 0) - (a.at || 0));
+  };
+  store.getAnyArticle = async function (id) {
+    const all = await store.listAllArticles();
+    return all.find(a => a.id === id || a.slug === id) || null;
+  };
+  // Live classes: next occurrence (IST) of a recurring class {days:["MO",...], time:"19:00", from, to}
+  store.nextClassAt = function (c, now = new Date()) {
+    const DAYS = ["SU", "MO", "TU", "WE", "TH", "FR", "SA"]; const [hh, mm] = (c.time || "19:00").split(":").map(Number);
+    for (let i = 0; i < 14; i++) {
+      const d = new Date(now); d.setDate(d.getDate() + i); d.setHours(hh, mm, 0, 0);
+      const iso = d.toISOString().slice(0, 10);
+      if (c.from && iso < c.from) continue; if (c.to && iso > c.to) return null;
+      if ((c.days || []).length && !c.days.includes(DAYS[d.getDay()])) continue;
+      if (d.getTime() + (c.duration || 60) * 60000 < now.getTime()) continue;   // already over today
+      return d;
+    }
+    return null;
+  };
   store.listAllVideos = async function () {
     const custom = await store.listVideos();
     const hidden = new Set(custom.filter(x => x.hidden).map(x => x.id));

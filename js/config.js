@@ -41,6 +41,11 @@ window.GSA_CONFIG = {
   // built-in sunrise-mountains scene.
   heroImage: "",
 
+  // Live classes (Admin → Live classes): to create Google Calendar events with a Google Meet link in one click,
+  // create an OAuth "Web application" client in Google Cloud (see README → Live classes) and paste its Client ID.
+  // Leave empty to paste Meet/Zoom links by hand.
+  googleOAuthClientId: "",
+
   // Optional: Google Analytics 4 measurement id (G-XXXXXXXXXX) for full visitor analytics.
   googleAnalyticsId: "",
   // Optional: Google Search Console "HTML tag" verification code (content="..." value).

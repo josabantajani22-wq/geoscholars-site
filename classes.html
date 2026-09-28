@@ -4,11 +4,12 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Free Classes — Geo Scholars Academy</title>
 <meta name="description" content="Free full-length geology class videos from Geo Scholars Academy — optical mineralogy, sedimentology and more.">
-<link rel="canonical" href="https://geoscholarsacademy.org/classes.html"><meta property="og:site_name" content="Geo Scholars Academy"><meta property="og:image" content="https://geoscholarsacademy.org/assets/logo.png"><link rel="icon" href="assets/logo.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link rel="canonical" href="https://geoscholarsacademy.org/classes.html"><meta property="og:site_name" content="Geo Scholars Academy"><meta property="og:image" content="https://geoscholarsacademy.org/assets/logo.png"><link rel="icon" href="assets/logo.png"><link rel="manifest" href="manifest.json"><meta name="theme-color" content="#1B2229"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 <div id="site-header"></div>
+<section style="padding-bottom:0"><div class="wrap"><div class="card live-card" id="live-sched"><h3 style="margin-top:0">📡 Live online class schedule</h3><div id="live-sched-list"><p class="small muted">Loading…</p></div></div></div></section>
 <section>
   <div class="wrap">
     <div class="section-head"><div class="eyebrow">Free classes</div><h1>Watch a full GSA class</h1><p class="muted">Sample lectures from our batches, free for every aspirant. Full courses with live doubt sessions run on Classplus.</p></div>
@@ -19,7 +20,12 @@
 <div id="site-footer"></div>
 <script src="js/config.js"></script><script src="data/site.js"></script><script src="data/tests.js"></script><script src="js/store.js"></script><script src="js/app.js"></script>
 <script>
-document.addEventListener("gsa:ready", async () => {
+document.addEventListener("gsa:ready", async ({ detail: { user } }) => {
+  (async () => { const box = document.getElementById("live-sched-list"), { esc: e2, fmtDT: f2 } = GSA.ui;
+    if (!user) { box.innerHTML = "<p class='small muted'>Live classes run on Google Meet at fixed times for enrolled batches. <a href='login.html?next=classes.html'>Sign in</a> to see the schedule and join links.</p>"; return; }
+    try { const cls = (await GSA.store.listLiveClasses()).map(c => ({ ...c, next: GSA.store.nextClassAt(c) })).filter(c => c.next).sort((a, b) => a.next - b.next); const cn = (id) => ((window.GSA_SITE || {}).courses || []).find(c => c.id === id)?.name || "All students";
+      box.innerHTML = cls.length ? `<div class="table-wrap"><table><tr><th>Class</th><th>Batch</th><th>Next session</th><th>Days · time</th><th></th></tr>${cls.map(c => { const ok = !c.courseId || (user.courses || []).includes(c.courseId); return `<tr><td><b>${e2(c.title)}</b>${c.note ? `<br><span class="small muted">${e2(c.note)}</span>` : ""}</td><td class="small">${e2(cn(c.courseId))}</td><td class="small">${f2(c.next.getTime())}</td><td class="small">${(c.days || []).join(", ")} · ${e2(c.time)} IST</td><td>${ok ? `<a class="btn primary sm" href="${e2(c.link)}" target="_blank" rel="noopener">Join</a>` : `<a class="small" href="courses.html">Enrol to join</a>`}</td></tr>`; }).join("")}</table></div>` : "<p class='small muted'>No live classes scheduled right now.</p>";
+    } catch (err) { box.innerHTML = "<p class='small muted'>Schedule unavailable.</p>"; } })();
   const { esc } = GSA.ui, yt = GSA_CONFIG.youtube || "#";
   document.getElementById("yt").href = yt;
   const videos = await GSA.store.listAllVideos();
