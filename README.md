@@ -117,7 +117,7 @@ Firestore composite index: if the console shows an "index required" link when op
 Admin → Enquiries or Students tabs, click it once to create the index.
 
 ## Go online with Google (Firebase Hosting + Firestore) — current plan
-Files: `firebase.json`, `.firebaserc` (project id `geoscholars-academy` — change if yours differs), `firestore.rules`,
+Files: `firebase.json`, `.firebaserc` (project id `geo-scholars-academy-ac558` — change if yours differs), `firestore.rules`,
 `.github/workflows/firebase-deploy.yml`. Full step-by-step in **FIREBASE-SETUP.md**. Summary:
 1. console.firebase.google.com → Add project → enable Authentication (Email/Password) + Firestore → register a Web app →
    paste its config into `js/config.js → firebase`.

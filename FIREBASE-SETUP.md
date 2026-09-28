@@ -7,7 +7,7 @@ You will need: your Google account (geoscholarsacademy@gmail.com), the GitHub re
 ## PART A — Create the Firebase project (10 min)
 1. Open https://console.firebase.google.com and sign in with geoscholarsacademy@gmail.com.
 2. Click **Create a project** → name: `Geo Scholars Academy` → the project id shown underneath should be
-   `geoscholars-academy` (if Google appends numbers, e.g. `geoscholars-academy-1a2b`, note it — you'll need it in step C4).
+   `geo-scholars-academy-ac558` (if Google appends numbers, e.g. `geo-scholars-academy-ac558-1a2b`, note it — you'll need it in step C4).
    Google Analytics: you can leave it ON. → Create project.
 3. Left menu → **Build → Authentication** → Get started → **Sign-in method** tab → **Email/Password** → Enable → Save.
 4. Left menu → **Build → Firestore Database** → Create database → location `asia-south1 (Mumbai)` →
@@ -20,9 +20,9 @@ You will need: your Google account (geoscholarsacademy@gmail.com), the GitHub re
    ```
    const firebaseConfig = {
      apiKey: "AIza…",
-     authDomain: "geoscholars-academy.firebaseapp.com",
-     projectId: "geoscholars-academy",
-     storageBucket: "geoscholars-academy.appspot.com",
+     authDomain: "geo-scholars-academy-ac558.firebaseapp.com",
+     projectId: "geo-scholars-academy-ac558",
+     storageBucket: "geo-scholars-academy-ac558.appspot.com",
      messagingSenderId: "1234567890",
      appId: "1:1234567890:web:abcdef"
    };
@@ -38,7 +38,7 @@ Result: the site now uses real accounts. Anyone who signs up is stored in Google
    and `.github/workflows/firebase-deploy.yml`.
    If the `.github` folder doesn't upload, create the file by hand: Add file → Create new file →
    name `.github/workflows/firebase-deploy.yml` → paste the file's text → Commit.
-2. If your project id from A2 is NOT exactly `geoscholars-academy`, edit two files in the repo and replace it:
+2. If your project id from A2 is NOT exactly `geo-scholars-academy-ac558`, edit two files in the repo and replace it:
    `.firebaserc` and `.github/workflows/firebase-deploy.yml` (the `projectId:` line).
 
 ---------------------------------------------------------------------------------------------------
@@ -50,7 +50,7 @@ This is what makes every upload AND the daily vacancy update go live on Google.
 3. GitHub repo → **Settings** → **Secrets and variables** → **Actions** → **New repository secret** →
    Name: `FIREBASE_SERVICE_ACCOUNT` → Secret: paste the JSON → Add secret.
 4. Repo → **Actions** tab → **Deploy to Firebase Hosting** → **Run workflow**. Green tick after ~1 minute means the site is
-   live at `https://geoscholars-academy.web.app` (open it to check).
+   live at `https://geo-scholars-academy-ac558.web.app` (open it to check).
 5. Repo → **Settings → Pages** → Source: **None** (turn GitHub Pages off so there aren't two copies). Delete the `CNAME`
    file from the repo (it was for GitHub Pages).
 

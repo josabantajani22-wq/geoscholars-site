@@ -63,11 +63,12 @@ window.GSA_CONFIG = {
   // Email/Password auth + Firestore, paste the web-app config here,
   // and apply the security rules in README.md.
   firebase: {
-    apiKey: "",
-    authDomain: "",
-    projectId: "",
-    storageBucket: "",
-    messagingSenderId: "",
-    appId: ""
+    apiKey: "AIzaSyCPjh9hJfUVUzsj9DqI-4zQSry5WzgDHVI",
+    authDomain: "geo-scholars-academy-ac558.firebaseapp.com",
+    projectId: "geo-scholars-academy-ac558",
+    storageBucket: "geo-scholars-academy-ac558.firebasestorage.app",
+    messagingSenderId: "97648592083",
+    appId: "1:97648592083:web:bd3cf1a4d15d7aa7b94026",
+    measurementId: "G-7BX8GEC9W3"
   }
 };
