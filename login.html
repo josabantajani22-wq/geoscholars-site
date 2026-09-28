@@ -20,6 +20,17 @@
       <button class="btn primary" style="width:100%" type="submit">Sign in</button>
       <p class="small center" style="margin-top:.8rem"><a href="#" id="forgot">Forgot password?</a></p>
     </form>
+    <form id="form-reset" class="hidden">
+      <h3 style="margin:.2rem 0 .6rem">Reset your password</h3>
+      <p class="small muted" id="reset-help">Enter the email you signed up with. We'll send you a link to choose a new password.</p>
+      <div class="field"><label>Email</label><input name="email" type="email" required autocomplete="email"></div>
+      <div id="reset-local" class="hidden">
+        <div class="field"><label>Phone number given at sign-up</label><input name="phone" type="tel" autocomplete="tel"></div>
+        <div class="field"><label>New password (min 6 characters)</label><input name="password" type="password" minlength="6" autocomplete="new-password"></div>
+      </div>
+      <button class="btn primary" style="width:100%" type="submit" id="reset-btn">Send reset link</button>
+      <p class="small center" style="margin-top:.8rem"><a href="#" id="back-signin">← Back to sign in</a></p>
+    </form>
     <form id="form-up" class="hidden">
       <div class="field"><label>Full name</label><input name="name" required autocomplete="name"></div>
       <div class="field"><label>Email</label><input name="email" type="email" required autocomplete="email"></div>
@@ -46,11 +57,29 @@ document.addEventListener("gsa:ready", ({ detail: { user } }) => {
   const run = async (fn) => { try { await fn(); location.href = next; } catch (e) { toast(msg, "err", (e.message || String(e)).replace(/^Firebase: /, "").replace(/\(auth.*\)\.?/, "")); } };
   document.getElementById("form-in").onsubmit = (e) => { e.preventDefault(); const f = e.target; run(() => store.signIn(f.email.value, f.password.value)); };
   document.getElementById("form-up").onsubmit = (e) => { e.preventDefault(); const f = e.target; run(() => store.signUp(f.email.value, f.password.value, f.name.value, f.phone.value)); };
-  document.getElementById("forgot").onclick = async (e) => {
-    e.preventDefault(); const email = document.querySelector("#form-in [name=email]").value;
-    if (!email) return toast(msg, "info", "Enter your email above first, then click Forgot password.");
-    try { await store.resetPassword(email); toast(msg, "ok", "Password reset email sent."); } catch (err) { toast(msg, "err", err.message); }
+  const showReset = (on) => {
+    document.getElementById("form-in").classList.toggle("hidden", on); document.getElementById("form-up").classList.add("hidden");
+    document.getElementById("form-reset").classList.toggle("hidden", !on); document.querySelector(".tabs").classList.toggle("hidden", on);
+    if (on) {
+      const local = store.mode === "local";
+      document.getElementById("reset-local").classList.toggle("hidden", !local);
+      document.getElementById("reset-btn").textContent = local ? "Set new password" : "Send reset link";
+      document.getElementById("reset-help").textContent = local ? "Demo mode: confirm the phone number you gave at sign-up and choose a new password." : "Enter the email you signed up with. We'll email you a link to choose a new password.";
+      const em = document.querySelector("#form-in [name=email]").value; if (em) document.querySelector("#form-reset [name=email]").value = em;
+    }
   };
+  document.getElementById("forgot").onclick = (e) => { e.preventDefault(); showReset(true); };
+  document.getElementById("back-signin").onclick = (e) => { e.preventDefault(); showReset(false); };
+  document.getElementById("form-reset").onsubmit = async (e) => {
+    e.preventDefault(); const f = e.target, email = f.email.value.trim();
+    if (store.isAdminEmail(email)) return toast(msg, "info", "The admin password is fixed in the site configuration (js/config.js → adminPasswordHash). Change it there.");
+    try {
+      await store.resetPassword(email, { phone: f.phone.value, password: f.password.value });
+      toast(msg, "ok", store.mode === "local" ? "Password updated. You can sign in with the new password now." : "Reset link sent to " + email + ". Check your inbox (and spam folder), open the link and choose a new password.");
+      if (store.mode === "local") showReset(false);
+    } catch (err) { toast(msg, "err", (err.message || String(err)).replace(/^Firebase: /, "").replace(/\(auth.*\)\.?/, "")); }
+  };
+  if (qs("reset")) showReset(true);
 });
 </script>
 </body></html>

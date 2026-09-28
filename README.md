@@ -12,6 +12,11 @@ stored only as a SHA-256 hash in `js/config.js → adminPasswordHash`; to change
 https://emn178.github.io/online-tools/sha256.html and paste the hash. In Firebase mode sign up once with the admin email
 and the same password.
 
+## Forgot password
+Login page → "Forgot password?". In Firebase mode the site emails a reset link (Firebase Authentication → Templates lets you
+customise the email and sender name). In local/demo mode there is no email, so the student confirms the phone number given
+at sign-up and sets a new password. The admin password is never reset this way — it lives in `js/config.js → adminPasswordHash`.
+
 ## Student profiles
 Students complete a profile from their dashboard (name, phone, age, gender, city/state, qualification, college, graduation
 year, target exams, planned attempt year, GSA courses purchased, study hours, goal, photo). A completeness meter nudges them;
@@ -111,7 +116,20 @@ service cloud.firestore {
 Firestore composite index: if the console shows an "index required" link when opening the
 Admin → Enquiries or Students tabs, click it once to create the index.
 
-## Go online (GitHub Pages + your domain) — recommended
+## Go online with Google (Firebase Hosting + Firestore) — current plan
+Files: `firebase.json`, `.firebaserc` (project id `geoscholars-academy` — change if yours differs), `firestore.rules`,
+`.github/workflows/firebase-deploy.yml`. Full step-by-step in **FIREBASE-SETUP.md**. Summary:
+1. console.firebase.google.com → Add project → enable Authentication (Email/Password) + Firestore → register a Web app →
+   paste its config into `js/config.js → firebase`.
+2. Firestore → Rules → paste `firestore.rules` → Publish.
+3. Hosting → Get started → then Project settings → Service accounts → Generate new private key → save the JSON as the GitHub
+   secret `FIREBASE_SERVICE_ACCOUNT` (repo → Settings → Secrets and variables → Actions). Every push to main (and the daily
+   vacancy bot) then deploys automatically.
+4. Hosting → Add custom domain `geoscholarsacademy.org` (+ www) → put the A/TXT records it shows into Squarespace DNS
+   (replace the four GitHub 185.199.x.x A records). HTTPS is automatic.
+5. Sign in on the site with an admin email + the admin password once → Admin panel works site-wide.
+
+## Go online (GitHub Pages + your domain) — previous plan
 Free, and it also runs the FreeJobAlert vacancy refresh every morning.
 1. Create a GitHub account (github.com) and a new **public** repository, e.g. `geoscholars-site`.
 2. Upload the contents of this `site/` folder to it (GitHub → "Add file → Upload files", drag the whole folder contents,
@@ -167,7 +185,7 @@ click any name for the full report (score trend, per-test best, section-wise str
 
 ## FreeJobAlert vacancy fetcher
 `tools/fetch_freejobalert.py` reads the FreeJobAlert latest-notifications page table (Post Date · Board · Post · Qualification · Advt · Last Date),
-keeps geology/geoscience rows (keyword list at the top of the script), opens each article for posts/age/fee/official link,
+keeps rows whose *Qualification* asks for geology / earth science / geophysics or whose post is a geologist-type post; "… and More" rows from geoscience employers are checked on their article page, opens each article for posts/age/fee/official link,
 and merges into `data/vacancies.js`. Run by hand with `pip install requests beautifulsoup4 lxml` then
 `python tools/fetch_freejobalert.py`; or let the GitHub workflow do it daily.
 

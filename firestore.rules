@@ -1,0 +1,20 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() { return request.auth != null; }
+    function isAdmin() { return signedIn() && request.auth.token.email in ['manager@geoscholarsacademy.org', 'geoscholarsacademy@gmail.com']; }
+
+    match /users/{uid}     { allow read: if signedIn() && (request.auth.uid == uid || isAdmin());
+                             allow write: if signedIn() && request.auth.uid == uid; }
+    match /tests/{id}      { allow read: if true;  allow write: if isAdmin(); }
+    match /notices/{id}    { allow read: if true;  allow write: if isAdmin(); }
+    match /enquiries/{id}  { allow create: if true; allow read, update, delete: if isAdmin(); }
+    match /stories/{id}    { allow read: if true;  allow write: if isAdmin(); }
+    match /vacancies/{id}  { allow read: if true;  allow write: if isAdmin(); }
+    match /videos/{id}     { allow read: if true;  allow write: if isAdmin(); }
+    match /stats/{day}     { allow read: if isAdmin(); allow create, update: if true; }
+    match /attempts/{id}   { allow create: if signedIn() && request.resource.data.uid == request.auth.uid;
+                             allow read: if signedIn() && (resource.data.uid == request.auth.uid || isAdmin());
+                             allow update, delete: if isAdmin(); }
+  }
+}

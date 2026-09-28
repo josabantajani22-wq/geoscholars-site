@@ -1,0 +1,12 @@
+{
+  "hosting": {
+    "public": ".",
+    "ignore": ["firebase.json", ".firebaserc", "firestore.rules", "firestore.indexes.json", "**/.*", "**/node_modules/**", "tools/**", "README.md", "CNAME", "*.zip"],
+    "cleanUrls": false,
+    "headers": [
+      { "source": "**/*.@(js|css)", "headers": [{ "key": "Cache-Control", "value": "max-age=3600" }] },
+      { "source": "**/*.@(jpg|jpeg|png|svg|webp)", "headers": [{ "key": "Cache-Control", "value": "max-age=604800" }] }
+    ]
+  },
+  "firestore": { "rules": "firestore.rules", "indexes": "firestore.indexes.json" }
+}

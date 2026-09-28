@@ -9,7 +9,8 @@ Pull geology / geoscience vacancies from FreeJobAlert.com into data/vacancies.js
 How it works
   1. Downloads a few FreeJobAlert listing pages (latest notifications, M.Sc jobs, PSU, UPSC …).
   2. Each page has tables: Post Date | Recruitment Board | Post Name | Qualification | Advt No | Last Date | More Info.
-  3. Keeps rows whose board / post / qualification match geology keywords (KEYWORDS below).
+  3. Keeps rows whose Qualification asks for geology / earth science / geophysics (QUAL_KEYWORDS) or whose post is a
+     geologist-type post (POST_KEYWORDS); "… and More" rows from geoscience employers are checked on their article page.
   4. Opens each matching article once to pull posts, age, fee, dates and the official apply link.
   5. Merges into data/vacancies.js: same id -> refreshed; new -> added; closed > --keep-days -> dropped.
      Items added by hand or by the AI agent (tools/vacancy_agent.py) are kept.
@@ -29,14 +30,29 @@ BASE = "https://www.freejobalert.com"
 PAGES = [
     "/latest-notifications/",
 ]
-# A row is kept when the POST NAME or QUALIFICATION mentions geology (POST_KEYWORDS), or when the recruiting
-# BOARD is a core geoscience employer (GEO_BOARDS) — for other PSUs (SAIL, Oil India, NHPC …) the post itself
-# must be geology-related, otherwise nurses/advisors at SAIL would leak in.
-POST_KEYWORDS = re.compile(
-    r"geolog|geo-?scien|geophys|hydro-?geolog|earth science|petroleum|mining engineer|mines? (officer|inspector)|"
-    r"mineral|drilling|\bgeo\b|seismic|exploration|reservoir|\bcsir.?net\b|scientist.{0,20}(geo|earth)", re.I)
-GEO_BOARDS = re.compile(r"\bgsi\b|geological survey|\bcgwb\b|ground ?water|\bmecl\b|mineral exploration|atomic minerals|\bamd\b|\bgmdc\b|survey of india", re.I)
+# A row is kept when the QUALIFICATION column asks for geology (QUAL_KEYWORDS) — e.g. "M.Sc (Geology)",
+# "Applied Geology", "Earth Science", "Geophysics" — or the POST NAME itself is a geologist-type post (POST_KEYWORDS).
+QUAL_KEYWORDS = re.compile(r"geolog|geo-?scien|geo-?phys|earth science|hydro-?geolog|applied geology|marine geology|mining engineer|petroleum", re.I)
+POST_KEYWORDS = re.compile(r"geolog|geo-?scien|geo-?phys|hydro-?geolog|earth scientist|mining engineer|mines? (officer|inspector)|drilling engineer", re.I)
+GEO_BOARDS = re.compile(r"a^")   # board-only matches disabled on request (post/qualification must mention geology)
+# Employers that often hide geology posts under "… and More" / "Various Posts": for these we open the article page and
+# check the full text for geology qualifications before deciding.
+DEEP_CHECK_BOARDS = re.compile(r"\bgsi\b|geological survey|\bcgwb\b|ground ?water|\bmecl\b|\bnmdc\b|\bongc\b|oil india|coal india|\bcil\b|\bgmdc\b|\bamd\b|atomic minerals|\bucil\b|\bhcl\b|hindustan copper|\bnhpc\b|\bsail\b|\bpsc\b|\bupsc\b|\bsscb?\b|\bnalco\b|\bhzl\b|\biocl\b|\bbpcl\b|\bhpcl\b|\bgail\b|\bnlc\b|\bwapcos\b|\bnhai\b|mineral|mines|irrigation|water resources", re.I)
+DEEP_CACHE = {}
+def article_mentions_geology(url):
+    """Open the article once and look for geology in its Qualification / eligibility text."""
+    if url in DEEP_CACHE:
+        return DEEP_CACHE[url]
+    html = get(url)
+    ok = False
+    if html:
+        txt = BeautifulSoup(html, "lxml").get_text("\n", strip=True)
+        ok = bool(QUAL_KEYWORDS.search(txt))
+    DEEP_CACHE[url] = ok
+    return ok
 KEYWORDS = POST_KEYWORDS  # backwards-compat
+def is_geology(post, qualification, board=""):
+    return bool(QUAL_KEYWORDS.search(qualification or "") or POST_KEYWORDS.search(post or "") or GEO_BOARDS.search(board or ""))
 UA = {"User-Agent": "Mozilla/5.0 (GSA vacancy bot; +https://geoscholarsacademy)"}
 
 
@@ -146,8 +162,11 @@ def main():
         for row in parse_listing(html):
             if row["url"] in seen:
                 continue
-            if not (POST_KEYWORDS.search(f"{row['post']} {row['qualification']}") or GEO_BOARDS.search(row["board"])):
-                continue
+            if not is_geology(row["post"], row["qualification"], row["board"]):
+                # "… and More" style rows from geoscience-heavy employers: read the article before rejecting
+                if not (DEEP_CHECK_BOARDS.search(row["board"]) and re.search(r"and more|various|multiple", row["post"], re.I)
+                        and article_mentions_geology(row["url"])):
+                    continue
             seen.add(row["url"]); found.append(row); n += 1
         print(f"{p}: {n} geology rows")
 
@@ -199,7 +218,7 @@ def main():
     kept = []
     for x in by_id.values():
         if x.get("source") == "freejobalert" and not x.get("locked"):
-            if not (POST_KEYWORDS.search(f"{x.get('postNames', '')} {x.get('title', '')} {x.get('qualification', '')}") or GEO_BOARDS.search(x.get("organisation", ""))):
+            if not is_geology(f"{x.get('postNames', '')} {x.get('title', '')}", x.get("qualification", ""), x.get("organisation", "")):
                 continue
         if x.get("lastDate"):
             try:

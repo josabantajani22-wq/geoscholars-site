@@ -69,7 +69,16 @@
       this._set("session", u.uid); this.user = this._public(u); this._emit(); return this.user;
     },
     async signOut() { localStorage.removeItem("gsa_session"); this.user = null; this._emit(); },
-    async resetPassword() { throw new Error("Password reset needs Firebase mode. In local mode, create a new account."); },
+    async resetPassword(email, opts = {}) {
+      // Local/demo mode has no email service: verify the phone number given at sign-up, then set the new password.
+      email = (email || "").trim().toLowerCase();
+      const users = this._get("users", []); const u = users.find(x => x.email === email);
+      if (!u) throw new Error("No account found for this email.");
+      const norm = (p) => String(p || "").replace(/\D/g, "").slice(-10);
+      if (!u.phone || !opts.phone || norm(u.phone) !== norm(opts.phone)) throw new Error("Phone number does not match the one given at sign-up. Contact us on Telegram and we'll reset it for you.");
+      if (!opts.password || opts.password.length < 6) throw new Error("New password must be at least 6 characters.");
+      u.hash = await sha256(opts.password); this._set("users", users);
+    },
 
     async listCustomTests() { return this._get("tests", []); },
     async saveTest(t) { const a = this._get("tests", []).filter(x => x.id !== t.id); a.push(t); this._set("tests", a); },
@@ -144,6 +153,7 @@
     },
     onAuth(cb) { this._listeners.push(cb); cb(this.user); },
     async signUp(email, password, name, phone) {
+      if (isAdminEmail(email) && CFG.adminPasswordHash && (await sha256(password)) !== CFG.adminPasswordHash) throw new Error("This email is reserved for the admin. Use the admin password.");
       const cred = await this._auth.createUserWithEmailAndPassword(email.trim(), password);
       await cred.user.updateProfile({ displayName: name.trim() });
       await this._db.collection("users").doc(cred.user.uid).set({ name: name.trim(), email: email.trim().toLowerCase(), phone: phone || "", createdAt: Date.now() });
@@ -151,7 +161,7 @@
     },
     async signIn(email, password) { const c = await this._auth.signInWithEmailAndPassword(email.trim(), password); this.user = await this._profile(c.user); return this.user; },
     async signOut() { await this._auth.signOut(); },
-    async resetPassword(email) { await this._auth.sendPasswordResetEmail(email.trim()); },
+    async resetPassword(email) { await this._auth.sendPasswordResetEmail(email.trim(), { url: (CFG.siteUrl || location.origin) + "/login.html" }); },
 
     _docs(snap) { return snap.docs.map(d => ({ id: d.id, ...d.data() })); },
     async listCustomTests() { return this._docs(await this._db.collection("tests").get()); },
