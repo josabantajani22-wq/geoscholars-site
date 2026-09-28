@@ -1,7 +1,7 @@
 // Geology vacancy board. Refreshed daily by tools/fetch_freejobalert.py + tools/fetch_linkedin.py (GitHub Actions); edit by hand or add from Admin → Vacancies.
 // status is derived on the page from lastDate: open / closing soon (≤7 days) / closed. Set "upcoming": true for expected notifications.
 window.GSA_VACANCIES = {
-  "updatedAt": "2026-09-27",
+  "updatedAt": "2026-09-28",
   "items": [
     {
       "id": "csir-net-dec-2026",
@@ -252,29 +252,6 @@ window.GSA_VACANCIES = {
       "applyUrl": "https://in.linkedin.com/jobs/view/officer-senior-officer-assistant-manager-pf-mines-oprn-geology-at-ultratech-cement-4463321674",
       "sourceUrl": "https://in.linkedin.com/jobs/view/officer-senior-officer-assistant-manager-pf-mines-oprn-geology-at-ultratech-cement-4463321674",
       "summary": "Industry opening listed on LinkedIn (Karnataka, India). Posted 2026-09-04. Apply on LinkedIn; the closing date shown here is an estimate (30 days from posting).",
-      "source": "linkedin"
-    },
-    {
-      "id": "li-4461851046",
-      "title": "Asset Earth Scientist (Shale &Tight) — Chevron",
-      "organisation": "Chevron",
-      "posts": null,
-      "postNames": "Asset Earth Scientist (Shale &Tight)",
-      "qualification": "See the LinkedIn posting",
-      "ageLimit": "",
-      "fee": "",
-      "startDate": "2026-09-06",
-      "lastDate": "2026-10-06",
-      "upcoming": false,
-      "examDate": "",
-      "location": "Bengaluru, Karnataka, India",
-      "tags": [
-        "LinkedIn",
-        "Industry"
-      ],
-      "applyUrl": "https://in.linkedin.com/jobs/view/asset-earth-scientist-shale-tight-at-chevron-4461851046",
-      "sourceUrl": "https://in.linkedin.com/jobs/view/asset-earth-scientist-shale-tight-at-chevron-4461851046",
-      "summary": "Industry opening listed on LinkedIn (Bengaluru, Karnataka, India). Posted 2026-09-06. Apply on LinkedIn; the closing date shown here is an estimate (30 days from posting).",
       "source": "linkedin"
     },
     {
@@ -941,6 +918,29 @@ window.GSA_VACANCIES = {
       "applyUrl": "https://in.linkedin.com/jobs/view/senior-geologist-at-able-ventures-4472258479",
       "sourceUrl": "https://in.linkedin.com/jobs/view/senior-geologist-at-able-ventures-4472258479",
       "summary": "Industry opening listed on LinkedIn (Andhra Pradesh, India). Posted 2026-09-26. Apply on LinkedIn; the closing date shown here is an estimate (30 days from posting).",
+      "source": "linkedin"
+    },
+    {
+      "id": "li-4461851046",
+      "title": "Asset Earth Scientist (Shale &Tight) — Chevron",
+      "organisation": "Chevron",
+      "posts": null,
+      "postNames": "Asset Earth Scientist (Shale &Tight)",
+      "qualification": "See the LinkedIn posting",
+      "ageLimit": "",
+      "fee": "",
+      "startDate": "2026-09-27",
+      "lastDate": "2026-10-27",
+      "upcoming": false,
+      "examDate": "",
+      "location": "Bengaluru, Karnataka, India",
+      "tags": [
+        "LinkedIn",
+        "Industry"
+      ],
+      "applyUrl": "https://in.linkedin.com/jobs/view/asset-earth-scientist-shale-tight-at-chevron-4461851046",
+      "sourceUrl": "https://in.linkedin.com/jobs/view/asset-earth-scientist-shale-tight-at-chevron-4461851046",
+      "summary": "Industry opening listed on LinkedIn (Bengaluru, Karnataka, India). Posted 2026-09-27. Apply on LinkedIn; the closing date shown here is an estimate (30 days from posting).",
       "source": "linkedin"
     }
   ]
