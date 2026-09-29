@@ -15,6 +15,17 @@ service cloud.firestore {
     match /articles/{id}   { allow read: if true;  allow write: if isAdmin(); }
     match /examdates/{id}  { allow read: if true;  allow write: if isAdmin(); }
     match /liveclasses/{id} { allow read: if signedIn(); allow write: if isAdmin(); }
+    match /visits/{id}     { allow create: if true; allow read, delete: if isAdmin(); }
+    match /reviews/{id}    { allow read: if true;
+                             allow create: if signedIn() && request.resource.data.uid == request.auth.uid;
+                             allow update, delete: if isAdmin(); }
+    match /doubts/{id}     { allow create: if signedIn() && request.resource.data.uid == request.auth.uid;
+                             allow read: if signedIn() && (resource.data.uid == request.auth.uid || isAdmin());
+                             allow update, delete: if isAdmin(); }
+    match /resources/{id}  { allow read: if true;  allow write: if isAdmin(); }
+    match /attendance/{id} { allow create: if signedIn() && request.resource.data.uid == request.auth.uid;
+                             allow read: if signedIn() && (resource.data.uid == request.auth.uid || isAdmin());
+                             allow delete: if isAdmin(); }
     match /stats/{day}     { allow read: if isAdmin(); allow create, update: if true; }
     match /attempts/{id}   { allow create: if signedIn() && request.resource.data.uid == request.auth.uid;
                              allow read: if signedIn() && (resource.data.uid == request.auth.uid || isAdmin());

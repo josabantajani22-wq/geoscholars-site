@@ -75,6 +75,13 @@
   </div>
 </section>
 
+<section style="padding-top:0" id="reviews-sec" class="hidden">
+  <div class="wrap">
+    <div class="section-head"><div class="eyebrow">Student reviews</div><h2>What our students say</h2></div>
+    <div class="reviews-grid" id="reviews"></div>
+  </div>
+</section>
+
 <section style="padding-top:0">
   <div class="wrap">
     <div class="section-head"><div class="eyebrow">Courses</div><h2>Pick your exam track</h2><p class="muted">Each programme follows the real exam pattern — syllabus, marking scheme and time pressure included.</p></div>
@@ -220,6 +227,9 @@ document.addEventListener("gsa:ready", async () => {
   // ---- latest articles ----
   const arts = (await GSA.store.listAllArticles()).slice(0, 3);
   document.getElementById("home-articles").innerHTML = arts.length ? arts.map(a => `<p style="margin:0 0 .6rem"><a href="article.html?id=${encodeURIComponent(a.slug || a.id)}" style="color:inherit;font-weight:600">${esc(a.title)}</a><br><span class="small muted">${(a.tags || []).slice(0, 2).map(esc).join(" · ")}</span></p>`).join("") : "<p class='muted small'>Coming soon.</p>";
+  // ---- approved student reviews ----
+  try { const rv = (await GSA.store.listReviews()).filter(r => r.approved).sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0) || b.at - a.at).slice(0, 6);
+    if (rv.length) { document.getElementById("reviews-sec").classList.remove("hidden"); document.getElementById("reviews").innerHTML = rv.map(r => `<div class="review"><div class="stars-s">${"★".repeat(r.rating || 0)}${"☆".repeat(5 - (r.rating || 0))}</div><p>“${esc(r.text)}”</p><b>${esc(r.name)}</b>${r.course ? `<br><span class="small muted">${esc(r.course)}</span>` : ""}</div>`).join(""); } } catch (e) {}
   // ---- vacancies teaser ----
   const vacs = (await GSA.store.listAllVacancies()).map(v => ({ ...v, days: v.lastDate ? Math.ceil((new Date(v.lastDate + "T23:59:59") - Date.now()) / 86400000) : null }))
     .filter(v => v.upcoming || v.days === null || v.days >= 0).sort((a, b) => (a.days ?? 999) - (b.days ?? 999)).slice(0, 4);

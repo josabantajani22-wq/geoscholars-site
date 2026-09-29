@@ -510,3 +510,40 @@ ul.clean li { padding: .3rem 0; border-bottom: 1px dashed var(--line); font-size
 
 .install-app { position: fixed; left: 1rem; bottom: 5.2rem; z-index: 60; background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: .5rem .9rem; font: inherit; font-size: .85rem; font-weight: 600; box-shadow: var(--shadow); cursor: pointer; }
 @media (max-width: 1400px) and (min-width: 1141px) { .nav a { font-size: .85rem; padding: .45rem .45rem; } .nav .btn { padding: .45rem .7rem; } .brand small { display: none; } }
+
+/* ---- v9: header icons, bell, dark mode, lead popup, share bar ---- */
+.icon-btn { background: none; border: 1px solid transparent; border-radius: 8px; padding: .35rem .45rem; font-size: 1.05rem; cursor: pointer; position: relative; line-height: 1; }
+.icon-btn:hover { border-color: var(--line); background: var(--paper); }
+.bell-count { position: absolute; top: -4px; right: -4px; background: var(--red); color: #fff; font-size: .62rem; font-weight: 700; border-radius: 999px; padding: .1rem .35rem; min-width: 16px; text-align: center; }
+.bell-panel { position: fixed; top: 64px; right: 1rem; width: min(360px, calc(100vw - 2rem)); background: var(--card); border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 20px 50px -20px rgba(0,0,0,.4); z-index: 90; overflow: hidden; }
+.bell-head { display: flex; justify-content: space-between; align-items: center; padding: .7rem .9rem; border-bottom: 1px solid var(--line); }
+.bell-item { padding: .6rem .9rem; border-bottom: 1px solid var(--line); display: grid; gap: .1rem; }
+.bell-item time { font-size: .7rem; color: var(--muted); }
+.bell-item.new { background: var(--ochre-soft); }
+.lead-card { position: relative; background: var(--card); border-radius: 18px; padding: 1.6rem; width: min(440px, 100%); box-shadow: 0 40px 80px -20px rgba(0,0,0,.6); animation: pop .25s ease; }
+.lead-card h3 { margin: .2rem 0 .4rem; font-size: 1.35rem; }
+.share-bar { display: flex; gap: .6rem; align-items: center; flex-wrap: wrap; margin: 1rem 0; }
+.share-bar a { border: 1px solid var(--line); border-radius: 999px; padding: .25rem .7rem; font-size: .8rem; background: var(--card); }
+:root[data-theme="dark"] { --ink: #edf0f3; --ink-2: #c9d1d8; --muted: #93a0ab; --line: #2c3640; --paper: #141a20; --card: #1b232b; --ochre-soft: #3a2c16; --moss-soft: #1f3327; --red-soft: #3d2220; --blue-soft: #1f2b3a; --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6); }
+:root[data-theme="dark"] body { background-color: var(--paper); background-image: none; color: var(--ink); }
+:root[data-theme="dark"] .site-header { background: rgba(20,26,32,.92); }
+:root[data-theme="dark"] .hero { background: linear-gradient(180deg, #1b232b 0%, #141a20 100%); }
+:root[data-theme="dark"] .hero .contours-bg { opacity: .35; }
+:root[data-theme="dark"] .hero .contours-bg::after { background: none; }
+:root[data-theme="dark"] .hero-logo img { mix-blend-mode: normal; background: #fff; border-radius: 50%; padding: 6px; }
+:root[data-theme="dark"] input, :root[data-theme="dark"] select, :root[data-theme="dark"] textarea { background: #10161c; color: var(--ink); border-color: var(--line); }
+:root[data-theme="dark"] .qotd-opt, :root[data-theme="dark"] .check, :root[data-theme="dark"] .chip, :root[data-theme="dark"] .share-bar a, :root[data-theme="dark"] .install-app { background: #10161c; color: var(--ink); }
+:root[data-theme="dark"] .join-card, :root[data-theme="dark"] .stat, :root[data-theme="dark"] .notice { background: var(--card); }
+:root[data-theme="dark"] table th { background: #222c35; }
+
+.stars span { font-size: 1.6rem; color: #cfc6b8; cursor: pointer; }
+.stars span.on { color: var(--ochre); }
+@media print { .site-header, .site-footer, .sticky-cta, .fab-telegram, .back-top, .install-app, #profile-edit, .live-card, .profile-meter, .icon-btn, form, .bell-panel { display: none !important; } body { background: #fff; } .dash-head::after { content: "Geo Scholars Academy — student scorecard · geoscholarsacademy.org"; display: block; font-size: .8rem; color: #666; } }
+/* reviews on home */
+.reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; }
+.review { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.3rem; box-shadow: var(--shadow); }
+.review .stars-s { color: var(--ochre); letter-spacing: .05em; }
+.review p { font-style: italic; color: var(--ink-2); margin: .5rem 0; }
+:root[data-theme="dark"] .brand img { background: #fff; }
+:root[data-theme="dark"] .ticker, :root[data-theme="dark"] .ach-strip, :root[data-theme="dark"] .band, :root[data-theme="dark"] .stories-section, :root[data-theme="dark"] .site-footer { background: #0f1519; }
+:root[data-theme="dark"] .ticker a { color: #edf0f3; }

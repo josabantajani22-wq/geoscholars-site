@@ -36,6 +36,20 @@
       return this.user;
     },
     _public(u) { return { ...pickProfile(u), uid: u.uid, email: u.email, name: u.name, phone: u.phone || "", targetExams: u.targetExams || [], courses: u.courses || [], isAdmin: isAdminEmail(u.email), createdAt: u.createdAt, updatedAt: u.updatedAt || 0 }; },
+    // v9 collections
+    async logVisit(v) { const a = this._get("visitlog", []); a.push(v); this._set("visitlog", a.slice(-500)); },
+    async listVisits(limit = 300) { return this._get("visitlog", []).slice(-limit).reverse(); },
+    async saveReview(r) { const a = this._get("reviews", []).filter(x => x.id !== r.id); a.push(r); this._set("reviews", a); },
+    async listReviews() { return this._get("reviews", []).sort((x, y) => y.at - x.at); },
+    async deleteReview(id) { this._set("reviews", this._get("reviews", []).filter(x => x.id !== id)); },
+    async saveDoubt(d) { const a = this._get("doubts", []).filter(x => x.id !== d.id); a.push(d); this._set("doubts", a); },
+    async listDoubts(uid) { return this._get("doubts", []).filter(d => !uid || d.uid === uid).sort((x, y) => y.at - x.at); },
+    async deleteDoubt(id) { this._set("doubts", this._get("doubts", []).filter(x => x.id !== id)); },
+    async listResources() { return this._get("resources", []); },
+    async saveResource(r) { const a = this._get("resources", []).filter(x => x.id !== r.id); a.push(r); this._set("resources", a); },
+    async deleteResource(id) { this._set("resources", this._get("resources", []).filter(x => x.id !== id)); },
+    async logAttendance(a) { const l = this._get("attendance", []); l.push(a); this._set("attendance", l); },
+    async listAttendance(uid) { return this._get("attendance", []).filter(x => !uid || x.uid === uid); },
     async updateProfile(fields) {
       if (!this.user) throw new Error("Sign in first.");
       const users = this._get("users", []); const u = users.find(x => x.uid === this.user.uid); if (!u) throw new Error("Account not found.");
@@ -155,6 +169,20 @@
       const d = snap.exists ? snap.data() : {};
       return { ...pickProfile(d), uid: u.uid, email: u.email, name: d.name || u.displayName || "", phone: d.phone || "", targetExams: d.targetExams || [], courses: d.courses || [], isAdmin: isAdminEmail(u.email), createdAt: d.createdAt || 0, updatedAt: d.updatedAt || 0 };
     },
+    // v9 collections
+    async logVisit(v) { await this._db.collection("visits").doc(v.id).set(v); },
+    async listVisits(limit = 300) { return this._docs(await this._db.collection("visits").orderBy("at", "desc").limit(limit).get()); },
+    async saveReview(r) { await this._db.collection("reviews").doc(r.id).set(r, { merge: true }); },
+    async listReviews() { return this._docs(await this._db.collection("reviews").get()).sort((x, y) => y.at - x.at); },
+    async deleteReview(id) { await this._db.collection("reviews").doc(id).delete(); },
+    async saveDoubt(d) { await this._db.collection("doubts").doc(d.id).set(d, { merge: true }); },
+    async listDoubts(uid) { const q = uid ? this._db.collection("doubts").where("uid", "==", uid) : this._db.collection("doubts"); return this._docs(await q.get()).sort((x, y) => y.at - x.at); },
+    async deleteDoubt(id) { await this._db.collection("doubts").doc(id).delete(); },
+    async listResources() { return this._docs(await this._db.collection("resources").get()); },
+    async saveResource(r) { await this._db.collection("resources").doc(r.id).set(r); },
+    async deleteResource(id) { await this._db.collection("resources").doc(id).delete(); },
+    async logAttendance(a) { await this._db.collection("attendance").doc(a.id).set(a); },
+    async listAttendance(uid) { const q = uid ? this._db.collection("attendance").where("uid", "==", uid) : this._db.collection("attendance"); return this._docs(await q.get()); },
     async updateProfile(fields) {
       const u = this._auth.currentUser; if (!u) throw new Error("Sign in first.");
       const data = { ...pickProfile(fields), updatedAt: Date.now() };
@@ -289,6 +317,22 @@
   store.getAnyArticle = async function (id) {
     const all = await store.listAllArticles();
     return all.find(a => a.id === id || a.slug === id) || null;
+  };
+  // Visitor IP + location (city level) via a free HTTPS geolocation API, once per session.
+  store.visitorGeo = async function () {
+    try { const c = sessionStorage.getItem("gsa_geo"); if (c) return JSON.parse(c); } catch (e) {}
+    const tryFetch = async (url, map) => { const r = await fetch(url, { cache: "no-store" }); if (!r.ok) throw new Error(r.status); return map(await r.json()); };
+    let g = null;
+    try { g = await tryFetch("https://ipwho.is/", (j) => j.success === false ? null : { ip: j.ip, city: j.city, region: j.region, country: j.country, countryCode: j.country_code, isp: (j.connection || {}).isp || "", lat: j.latitude, lon: j.longitude }); } catch (e) {}
+    if (!g) { try { g = await tryFetch("https://ipapi.co/json/", (j) => j.error ? null : { ip: j.ip, city: j.city, region: j.region, country: j.country_name, countryCode: j.country_code, isp: j.org || "", lat: j.latitude, lon: j.longitude }); } catch (e) {} }
+    if (g) { try { sessionStorage.setItem("gsa_geo", JSON.stringify(g)); } catch (e) {} }
+    return g;
+  };
+  store.deviceInfo = function () {
+    const ua = navigator.userAgent; const m = /Mobi|Android/i.test(ua) ? "Mobile" : /Tablet|iPad/i.test(ua) ? "Tablet" : "Desktop";
+    const br = /Edg\//.test(ua) ? "Edge" : /OPR\//.test(ua) ? "Opera" : /Chrome\//.test(ua) ? "Chrome" : /Safari\//.test(ua) ? "Safari" : /Firefox\//.test(ua) ? "Firefox" : "Other";
+    const os = /Windows/.test(ua) ? "Windows" : /Android/.test(ua) ? "Android" : /iPhone|iPad/.test(ua) ? "iOS" : /Mac OS/.test(ua) ? "macOS" : /Linux/.test(ua) ? "Linux" : "Other";
+    return { device: m, browser: br, os };
   };
   // Live classes: next occurrence (IST) of a recurring class {days:["MO",...], time:"19:00", from, to}
   store.nextClassAt = function (c, now = new Date()) {

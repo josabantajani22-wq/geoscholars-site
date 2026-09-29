@@ -58,6 +58,27 @@ paste the token into the box on that tab. It is kept only in that browser's loca
 - **PWA**: `manifest.json` + `sw.js` make the site installable ("Install app" button appears when the browser allows) and
   cache the shell for fast repeat visits. Bump `VERSION` in `sw.js` when you change CSS/JS heavily.
 
+## Visitors: IP address & location (v9)
+Every visit session is logged with IP address, city/state/country (from a free IP-geolocation service, city-level and
+approximate), ISP, device/browser/OS, landing page, referrer and the student name if signed in. Visitors see their own
+location and IP in the footer ("You're visiting from …"). Admin → **Visitors** shows totals, top cities/states/countries,
+device split, a searchable log with map links and CSV export; the Overview has a 7-day summary. Data lives in the
+Firestore `visits` collection (create for anyone, read for admin). If you ever want to stop this, remove the
+`visitorGeo(user)` call in `js/app.js`.
+
+## Other v9 features
+- **Reviews** — students rate GSA (1–5 stars + text) from their dashboard; Admin → Reviews approves/features; approved ones
+  appear on the home page ("What our students say").
+- **Doubt box** — students ask questions from the dashboard; Admin → Doubt box answers; the answer shows on the student's
+  dashboard.
+- **Resources / downloads** — Admin → Resources adds links (Drive PDFs, official pages) by exam and type, optionally
+  "students only"; public page `resources.html` (also lists the official exam links).
+- **Live-class attendance** — clicking Join on the dashboard logs attendance; Admin → Live classes shows students/joins
+  per class, and the student report shows per-class attendance.
+- **Notification bell** in the header (unread count of notices), **dark mode** toggle, **lead popup** (after 30 s or on
+  exit-intent, once per 3 days; saves to Enquiries and emails you), **share bar** on articles and vacancies,
+  **printable scorecard** (dashboard → Print), **WhatsApp broadcast / copy all emails & phones** in Admin → Students.
+
 ## Visitor counter
 Admin → Overview shows **Total visitors to geoscholarsacademy.org** — a site-wide number that works on GitHub Pages without
 Firebase (free public counter keyed by `js/config.js → visitCounterKey`; one count per visitor session). The 30-day

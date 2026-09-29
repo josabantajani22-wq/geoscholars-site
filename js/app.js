@@ -18,6 +18,8 @@
       <button class="nav-toggle" aria-label="Menu" onclick="document.querySelector('.nav').classList.toggle('open')">☰</button>
       <nav class="nav">
         ${links.map(([h, t]) => `<a href="${h}" class="${page === h ? "active" : ""}">${t}</a>`).join("")}
+        <button class="icon-btn" id="theme-toggle" title="Dark / light mode" aria-label="Toggle dark mode">🌙</button>
+        <button class="icon-btn" id="bell" title="Notifications" aria-label="Notifications">🔔<span class="bell-count hidden" id="bell-count"></span></button>
         ${user ? `<a href="#" class="btn ghost sm" id="nav-signout">Sign out</a>` : `<a href="login.html" class="btn primary sm">Sign in</a>`}
       </nav>
     </div></header>`;
@@ -30,10 +32,10 @@
     <footer class="site-footer"><div class="wrap">
       <div class="cols">
         <div><h4>${esc(c.siteName)}</h4><p>${esc(c.tagline)}. Focused coaching for ONGC Geologist, GATE Geology &amp; Geophysics, UPSC Combined Geo-Scientist and state geologist recruitments.</p>${social ? `<p>${social}</p>` : ""}</div>
-        <div><h4>Explore</h4><p><a href="courses.html">Courses</a><br><a href="tests.html">Free Test Series</a><br><a href="classes.html">Free Classes</a><br><a href="vacancies.html">Geology Vacancies</a><br><a href="articles.html">Study notes &amp; articles</a><br><a href="exams.html">Official Exam Links</a><br><a href="contact.html">Enquire / Admission</a><br><a href="login.html">Student login</a></p></div>
+        <div><h4>Explore</h4><p><a href="courses.html">Courses</a><br><a href="tests.html">Free Test Series</a><br><a href="classes.html">Free Classes</a><br><a href="vacancies.html">Geology Vacancies</a><br><a href="articles.html">Study notes &amp; articles</a><br><a href="resources.html">Downloads &amp; PYQs</a><br><a href="exams.html">Official Exam Links</a><br><a href="contact.html">Enquire / Admission</a><br><a href="login.html">Student login</a></p></div>
         <div><h4>Contact</h4><p>${contact || "Contact details coming soon."}</p></div>
       </div>
-      <div class="copy">© ${new Date().getFullYear()} ${esc(c.siteName)}. All rights reserved. <span class="muted">· ${store.mode === "local" ? "Demo mode: data is stored in this browser only" : ""}</span></div>
+      <div class="copy"><span id="visitor-geo" class="small muted"></span><br>© ${new Date().getFullYear()} ${esc(c.siteName)}. All rights reserved. <span class="muted">· ${store.mode === "local" ? "Demo mode: data is stored in this browser only" : ""}</span></div>
     </div></footer>`;
   }
 
@@ -101,5 +103,55 @@
     document.body.appendChild(bar);
     window.addEventListener("scroll", () => bar.classList.toggle("show", scrollY > 600), { passive: true });
   }
-  Promise.all([store.ready, domReady]).then(([user]) => { mount(user); telegramFab(); analytics(); stickyCta(); pwa(); store.onAuth(u => mount(u)); document.dispatchEvent(new CustomEvent("gsa:ready", { detail: { user } })); setTimeout(motion, 50); setTimeout(motion, 600); });
+  // ---- v9: visitor geo + visit log, notifications bell, dark mode, lead popup, share helper ----
+  async function visitorGeo(user) {
+    const g = await store.visitorGeo(); const d = store.deviceInfo(); const el = document.getElementById("visitor-geo");
+    if (g && el) el.textContent = `📍 You're visiting from ${[g.city, g.region, g.country].filter(Boolean).join(", ")} · IP ${g.ip} · ${d.device} · ${d.browser}`;
+    if (!sessionStorage.getItem("gsa_visit_logged") && page !== "admin.html") {
+      sessionStorage.setItem("gsa_visit_logged", "1");
+      store.logVisit({ id: store.newId(), at: Date.now(), page, ip: g ? g.ip : "", city: g ? g.city || "" : "", region: g ? g.region || "" : "", country: g ? g.country || "" : "", isp: g ? g.isp || "" : "", lat: g ? g.lat || null : null, lon: g ? g.lon || null : null, ...d, referrer: (document.referrer || "").slice(0, 120), uid: user ? user.uid : "", name: user ? user.name || "" : "", screen: `${screen.width}x${screen.height}` }).catch(() => {});
+    }
+  }
+  async function bell() {
+    const b = document.getElementById("bell"), cnt = document.getElementById("bell-count"); if (!b) return;
+    let notices = []; try { notices = (await store.listAllNotices()).slice(0, 8); } catch (e) { return; }
+    const seen = new Set(JSON.parse(localStorage.getItem("gsa_seen_notices") || "[]")); const unread = notices.filter(n => !seen.has(n.id)).length;
+    if (unread) { cnt.textContent = unread; cnt.classList.remove("hidden"); }
+    let panel = null;
+    b.onclick = (e) => { e.preventDefault(); if (panel) { panel.remove(); panel = null; return; }
+      panel = document.createElement("div"); panel.className = "bell-panel";
+      panel.innerHTML = `<div class="bell-head"><b>Notifications</b><a href="index.html#announcements" class="small">All</a></div>` + (notices.length ? notices.map(n => `<div class="bell-item ${seen.has(n.id) ? "" : "new"}"><time>${esc(n.date || "")}</time><b>${esc(n.title)}</b><span class="small muted">${esc((n.text || "").slice(0, 110))}</span></div>`).join("") : "<p class='small muted' style='padding:.8rem'>No notifications.</p>");
+      document.body.appendChild(panel); localStorage.setItem("gsa_seen_notices", JSON.stringify(notices.map(n => n.id))); cnt.classList.add("hidden");
+      setTimeout(() => document.addEventListener("click", function h(ev) { if (panel && !panel.contains(ev.target) && ev.target !== b) { panel.remove(); panel = null; document.removeEventListener("click", h); } }), 0); };
+  }
+  function theme() {
+    const apply = (t) => { document.documentElement.dataset.theme = t; const tb = document.getElementById("theme-toggle"); if (tb) tb.textContent = t === "dark" ? "☀️" : "🌙"; };
+    let t = "light"; try { t = localStorage.getItem("gsa_theme") || "light"; } catch (e) {}
+    apply(t);
+    const tb = document.getElementById("theme-toggle"); if (tb) tb.onclick = () => { t = t === "dark" ? "light" : "dark"; try { localStorage.setItem("gsa_theme", t); } catch (e) {} apply(t); };
+  }
+  function leadPopup(user) {
+    if (user || ["contact.html", "login.html", "admin.html", "test.html"].includes(page)) return;
+    try { if (Date.now() - +(localStorage.getItem("gsa_lead_shown") || 0) < 3 * 86400000) return; } catch (e) { return; }
+    const show = () => {
+      if (document.getElementById("lead-pop")) return; localStorage.setItem("gsa_lead_shown", String(Date.now()));
+      const d = document.createElement("div"); d.className = "lightbox"; d.id = "lead-pop";
+      d.innerHTML = `<div class="lead-card"><button class="lb-close" id="lead-x" aria-label="Close">×</button><div class="eyebrow">Free for aspirants</div><h3>Get the free geology test series + daily vacancy alerts</h3><p class="small muted">Leave your number and we'll send the mock-test link and batch details on WhatsApp. No spam.</p><form id="lead-f"><div class="field"><input name="name" placeholder="Your name" required></div><div class="field"><input name="phone" placeholder="WhatsApp number" required type="tel"></div><div class="field"><select name="exam"><option value="">Target exam</option><option>IIT JAM</option><option>GATE GG</option><option>CSIR NET</option><option>UPSC Geo-Scientist / GSI</option><option>ONGC / PSU</option><option>Other</option></select></div><div id="lead-msg" class="alert hidden"></div><button class="btn primary" style="width:100%">Send me the link</button></form></div>`;
+      document.body.appendChild(d);
+      const close = () => d.remove(); document.getElementById("lead-x").onclick = close; d.onclick = (e) => { if (e.target === d) close(); };
+      document.getElementById("lead-f").onsubmit = async (e) => {
+        e.preventDefault(); const f = e.target; const enq = { id: store.newId(), at: Date.now(), name: f.name.value.trim(), phone: f.phone.value.trim(), email: "", course: f.exam.value, qualification: "", message: "Lead from home-page popup (" + page + ")", status: "New", delivered: false };
+        try { const r = await fetch("https://formsubmit.co/ajax/" + encodeURIComponent(CFG.enquiryEmail), { method: "POST", headers: { "Content-Type": "application/json", "Accept": "application/json" }, body: JSON.stringify({ _subject: "New lead (popup): " + enq.name, Name: enq.name, Phone: enq.phone, Exam: enq.course, Source: "Website popup · " + page }) }); enq.delivered = r.ok; } catch (err) {}
+        try { await store.saveEnquiry(enq); } catch (err) {}
+        d.querySelector(".lead-card").innerHTML = `<h3>Thank you, ${esc(enq.name)}!</h3><p>We'll message you on WhatsApp shortly. Meanwhile: <a href="tests.html">start a free mock test →</a>${CFG.telegram ? ` or <a href="${esc(CFG.telegram)}" target="_blank" rel="noopener">join our Telegram</a>` : ""}</p><button class="btn ghost" id="lead-done">Close</button>`; document.getElementById("lead-done").onclick = close;
+      };
+    };
+    setTimeout(show, 30000);
+    document.addEventListener("mouseout", (e) => { if (!e.relatedTarget && e.clientY < 10) show(); }, { once: true });
+  }
+  window.GSA.ui.shareBar = function (title, url) {
+    const u = encodeURIComponent(url || location.href), t = encodeURIComponent(title || document.title);
+    return `<div class="share-bar"><span class="small muted">Share:</span><a href="https://wa.me/?text=${t}%20${u}" target="_blank" rel="noopener" title="WhatsApp">WhatsApp</a><a href="https://t.me/share/url?url=${u}&text=${t}" target="_blank" rel="noopener" title="Telegram">Telegram</a><a href="https://twitter.com/intent/tweet?text=${t}&url=${u}" target="_blank" rel="noopener">X</a><a href="#" onclick="navigator.clipboard&&navigator.clipboard.writeText(decodeURIComponent('${u}'));this.textContent='Copied!';return false;">Copy link</a></div>`;
+  };
+  Promise.all([store.ready, domReady]).then(([user]) => { mount(user); telegramFab(); analytics(); stickyCta(); pwa(); theme(); bell(); visitorGeo(user); leadPopup(user); store.onAuth(u => { mount(u); theme(); bell(); }); document.dispatchEvent(new CustomEvent("gsa:ready", { detail: { user } })); setTimeout(motion, 50); setTimeout(motion, 600); });
 })();

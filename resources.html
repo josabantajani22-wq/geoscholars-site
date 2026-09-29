@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Geology Exam Resources — Syllabus, Previous Year Papers, Notes — Geo Scholars Academy</title>
+<meta name="description" content="Free downloads for geology aspirants: GATE GG, IIT JAM, CSIR NET Earth Science, UPSC Geo-Scientist syllabus, previous year question papers, notes and formula sheets.">
+<link rel="canonical" href="https://geoscholarsacademy.org/resources.html"><meta property="og:site_name" content="Geo Scholars Academy"><meta property="og:image" content="https://geoscholarsacademy.org/assets/logo.png"><link rel="icon" href="assets/logo.png"><link rel="manifest" href="manifest.json"><meta name="theme-color" content="#1B2229"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="site-header"></div>
+<section>
+  <div class="wrap">
+    <div class="section-head"><div class="eyebrow">Downloads</div><h1>Resources &amp; previous year papers</h1><p class="muted">Syllabus, PYQs, notes and formula sheets, exam by exam. Items marked 🔒 are for registered students — sign in (free) to open them.</p></div>
+    <div class="chips" id="rs-chips" style="margin-bottom:1.2rem"></div>
+    <div id="rs-list"><p class="muted">Loading…</p></div>
+  </div>
+</section>
+<div id="site-footer"></div>
+<script src="js/config.js"></script><script src="data/site.js"></script><script src="data/tests.js"></script><script src="js/store.js"></script><script src="js/app.js"></script>
+<script>
+document.addEventListener("gsa:ready", async ({ detail: { user } }) => {
+  const { esc } = GSA.ui; let res = [];
+  try { res = await GSA.store.listResources(); } catch (e) {}
+  // built-in official links from data/site.js as a baseline
+  const builtin = (GSA_SITE.examResources || []).flatMap(r => r.links.map(l => ({ id: "b-" + r.exam + l.label, exam: r.exam, type: "Official link", title: l.label, url: l.url, locked: false, builtin: true })));
+  const all = [...res, ...builtin];
+  const exams = [...new Set(all.map(x => x.exam))]; let cur = "";
+  const chips = document.getElementById("rs-chips"); chips.innerHTML = ['<span class="chip on" data-e="">All exams</span>', ...exams.map(e => `<span class="chip" data-e="${esc(e)}">${esc(e)}</span>`)].join("");
+  const render = () => { const list = all.filter(x => !cur || x.exam === cur); const byExam = {}; list.forEach(x => (byExam[x.exam] = byExam[x.exam] || []).push(x));
+    document.getElementById("rs-list").innerHTML = Object.entries(byExam).map(([e, items]) => `<h3 style="margin-top:1.5rem">${esc(e)}</h3><div class="grid">${items.map(x => `<div class="card"><div class="small" style="color:var(--ochre-dark);font-weight:600">${esc(x.type)}</div><h4 style="margin:.2rem 0">${x.locked && !user ? "🔒 " : ""}${esc(x.title)}</h4>${x.description ? `<p class="small muted" style="margin:0 0 .5rem">${esc(x.description)}</p>` : ""}<div class="spacer"></div>${x.locked && !user ? `<a class="btn ghost sm" href="login.html?next=resources.html">Sign in to open</a>` : `<a class="btn ghost sm" href="${esc(x.url)}" target="_blank" rel="noopener">Open ↗</a>`}</div>`).join("")}</div>`).join("") || "<p class='muted'>Nothing here yet.</p>"; GSA.ui.motion(); };
+  chips.querySelectorAll(".chip").forEach(c => c.onclick = () => { cur = c.dataset.e; chips.querySelectorAll(".chip").forEach(x => x.classList.toggle("on", x === c)); render(); });
+  render();
+});
+</script>
+</body></html>
