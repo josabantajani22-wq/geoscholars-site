@@ -12,12 +12,16 @@
 <section>
   <div class="wrap">
     <div class="section-head"><div class="eyebrow">Free test series</div><h1>Mock tests</h1><p class="muted">Timed, auto-graded, with worked solutions after submission. Sign in to save attempts and track progress on your dashboard.</p></div>
+    <h2 style="margin:.5rem 0 1rem">Previous year papers — choose exam &amp; year</h2>
+    <p class="small muted" style="margin:0 0 1rem">Official question papers with official answer keys, timed like the real exam. Pick the exam, then the year, and start — all in one window.</p>
+    <div class="grid" id="pyq"><p class="muted">Loading…</p></div>
+    <h2 style="margin:2.5rem 0 1rem">GSA mock tests</h2>
     <div class="toolbar"><input id="search" placeholder="Search tests…"><select id="cat"><option value="">All categories</option></select></div>
     <div class="grid" id="tests"><p class="muted">Loading…</p></div>
   </div>
 </section>
 <div id="site-footer"></div>
-<script src="js/config.js"></script><script src="data/site.js"></script><script src="data/tests.js"></script><script src="js/store.js"></script><script src="js/app.js"></script>
+<script src="js/config.js"></script><script src="data/site.js"></script><script src="data/tests.js"></script><script src="data/pyq-index.js"></script><script src="js/store.js"></script><script src="js/app.js"></script>
 <script>
 document.addEventListener("gsa:ready", async ({ detail: { user } }) => {
   const { esc } = GSA.ui, store = GSA.store;
@@ -43,6 +47,14 @@ document.addEventListener("gsa:ready", async ({ detail: { user } }) => {
       </div>`; }).join("") : "<p class='muted'>No tests match.</p>";
   }
   document.getElementById("search").oninput = render; document.getElementById("cat").onchange = render; render();
+  // ---- previous year papers: one card per exam, year dropdown, single Start button ----
+  const pyq = store.listPyq().sort((a, b) => (b.sort || "").localeCompare(a.sort || "")); const exams = [...new Set(pyq.map(p => p.exam))];
+  const ICON = { "GATE GG": "🎓", "IIT JAM Geology": "🏛️", "CSIR NET Earth Science": "🔬", "UPSC Geo-Scientist (Prelims)": "🗺️" };
+  document.getElementById("pyq").innerHTML = exams.length ? exams.map(ex => { const papers = pyq.filter(p => p.exam === ex); const done = new Set(attempts.map(a => a.testId));
+    return `<div class="card pyq-card"><div style="font-size:1.8rem">${ICON[ex] || "📄"}</div><h3>${esc(ex)}</h3><p class="small muted" style="margin:0 0 .6rem">${papers.length} papers · official answer keys · latest first</p>
+      <div class="field" style="margin:.2rem 0 .6rem"><label>Year / paper</label><select data-ex="${esc(ex)}">${papers.map(p => `<option value="${esc(p.id)}">${esc(p.year)} — ${p.questions} Qs · ${p.maxMarks} marks · ${p.durationMinutes} min${done.has(p.id) ? " ✓" : ""}</option>`).join("")}</select></div>
+      <div class="spacer"></div><a class="btn primary" data-start="${esc(ex)}" href="test.html?id=${encodeURIComponent(papers[0].id)}">Start this paper</a></div>`; }).join("") : "<p class='muted'>Previous year papers coming soon.</p>";
+  document.querySelectorAll("#pyq select").forEach(sel => sel.onchange = () => { const a = document.querySelector(`#pyq a[data-start="${sel.dataset.ex}"]`); a.href = "test.html?id=" + encodeURIComponent(sel.value); });
 });
 </script>
 </body></html>

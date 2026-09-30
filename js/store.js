@@ -277,8 +277,14 @@
     const custom = await store.listCustomTests();
     const c = custom.find(t => t.id === id);
     if (c && c.hidden) return null;
-    return c || (window.GSA_BUILTIN_TESTS || []).find(t => t.id === id) || null;
+    const found = c || (window.GSA_BUILTIN_TESTS || []).find(t => t.id === id) || null;
+    if (found) return found;
+    // Previous-year papers are loaded on demand from data/pyq/<id>.json (catalogue in data/pyq-index.js)
+    const entry = (window.GSA_PYQ || []).find(p => p.id === id);
+    if (!entry) return null;
+    try { const r = await fetch(entry.file, { cache: "force-cache" }); if (!r.ok) return null; const t = await r.json(); return { ...t, builtin: true, pyq: true }; } catch (e) { return null; }
   };
+  store.listPyq = function () { return (window.GSA_PYQ || []).slice(); };
   store.listAllNotices = async function () {
     const builtin = ((window.GSA_SITE || {}).notices || []).map(n => ({ ...n, builtin: true }));
     return [...await store.listNotices(), ...builtin].sort((a, b) => (b.date || "").localeCompare(a.date || ""));

@@ -28,8 +28,8 @@
         <a class="btn ghost" href="courses.html">Explore courses</a>
       </div>
       <div class="stats" id="home-stats">
-        <div class="stat"><b id="stat-tests" data-count="3">0</b><span>Free full-length mock tests</span></div>
-        <div class="stat"><b id="stat-questions" data-count="285" data-suffix="+">0</b><span>Exam-level questions with solutions</span></div>
+        <div class="stat"><b id="stat-tests" data-count="3">0</b><span>Free mock tests &amp; previous year papers</span></div>
+        <div class="stat"><b id="stat-questions" data-count="285" data-suffix="+">0</b><span>Exam-level questions with official keys</span></div>
         <div class="stat"><b data-count="4">0</b><span>Live batches on Classplus</span></div>
       </div>
     </div>
@@ -152,7 +152,7 @@
 
 <script src="js/config.js"></script>
 <script src="data/site.js"></script>
-<script src="data/tests.js"></script>
+<script src="data/tests.js"></script><script src="data/pyq-index.js"></script>
 <script src="data/vacancies.js"></script><script src="data/articles.js"></script>
 <script src="js/store.js"></script>
 <script src="js/app.js"></script>
@@ -172,8 +172,9 @@ document.addEventListener("gsa:ready", async () => {
       <div class="spacer"></div><a class="btn ghost sm" href="courses.html#${c.id}">Course details →</a></div>`).join("");
   document.getElementById("home-faqs").innerHTML = S.faqs.map(f => `<details><summary>${esc(f.q)}</summary><p>${esc(f.a)}</p></details>`).join("");
   const tests = await GSA.store.listTests();
-  document.getElementById("stat-tests").dataset.count = tests.length;
-  document.getElementById("stat-questions").dataset.count = tests.reduce((n, t) => n + (t.questions || []).length, 0);
+  const pyqCat = GSA.store.listPyq ? GSA.store.listPyq() : [];
+  document.getElementById("stat-tests").dataset.count = tests.length + pyqCat.length;
+  document.getElementById("stat-questions").dataset.count = tests.reduce((n, t) => n + (t.questions || []).length, 0) + pyqCat.reduce((n, p) => n + (p.questions || 0), 0);
   // ---- success stories v5: spotlight + honour wall + lightbox ----
   const stories = await GSA.store.listAllStories();
   if (!stories.length) document.querySelector(".stories-section").classList.add("hidden");

@@ -2,9 +2,9 @@
 window.GSA_BUILTIN_TESTS = [
  {
   "id": "geology-mock-test-set-1-hard",
-  "title": "Geology Mock Test — Set 1 (Hard)",
+  "title": "CIL: Mock Test 1",
   "description": "",
-  "category": "Geology",
+  "category": "CIL Mock Test",
   "difficulty": "Hard",
   "durationMinutes": 200,
   "sections": [],
@@ -1313,9 +1313,9 @@ window.GSA_BUILTIN_TESTS = [
  },
  {
   "id": "geology-mock-test-set-2-hard",
-  "title": "Geology Mock Test — Set 2 (Hard)",
+  "title": "CIL: Mock Test 2",
   "description": "",
-  "category": "Geology",
+  "category": "CIL Mock Test",
   "difficulty": "Hard",
   "durationMinutes": 200,
   "sections": [],
@@ -2624,9 +2624,9 @@ window.GSA_BUILTIN_TESTS = [
  },
  {
   "id": "ongc-geologist-cbt",
-  "title": "ONGC Geologist — Computer Based Test (CBT)",
+  "title": "CIL: Mock Test 3",
   "description": "",
-  "category": "Geology",
+  "category": "CIL Mock Test",
   "difficulty": "Mixed",
   "durationMinutes": 170,
   "sections": [

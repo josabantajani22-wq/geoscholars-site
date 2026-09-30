@@ -128,6 +128,16 @@ data/tests.js    generated question banks (run tools/convert_docx.py)
 tools/convert_docx.py   docx question bank → data/tests.js
 ```
 
+## Previous-year papers (GATE GG, IIT JAM, CSIR NET, UPSC CGSE)
+`tools/convert_pyq.py <folder>` converts the four PYQ compilation .docx files into `data/pyq/<id>.json` (one per paper)
+and the catalogue `data/pyq-index.js`. Tests page shows one card per exam with a year dropdown; papers load on demand.
+The quiz engine supports MCQ, MSQ (checkboxes, full marks only if exactly right, no negative) and NAT (numeric, range
+key). Questions needing a figure/image are skipped. Marking: GATE/JAM −1/3 on MCQ; CSIR +2/−0.5 (Part C +4.75/−1.1875);
+CGSE Paper I 100/120 per Q, Paper II 2.5 per Q, −1/3. CGSE 2020/2025/2026 have no official key yet and are excluded.
+Before any test, guests (and students with incomplete profiles) enter name, phone and qualification — saved once per
+browser as an enquiry ("Started mock test: …"). After the result an enrolment popup offers a callback (saved as an
+enquiry with the score) plus Classplus / Telegram links. The three GSA tests are now "CIL: Mock Test 1–3".
+
 ## Add a new test permanently
 Put the `.docx` (GSA table format: Question / Type / Option ×4 / Solution / Marks) in a folder and run:
 ```

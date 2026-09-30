@@ -547,3 +547,5 @@ ul.clean li { padding: .3rem 0; border-bottom: 1px dashed var(--line); font-size
 :root[data-theme="dark"] .brand img { background: #fff; }
 :root[data-theme="dark"] .ticker, :root[data-theme="dark"] .ach-strip, :root[data-theme="dark"] .band, :root[data-theme="dark"] .stories-section, :root[data-theme="dark"] .site-footer { background: #0f1519; }
 :root[data-theme="dark"] .ticker a { color: #edf0f3; }
+
+.pyq-card { border-top: 4px solid var(--ochre); }
