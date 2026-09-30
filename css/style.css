@@ -253,7 +253,7 @@ pre.code { background: #1b2229; color: #e6e6e6; padding: 1rem; border-radius: 10
 .classplus code { background: var(--ochre-soft); padding: .15rem .5rem; border-radius: 6px; font-weight: 700; }
 
 /* ---- motion / interactivity ---- */
-.reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+.reveal { opacity: 0; transform: translateY(10px); transition: opacity .35s ease, transform .35s ease; }
 .reveal.in { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } .hero-logo img { animation: none; } .btn::after { display: none; } }
 .ticker { background: var(--ink); color: #e6d3b3; font-size: .85rem; overflow: hidden; white-space: nowrap; position: relative; }
@@ -549,3 +549,5 @@ ul.clean li { padding: .3rem 0; border-bottom: 1px dashed var(--line); font-size
 :root[data-theme="dark"] .ticker a { color: #edf0f3; }
 
 .pyq-card { border-top: 4px solid var(--ochre); }
+
+tr.me td { background: var(--ochre-soft); font-weight: 600; }

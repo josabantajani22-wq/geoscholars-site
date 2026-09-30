@@ -49,6 +49,10 @@
     async saveResource(r) { const a = this._get("resources", []).filter(x => x.id !== r.id); a.push(r); this._set("resources", a); },
     async deleteResource(id) { this._set("resources", this._get("resources", []).filter(x => x.id !== id)); },
     async logAttendance(a) { const l = this._get("attendance", []); l.push(a); this._set("attendance", l); },
+    async saveLeaderboard(e) { const l = this._get("leaderboard", []).filter(x => !(x.testId === e.testId && x.uid === e.uid && x.score >= e.score)); if (!l.some(x => x.testId === e.testId && x.uid === e.uid)) l.push(e); this._set("leaderboard", l); },
+    async listLeaderboard(testId, n = 10) { return this._get("leaderboard", []).filter(x => x.testId === testId).sort((a, b) => b.score - a.score || a.timeTakenSec - b.timeTakenSec).slice(0, n); },
+    async logTestLead(x) { const l = this._get("testleads", []); l.push(x); this._set("testleads", l); },
+    async listTestLeads(limit = 500) { return this._get("testleads", []).slice(-limit).reverse(); },
     async listAttendance(uid) { return this._get("attendance", []).filter(x => !uid || x.uid === uid); },
     async updateProfile(fields) {
       if (!this.user) throw new Error("Sign in first.");
@@ -172,16 +176,30 @@
     // v9 collections
     async logVisit(v) { await this._db.collection("visits").doc(v.id).set(v); },
     async listVisits(limit = 300) { return this._docs(await this._db.collection("visits").orderBy("at", "desc").limit(limit).get()); },
-    async saveReview(r) { await this._db.collection("reviews").doc(r.id).set(r, { merge: true }); },
-    async listReviews() { return this._docs(await this._db.collection("reviews").get()).sort((x, y) => y.at - x.at); },
-    async deleteReview(id) { await this._db.collection("reviews").doc(id).delete(); },
+    async saveReview(r) { await this._db.collection("reviews").doc(r.id).set(r, { merge: true }); this._bust("reviews"); },
+    // Stale-while-revalidate cache for public collections: render instantly from localStorage, refresh in the background.
+    _cacheTTL: 10 * 60 * 1000,
+    async _cached(key, fetcher) {
+      const k = "gsa_cache_" + key; let hit = null;
+      try { hit = JSON.parse(localStorage.getItem(k) || "null"); } catch (e) {}
+      const fresh = () => fetcher().then(v => { try { localStorage.setItem(k, JSON.stringify({ at: Date.now(), v })); } catch (e) {} return v; });
+      if (hit && Array.isArray(hit.v)) { if (Date.now() - hit.at > this._cacheTTL) fresh().catch(() => {}); return hit.v; }
+      return fresh();
+    },
+    _bust(key) { try { localStorage.removeItem("gsa_cache_" + key); } catch (e) {} },
+    async listReviews() { return this._cached("reviews", async () => this._docs(await this._db.collection("reviews").get()).sort((x, y) => y.at - x.at)); },
+    async deleteReview(id) { await this._db.collection("reviews").doc(id).delete(); this._bust("reviews"); },
     async saveDoubt(d) { await this._db.collection("doubts").doc(d.id).set(d, { merge: true }); },
     async listDoubts(uid) { const q = uid ? this._db.collection("doubts").where("uid", "==", uid) : this._db.collection("doubts"); return this._docs(await q.get()).sort((x, y) => y.at - x.at); },
     async deleteDoubt(id) { await this._db.collection("doubts").doc(id).delete(); },
-    async listResources() { return this._docs(await this._db.collection("resources").get()); },
-    async saveResource(r) { await this._db.collection("resources").doc(r.id).set(r); },
-    async deleteResource(id) { await this._db.collection("resources").doc(id).delete(); },
+    async listResources() { return this._cached("resources", async () => this._docs(await this._db.collection("resources").get())); },
+    async saveResource(r) { await this._db.collection("resources").doc(r.id).set(r); this._bust("resources"); },
+    async deleteResource(id) { await this._db.collection("resources").doc(id).delete(); this._bust("resources"); },
     async logAttendance(a) { await this._db.collection("attendance").doc(a.id).set(a); },
+    async saveLeaderboard(e) { const ref = this._db.collection("leaderboard").doc(e.testId + "__" + e.uid); const cur = await ref.get(); if (cur.exists && (cur.data().score || 0) >= e.score) return; await ref.set(e); },
+    async listLeaderboard(testId, n = 10) { return this._docs(await this._db.collection("leaderboard").where("testId", "==", testId).get()).sort((a, b) => b.score - a.score || a.timeTakenSec - b.timeTakenSec).slice(0, n); },
+    async logTestLead(x) { await this._db.collection("testleads").doc(x.id).set(x); },
+    async listTestLeads(limit = 500) { return this._docs(await this._db.collection("testleads").orderBy("at", "desc").limit(limit).get()); },
     async listAttendance(uid) { const q = uid ? this._db.collection("attendance").where("uid", "==", uid) : this._db.collection("attendance"); return this._docs(await q.get()); },
     async updateProfile(fields) {
       const u = this._auth.currentUser; if (!u) throw new Error("Sign in first.");
@@ -203,44 +221,44 @@
     async resetPassword(email) { await this._auth.sendPasswordResetEmail(email.trim(), { url: (CFG.siteUrl || location.origin) + "/login.html" }); },
 
     _docs(snap) { return snap.docs.map(d => ({ id: d.id, ...d.data() })); },
-    async listCustomTests() { return this._docs(await this._db.collection("tests").get()); },
-    async saveTest(t) { await this._db.collection("tests").doc(t.id).set(t); },
-    async deleteTest(id) { await this._db.collection("tests").doc(id).delete(); },
+    async listCustomTests() { return this._cached("tests", async () => this._docs(await this._db.collection("tests").get())); },
+    async saveTest(t) { await this._db.collection("tests").doc(t.id).set(t); this._bust("tests"); },
+    async deleteTest(id) { await this._db.collection("tests").doc(id).delete(); this._bust("tests"); },
 
     async saveAttempt(at) { await this._db.collection("attempts").doc(at.id).set(at); return at; },
     async listAttempts(userId) { return this._docs(await this._db.collection("attempts").where("uid", "==", userId).get()).sort((x, y) => y.at - x.at); },
     async getAttempt(id) { const s = await this._db.collection("attempts").doc(id).get(); return s.exists ? { id: s.id, ...s.data() } : null; },
     async listAllAttempts() { return this._docs(await this._db.collection("attempts").orderBy("at", "desc").limit(1000).get()); },
 
-    async listNotices() { return this._docs(await this._db.collection("notices").get()).sort((a, b) => (b.date || "").localeCompare(a.date || "")); },
-    async saveNotice(n) { await this._db.collection("notices").doc(n.id).set(n); },
-    async deleteNotice(id) { await this._db.collection("notices").doc(id).delete(); },
+    async listNotices() { return this._cached("notices", async () => this._docs(await this._db.collection("notices").get()).sort((a, b) => (b.date || "").localeCompare(a.date || ""))); },
+    async saveNotice(n) { await this._db.collection("notices").doc(n.id).set(n); this._bust("notices"); },
+    async deleteNotice(id) { await this._db.collection("notices").doc(id).delete(); this._bust("notices"); },
 
     async saveEnquiry(e) { await this._db.collection("enquiries").doc(e.id).set(e); },
     async listEnquiries() { return this._docs(await this._db.collection("enquiries").orderBy("at", "desc").get()); },
     async listUsers() { return this._docs(await this._db.collection("users").get()).map(u => ({ uid: u.id, ...u, isAdmin: isAdminEmail(u.email) })); },
 
-    async listStories() { return this._docs(await this._db.collection("stories").get()); },
-    async saveStory(x) { await this._db.collection("stories").doc(x.id).set(x); },
-    async deleteStory(id) { await this._db.collection("stories").doc(id).delete(); },
-    async listCustomVacancies() { return this._docs(await this._db.collection("vacancies").get()); },
-    async saveVacancy(x) { await this._db.collection("vacancies").doc(x.id).set(x); },
-    async deleteVacancy(id) { await this._db.collection("vacancies").doc(id).delete(); },
+    async listStories() { return this._cached("stories", async () => this._docs(await this._db.collection("stories").get())); },
+    async saveStory(x) { await this._db.collection("stories").doc(x.id).set(x); this._bust("stories"); },
+    async deleteStory(id) { await this._db.collection("stories").doc(id).delete(); this._bust("stories"); },
+    async listCustomVacancies() { return this._cached("vacancies", async () => this._docs(await this._db.collection("vacancies").get())); },
+    async saveVacancy(x) { await this._db.collection("vacancies").doc(x.id).set(x); this._bust("vacancies"); },
+    async deleteVacancy(id) { await this._db.collection("vacancies").doc(id).delete(); this._bust("vacancies"); },
 
-    async listVideos() { return this._docs(await this._db.collection("videos").get()); },
-    async saveVideo(x) { await this._db.collection("videos").doc(x.id).set(x); },
-    async deleteVideo(id) { await this._db.collection("videos").doc(id).delete(); },
+    async listVideos() { return this._cached("videos", async () => this._docs(await this._db.collection("videos").get())); },
+    async saveVideo(x) { await this._db.collection("videos").doc(x.id).set(x); this._bust("videos"); },
+    async deleteVideo(id) { await this._db.collection("videos").doc(id).delete(); this._bust("videos"); },
     async updateEnquiry(id, fields) { await this._db.collection("enquiries").doc(id).set(fields, { merge: true }); },
-    async listArticles() { return this._docs(await this._db.collection("articles").get()).sort((x, y) => (y.at || 0) - (x.at || 0)); },
+    async listArticles() { return this._cached("articles", async () => this._docs(await this._db.collection("articles").get()).sort((x, y) => (y.at || 0) - (x.at || 0))); },
     async getArticle(id) { const d = await this._db.collection("articles").doc(id).get(); if (d.exists) return { id: d.id, ...d.data() }; const q = await this._db.collection("articles").where("slug", "==", id).limit(1).get(); return q.empty ? null : { id: q.docs[0].id, ...q.docs[0].data() }; },
-    async saveArticle(x) { await this._db.collection("articles").doc(x.id).set(x); },
-    async deleteArticle(id) { await this._db.collection("articles").doc(id).delete(); },
+    async saveArticle(x) { await this._db.collection("articles").doc(x.id).set(x); this._bust("articles"); },
+    async deleteArticle(id) { await this._db.collection("articles").doc(id).delete(); this._bust("articles"); },
     async listLiveClasses() { return this._docs(await this._db.collection("liveclasses").get()).sort((a, b) => (a.time || "").localeCompare(b.time || "")); },
     async saveLiveClass(x) { await this._db.collection("liveclasses").doc(x.id).set(x); },
     async deleteLiveClass(id) { await this._db.collection("liveclasses").doc(id).delete(); },
-    async listExamDates() { return this._docs(await this._db.collection("examdates").get()); },
-    async saveExamDate(x) { await this._db.collection("examdates").doc(x.id).set(x); },
-    async deleteExamDate(id) { await this._db.collection("examdates").doc(id).delete(); },
+    async listExamDates() { return this._cached("examdates", async () => this._docs(await this._db.collection("examdates").get())); },
+    async saveExamDate(x) { await this._db.collection("examdates").doc(x.id).set(x); this._bust("examdates"); },
+    async deleteExamDate(id) { await this._db.collection("examdates").doc(id).delete(); this._bust("examdates"); },
 
     async recordVisit(page) {
       const day = new Date().toISOString().slice(0, 10), inc = firebase.firestore.FieldValue.increment;
@@ -268,7 +286,7 @@
 
   // Built-in tests (data/tests.js) + custom tests added from the admin panel.
   store.listTests = async function () {
-    const builtin = (window.GSA_BUILTIN_TESTS || []).map(t => ({ ...t, builtin: true }));
+    const builtin = (window.GSA_BUILTIN_TESTS || (window.GSA_TESTS_INDEX || []).map(t => ({ ...t, questions: Array.from({ length: t.questions }, () => ({ marks: t.questions ? t.maxMarks / t.questions : 1 })), sections: Array.from({ length: t.sections || 0 }) }))).map(t => ({ ...t, builtin: true }));
     const custom = await store.listCustomTests();
     const hiddenIds = new Set(custom.filter(t => t.hidden).map(t => t.id));
     return [...builtin.filter(t => !hiddenIds.has(t.id)), ...custom.filter(t => !t.hidden && !t.replacesBuiltin)];

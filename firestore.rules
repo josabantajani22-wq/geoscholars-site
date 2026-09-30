@@ -23,6 +23,10 @@ service cloud.firestore {
                              allow read: if signedIn() && (resource.data.uid == request.auth.uid || isAdmin());
                              allow update, delete: if isAdmin(); }
     match /resources/{id}  { allow read: if true;  allow write: if isAdmin(); }
+    match /leaderboard/{id} { allow read: if true;
+                             allow create, update: if signedIn() && request.resource.data.uid == request.auth.uid;
+                             allow delete: if isAdmin(); }
+    match /testleads/{id}  { allow create: if true; allow read, delete: if isAdmin(); }
     match /attendance/{id} { allow create: if signedIn() && request.resource.data.uid == request.auth.uid;
                              allow read: if signedIn() && (resource.data.uid == request.auth.uid || isAdmin());
                              allow delete: if isAdmin(); }

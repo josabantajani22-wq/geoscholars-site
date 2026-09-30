@@ -2,7 +2,7 @@
 document.addEventListener("gsa:ready", async ({ detail: { user } }) => {
   const { esc, qs, fmtDT } = GSA.ui, store = GSA.store, app = document.getElementById("app");
   const KEYS = "ABCDEFGH";
-  const testId = qs("id"), reviewId = qs("review");
+  const testId = qs("id"), reviewId = qs("review"); let practice = qs("mode") === "practice";
   const test = await store.getTest(testId);
   if (!test) { app.innerHTML = `<div class="alert err" style="margin:2rem 0">Test not found. <a href="tests.html">Back to tests</a></div>`; return; }
   document.title = `${test.title} — Geo Scholars Academy`;
@@ -99,24 +99,28 @@ document.addEventListener("gsa:ready", async ({ detail: { user } }) => {
         <li>Your progress is saved in this browser — if the page reloads, you can resume.</li>
         <li>After submitting you will see your score, section-wise analysis and worked solutions for every question.</li>
       </ol></div>
+      <div id="lb-box"></div>
       ${needDetails() ? detailsForm() : ""}
       ${!user ? `<div class="alert info">You are not signed in — your score will <strong>not</strong> be saved to a dashboard. <a href="login.html?next=${encodeURIComponent("test.html?id=" + testId)}">Sign in</a> or continue as a guest.</div>` : ""}
       <div style="display:flex;gap:.7rem;flex-wrap:wrap">
-        ${saved ? `<button class="btn primary" id="resume">Resume attempt (${Math.max(0, Math.round((saved.endsAt - Date.now()) / 60000))} min left)</button><button class="btn ghost" id="start">Start fresh</button>` : `<button class="btn primary" id="start">Start test</button>`}
+        ${saved ? `<button class="btn primary" id="resume">Resume attempt (${Math.max(0, Math.round((saved.endsAt - Date.now()) / 60000))} min left)</button><button class="btn ghost" id="start">Start fresh</button>` : `<button class="btn primary" id="start">${practice ? "Start practice (no timer)" : "Start timed test"}</button>`}
+        ${practice ? `<a class="btn ghost" href="test.html?id=${encodeURIComponent(testId)}">Switch to timed mode</a>` : `<a class="btn ghost" href="test.html?id=${encodeURIComponent(testId)}&mode=practice" title="No timer; check each answer as you go">Practice mode</a>`}
         <a class="btn ghost" href="tests.html">Back</a>
       </div>
     </div>`;
     document.getElementById("start").onclick = async () => { if (!(await captureDetails())) return; localStorage.removeItem(progressKey); start(); };
+    store.listLeaderboard(testId, 10).then(rows => { const box = document.getElementById("lb-box"); if (!box || !rows.length) return; box.innerHTML = `<div class="card" style="margin-bottom:1.5rem"><h3 style="margin-top:0">🏆 Leaderboard — top ${rows.length}</h3><div class="table-wrap"><table><tr><th>#</th><th>Student</th><th>Score</th><th>Time</th></tr>${rows.map((r, i) => `<tr class="${user && r.uid === user.uid ? "me" : ""}"><td>${["🥇", "🥈", "🥉"][i] || i + 1}</td><td>${esc(r.name || "Student")}${user && r.uid === user.uid ? " (you)" : ""}</td><td><b>${fmtN(r.score)}</b> / ${fmtN(r.max)}</td><td class="small">${Math.floor((r.timeTakenSec || 0) / 60)}m</td></tr>`).join("")}</table></div><p class="small muted" style="margin:.5rem 0 0">Timed attempts by signed-in students. ${user ? "Beat your best to move up." : `<a href="login.html?next=${encodeURIComponent("test.html?id=" + testId)}">Sign in</a> to appear here.`}</p></div>`; }).catch(() => {});
     const r = document.getElementById("resume"); if (r) r.onclick = async () => { if (!(await captureDetails())) return; S = saved; start(true); };
   }
 
   /* ---------- RUNNING ---------- */
   function start(resume) {
-    if (!resume) { S.startedAt = Date.now(); S.endsAt = S.startedAt + test.durationMinutes * 60000; }
+    if (!resume) { S.startedAt = Date.now(); S.endsAt = S.startedAt + (practice ? 24 * 60 : test.durationMinutes) * 60000; S.practice = practice; }
+    practice = !!S.practice;
     app.innerHTML = `
     <div class="quiz">
       <main>
-        <div class="quiz-top"><strong>${esc(test.title)}</strong><span class="muted small" id="prog"></span><div class="timer" id="timer"></div></div>
+        <div class="quiz-top"><strong>${esc(test.title)}${practice ? ' <span class="badge moss">Practice</span>' : ""}</strong><span class="muted small" id="prog"></span><div class="timer" id="timer" ${practice ? 'style="display:none"' : ""}></div></div>
         ${sections.length > 1 ? `<div class="sec-tabs" id="sec-tabs">${sections.map((s, i) => `<button data-i="${i}">${esc(s.name.replace(/^Section\s+/, "").split(":")[0])}</button>`).join("")}</div>` : ""}
         <div class="q-card" id="q"></div>
       </main>
@@ -152,6 +156,7 @@ document.addEventListener("gsa:ready", async ({ detail: { user } }) => {
       ${qtype(q) === "nat" ? `<div class="field" style="max-width:320px"><label>Your numerical answer</label><input type="text" inputmode="decimal" id="nat-in" value="${esc(sel ?? "")}" placeholder="e.g. 12.5"></div>` :
         qtype(q) === "msq" ? `<p class="small muted" style="margin:0 0 .4rem">Select all correct options.</p>` + q.options.map((o, k) => `<label class="opt ${(sel || []).includes(k) ? "selected" : ""}"><input type="checkbox" name="opt" value="${k}" ${(sel || []).includes(k) ? "checked" : ""}><span class="key">${KEYS[k]}.</span><span>${esc(o)}</span></label>`).join("") :
         q.options.map((o, k) => `<label class="opt ${sel === k ? "selected" : ""}"><input type="radio" name="opt" value="${k}" ${sel === k ? "checked" : ""}><span class="key">${KEYS[k]}.</span><span>${esc(o)}</span></label>`).join("")}
+      ${practice ? `<div id="chk-box">${S.checked && S.checked.includes(i) ? feedback(q, sel) : `<button class="btn sm" id="chk" ${answered(sel) ? "" : "disabled"}>Check answer</button>`}</div>` : ""}
       <div class="q-actions">
         <button class="btn ghost sm" id="prev" ${i === 0 ? "disabled" : ""}>← Previous</button>
         <button class="btn ghost sm" id="clear">Clear response</button>
@@ -161,6 +166,7 @@ document.addEventListener("gsa:ready", async ({ detail: { user } }) => {
     if (qtype(q) === "msq") document.querySelectorAll("#q input[name=opt]").forEach(r => r.onchange = () => { const cur = new Set(Array.isArray(S.answers[i]) ? S.answers[i] : []); r.checked ? cur.add(+r.value) : cur.delete(+r.value); S.answers[i] = cur.size ? [...cur].sort() : null; renderQ(); renderPal(); persist(); });
     else if (qtype(q) === "nat") { const inp = document.getElementById("nat-in"); inp.oninput = () => { S.answers[i] = inp.value.trim() || null; renderPal(); persist(); }; }
     else document.querySelectorAll("#q input[name=opt]").forEach(r => r.onchange = () => { S.answers[i] = +r.value; renderQ(); renderPal(); persist(); });
+    const chk = document.getElementById("chk"); if (chk) chk.onclick = () => { S.checked = [...(S.checked || []), i]; renderQ(); persist(); };
     document.getElementById("prev").onclick = () => go(i - 1);
     document.getElementById("next").onclick = () => go(i === N - 1 ? i : i + 1);
     document.getElementById("clear").onclick = () => { S.answers[i] = null; renderQ(); renderPal(); persist(); };
@@ -174,6 +180,8 @@ document.addEventListener("gsa:ready", async ({ detail: { user } }) => {
     const un = S.answers.filter(a => !answered(a)).length;
     if (confirm(`Submit the test now?\n\nAnswered: ${N - un}\nUnanswered: ${un}${S.marked.length ? `\nMarked for review: ${S.marked.length}` : ""}`)) finish(false);
   }
+
+  const feedback = (q, sel) => `<div class="alert ${isCorrect(q, sel) ? "ok" : "err"} small" style="margin:.6rem 0"><b>${isCorrect(q, sel) ? "✅ Correct" : "❌ Not correct"}</b> — answer: <b>${esc(keyText(q))}</b>${q.solution ? "<br>" + esc(q.solution) : ""}</div>`;
 
   /* ---------- SCORING ---------- */
   function score(answers) {
@@ -193,9 +201,12 @@ document.addEventListener("gsa:ready", async ({ detail: { user } }) => {
     const r = score(S.answers);
     const lead = savedLead() || {};
     const attempt = { id: store.newId(), uid: user ? user.uid : null, userName: user ? user.name : (lead.name || "Guest"), guestPhone: user ? "" : (lead.phone || ""), qualification: (user && user.qualification) || lead.qualification || "", testId, exam: test.exam || "", testTitle: test.title, at: Date.now(), timeTakenSec: Math.round((Math.min(Date.now(), S.endsAt) - S.startedAt) / 1000), answers: S.answers, ...r, maxMarks, total: N, autoSubmitted: !!auto };
+    attempt.mode = practice ? "practice" : "timed";
     if (user) { try { await store.saveAttempt(attempt); } catch (e) { console.error(e); } }
+    if (user && !practice) { try { await store.saveLeaderboard({ testId, uid: user.uid, name: user.name || "Student", score: attempt.score, max: fmtN(maxMarks), timeTakenSec: attempt.timeTakenSec, at: attempt.at }); } catch (e) {} }
+    try { await store.logTestLead({ id: store.newId(), at: attempt.at, uid: user ? user.uid : "", name: attempt.userName, phone: user ? (user.phone || "") : attempt.guestPhone, email: user ? user.email : "", qualification: attempt.qualification, testId, testTitle: test.title, exam: test.exam || test.category || "", score: attempt.score, max: fmtN(maxMarks), pct: Math.max(0, Math.round(100 * attempt.score / maxMarks)), mode: attempt.mode, timeTakenSec: attempt.timeTakenSec }); } catch (e) {}
     result(attempt);
-    setTimeout(() => enrolPopup(attempt), 1800);
+    if (!practice) setTimeout(() => enrolPopup(attempt), 1800);
   }
 
   /* ---------- RESULT + REVIEW ---------- */
@@ -212,6 +223,7 @@ document.addEventListener("gsa:ready", async ({ detail: { user } }) => {
         <div class="score-grid">
           <div><b style="color:var(--moss)">${a.correct}</b><span>Correct</span></div><div><b style="color:var(--red)">${a.wrong}</b><span>Wrong</span></div><div><b>${a.unattempted}</b><span>Unattempted</span></div><div><b>${acc}%</b><span>Accuracy</span></div><div><b>${mm}m ${ss}s</b><span>Time taken</span></div>
         </div>
+        ${GSA.ui.shareBar ? GSA.ui.shareBar(`I scored ${fmtN(a.score)}/${fmtN(a.maxMarks)} in "${a.testTitle}" on Geo Scholars Academy. Try it free:`, location.origin + "/test.html?id=" + encodeURIComponent(testId)).replace('class="share-bar"', 'class="share-bar" style="justify-content:center"') : ""}
         ${!a.uid ? `<p class="small muted" style="margin:1.2rem 0 0">Guest attempt — <a href="login.html">sign in</a> next time to save your scores.</p>` : `<p class="small muted" style="margin:1.2rem 0 0">Saved to <a href="dashboard.html">your dashboard</a> · ${fmtDT(a.at)}</p>`}
       </div>
       ${a.perSec.length > 1 ? `<div class="card" style="margin-top:1.5rem"><h3>Section-wise analysis</h3><div class="table-wrap"><table><tr><th>Section</th><th>Qs</th><th>Correct</th><th>Wrong</th><th>Score</th><th>%</th></tr>${a.perSec.map(s => `<tr><td>${esc(s.name)}</td><td>${s.total}</td><td>${s.correct}</td><td>${s.wrong}</td><td>${s.score} / ${s.max}</td><td>${Math.max(0, Math.round(100 * s.score / s.max))}%</td></tr>`).join("")}</table></div></div>` : ""}

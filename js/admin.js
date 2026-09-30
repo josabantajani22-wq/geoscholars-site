@@ -514,11 +514,29 @@ document.addEventListener("gsa:ready", async ({ detail: { user } }) => {
       panel.querySelectorAll("[data-del]").forEach(a => a.onclick = async (e) => { e.preventDefault(); if (!confirm("Delete?")) return; await store.deleteResource(a.dataset.del); pages.resources(); });
     },
 
+    async testtakers() {
+      const fmtN = (x) => Math.round((x || 0) * 100) / 100;
+      const leads = await store.listTestLeads(500), enq = await store.listEnquiries();
+      const enqPhones = new Set(enq.map(e => String(e.phone || "").replace(/\D/g, "").slice(-10)).filter(Boolean));
+      const norm = (p) => String(p || "").replace(/\D/g, "").slice(-10);
+      const people = {}; leads.forEach(l => { const k = norm(l.phone) || l.email || l.name; (people[k] = people[k] || { ...l, tests: [] }).tests.push(l); });
+      const rows = Object.values(people).sort((a, b) => b.at - a.at);
+      panel.innerHTML = `<h1>Test takers <span class="badge">${rows.length} people · ${leads.length} attempts</span></h1>
+        <p class="small muted">Everyone who took a mock test or previous-year paper, with the details they entered before starting. Guests are included (they are not in Students &amp; results). "Enquired" means the same phone number also exists in Enquiries.</p>
+        <div class="kpis"><div class="stat"><b>${rows.length}</b><span>People</span></div><div class="stat"><b>${rows.filter(r => !r.uid).length}</b><span>Guests (not registered)</span></div><div class="stat"><b>${leads.filter(l => Date.now() - l.at < 7 * 86400000).length}</b><span>Attempts last 7 days</span></div><div class="stat"><b>${rows.filter(r => enqPhones.has(norm(r.phone))).length}</b><span>Also enquired</span></div><div class="stat"><b>${leads.length ? Math.round(leads.reduce((n, l) => n + (l.pct || 0), 0) / leads.length) : 0}%</b><span>Average score</span></div></div>
+        <div class="toolbar"><input id="tt-q" placeholder="Search name / phone / test…"><button class="btn ghost sm" id="tt-csv">Download CSV</button></div>
+        <div class="table-wrap"><table id="tt-table"><tr><th>Latest</th><th>Name</th><th>Phone</th><th>Qualification</th><th>Tests taken</th><th>Best</th><th>Status</th></tr>${rows.map(r => { const best = r.tests.reduce((b, t) => t.pct > (b.pct || -1) ? t : b, {}); return `<tr data-row="${esc((r.name + " " + (r.phone || "") + " " + r.tests.map(t => t.testTitle).join(" ")).toLowerCase())}"><td class="small" style="white-space:nowrap">${fmtDT(r.at)}</td><td><b>${esc(r.name || "—")}</b>${r.uid ? ` <a href="#" data-stu="${esc(r.uid)}" class="small">profile</a>` : ' <span class="badge grey">guest</span>'}</td><td class="small">${r.phone ? `<a href="tel:${esc(r.phone)}">${esc(r.phone)}</a> · <a href="https://wa.me/${norm(r.phone) ? "91" + norm(r.phone) : ""}?text=${encodeURIComponent("Hi " + (r.name || "") + ", this is Geo Scholars Academy. You scored " + fmtN(best.score) + "/" + fmtN(best.max) + " in " + (best.testTitle || "our mock test") + ". Want a free counselling call?")}" target="_blank" rel="noopener">WhatsApp</a>` : "—"}</td><td class="small">${esc(r.qualification || "—")}</td><td class="small">${r.tests.map(t => `${esc(t.testTitle)} — <b>${fmtN(t.score)}</b>/${fmtN(t.max)} (${t.pct}%)${t.mode === "practice" ? " <span class='badge grey'>practice</span>" : ""}`).join("<br>")}</td><td><b>${best.pct ?? 0}%</b></td><td>${enqPhones.has(norm(r.phone)) ? '<span class="badge moss">Enquired</span>' : '<span class="badge">Not yet</span>'}</td></tr>`; }).join("") || "<tr><td colspan=7 class='muted small'>No test attempts yet.</td></tr>"}</table></div>`;
+      document.getElementById("tt-q").oninput = (e) => { const q = e.target.value.toLowerCase(); panel.querySelectorAll("#tt-table tr[data-row]").forEach(r => r.style.display = r.dataset.row.includes(q) ? "" : "none"); };
+      document.getElementById("tt-csv").onclick = () => { const rws = [["When", "Name", "Phone", "Email", "Qualification", "Test", "Score", "Max", "%", "Mode", "Registered"], ...leads.map(l => [fmtDT(l.at), l.name, l.phone, l.email, l.qualification, l.testTitle, l.score, l.max, l.pct, l.mode, l.uid ? "yes" : "guest"])]; const csv = rws.map(r => r.map(x => `"${String(x ?? "").replace(/"/g, '""')}"`).join(",")).join("\n"); const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([csv], { type: "text/csv" })); a.download = "gsa-test-takers.csv"; a.click(); };
+      panel.querySelectorAll("[data-stu]").forEach(x => x.onclick = (e) => { e.preventDefault(); document.querySelector('.admin-nav button[data-p=students]').click(); setTimeout(() => pages.studentDetail(x.dataset.stu), 300); });
+    },
+
     async help() {
       panel.innerHTML = `<h1>Help</h1>
         <div class="card" style="margin-bottom:1.5rem"><h3>What each tab does</h3><ul class="small" style="margin:0;padding-left:1.1rem;line-height:1.7">
           <li><b>Overview</b> — visitors, enquiries, students, attempts.</li>
           <li><b>Visitors</b> — every visit with IP address, city/state, device, page; CSV export.</li>
+          <li><b>Test takers</b> — name, phone and qualification of everyone who took a test (guests included), with scores and a WhatsApp follow-up link.</li>
           <li><b>Reviews</b> — approve student reviews for the home page. <b>Doubt box</b> — answer student questions. <b>Resources</b> — downloads/PYQ links.</li>
           <li><b>Tests</b> — upload a .docx question bank → live mock test.</li>
           <li><b>Notices</b> — announcements on the home page.</li>

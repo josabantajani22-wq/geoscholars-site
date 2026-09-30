@@ -58,7 +58,7 @@
   // Interactivity: reveal-on-scroll, header shadow, back-to-top, animated counters
   function motion() {
     const targets = document.querySelectorAll(".card, .stat, .section-head, .notice, .story, h1, .hero p.lead, .hero-actions");
-    targets.forEach((el, i) => { if (!el.classList.contains("reveal")) { el.classList.add("reveal"); el.style.transitionDelay = (i % 6) * 60 + "ms"; } });
+    targets.forEach((el, i) => { if (!el.classList.contains("reveal")) { el.classList.add("reveal"); el.style.transitionDelay = (i % 4) * 40 + "ms"; } });
     if ("IntersectionObserver" in window) {
       const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { threshold: .05, rootMargin: "0px 0px -5% 0px" });
       document.querySelectorAll(".reveal:not(.in)").forEach(el => io.observe(el));
@@ -153,5 +153,8 @@
     const u = encodeURIComponent(url || location.href), t = encodeURIComponent(title || document.title);
     return `<div class="share-bar"><span class="small muted">Share:</span><a href="https://wa.me/?text=${t}%20${u}" target="_blank" rel="noopener" title="WhatsApp">WhatsApp</a><a href="https://t.me/share/url?url=${u}&text=${t}" target="_blank" rel="noopener" title="Telegram">Telegram</a><a href="https://twitter.com/intent/tweet?text=${t}&url=${u}" target="_blank" rel="noopener">X</a><a href="#" onclick="navigator.clipboard&&navigator.clipboard.writeText(decodeURIComponent('${u}'));this.textContent='Copied!';return false;">Copy link</a></div>`;
   };
-  Promise.all([store.ready, domReady]).then(([user]) => { mount(user); telegramFab(); analytics(); stickyCta(); pwa(); theme(); bell(); visitorGeo(user); leadPopup(user); store.onAuth(u => { mount(u); theme(); bell(); }); document.dispatchEvent(new CustomEvent("gsa:ready", { detail: { user } })); setTimeout(motion, 50); setTimeout(motion, 600); });
+  // Paint the header/footer immediately from the last known sign-in state; corrected once Firebase answers.
+  let mounted = false;
+  domReady.then(() => { if (mounted) return; let cu = null; try { cu = JSON.parse(localStorage.getItem("gsa_last_user") || "null"); } catch (e) {} if (document.getElementById("site-header")) { mount(cu); theme(); } });
+  Promise.all([store.ready, domReady]).then(([user]) => { mounted = true; try { user ? localStorage.setItem("gsa_last_user", JSON.stringify({ uid: user.uid, name: user.name, email: user.email, isAdmin: user.isAdmin })) : localStorage.removeItem("gsa_last_user"); } catch (e) {} mount(user); telegramFab(); analytics(); stickyCta(); pwa(); theme(); bell(); visitorGeo(user); leadPopup(user); store.onAuth(u => { try { u ? localStorage.setItem("gsa_last_user", JSON.stringify({ uid: u.uid, name: u.name, email: u.email, isAdmin: u.isAdmin })) : localStorage.removeItem("gsa_last_user"); } catch (e) {} mount(u); theme(); bell(); }); document.dispatchEvent(new CustomEvent("gsa:ready", { detail: { user } })); setTimeout(motion, 50); setTimeout(motion, 600); });
 })();

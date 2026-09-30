@@ -4,7 +4,7 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Free Test Series — Geo Scholars Academy</title>
 <meta name="description" content="Free geology mock tests online: ONGC Geologist CBT pattern (85 questions), Geology hard sets — timed, auto-graded with solutions. Practise for IIT JAM, GATE GG, CSIR NET and UPSC Geo-Scientist.">
-<link rel="canonical" href="https://geoscholarsacademy.org/tests.html"><meta property="og:site_name" content="Geo Scholars Academy"><meta property="og:image" content="https://geoscholarsacademy.org/assets/logo.png"><link rel="icon" href="assets/logo.png"><link rel="manifest" href="manifest.json"><meta name="theme-color" content="#1B2229"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link rel="canonical" href="https://geoscholarsacademy.org/tests.html"><meta property="og:site_name" content="Geo Scholars Academy"><meta property="og:image" content="https://geoscholarsacademy.org/assets/logo.png"><link rel="icon" href="assets/logo.png"><link rel="manifest" href="manifest.json"><meta name="theme-color" content="#1B2229"><link rel="preconnect" href="https://www.gstatic.com" crossorigin><link rel="preconnect" href="https://firestore.googleapis.com" crossorigin><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -21,7 +21,7 @@
   </div>
 </section>
 <div id="site-footer"></div>
-<script src="js/config.js"></script><script src="data/site.js"></script><script src="data/tests.js"></script><script src="data/pyq-index.js"></script><script src="js/store.js"></script><script src="js/app.js"></script>
+<script src="js/config.js"></script><script src="data/site.js"></script><script src="data/tests-index.js"></script><script src="data/pyq-index.js"></script><script src="js/store.js"></script><script src="js/app.js"></script>
 <script>
 document.addEventListener("gsa:ready", async ({ detail: { user } }) => {
   const { esc } = GSA.ui, store = GSA.store;
@@ -52,9 +52,10 @@ document.addEventListener("gsa:ready", async ({ detail: { user } }) => {
   const ICON = { "GATE GG": "🎓", "IIT JAM Geology": "🏛️", "CSIR NET Earth Science": "🔬", "UPSC Geo-Scientist (Prelims)": "🗺️" };
   document.getElementById("pyq").innerHTML = exams.length ? exams.map(ex => { const papers = pyq.filter(p => p.exam === ex); const done = new Set(attempts.map(a => a.testId));
     return `<div class="card pyq-card"><div style="font-size:1.8rem">${ICON[ex] || "📄"}</div><h3>${esc(ex)}</h3><p class="small muted" style="margin:0 0 .6rem">${papers.length} papers · official answer keys · latest first</p>
-      <div class="field" style="margin:.2rem 0 .6rem"><label>Year / paper</label><select data-ex="${esc(ex)}">${papers.map(p => `<option value="${esc(p.id)}">${esc(p.year)} — ${p.questions} Qs · ${p.maxMarks} marks · ${p.durationMinutes} min${done.has(p.id) ? " ✓" : ""}</option>`).join("")}</select></div>
-      <div class="spacer"></div><a class="btn primary" data-start="${esc(ex)}" href="test.html?id=${encodeURIComponent(papers[0].id)}">Start this paper</a></div>`; }).join("") : "<p class='muted'>Previous year papers coming soon.</p>";
-  document.querySelectorAll("#pyq select").forEach(sel => sel.onchange = () => { const a = document.querySelector(`#pyq a[data-start="${sel.dataset.ex}"]`); a.href = "test.html?id=" + encodeURIComponent(sel.value); });
+      <div class="field" style="margin:.2rem 0 .6rem"><label>Year / paper</label><select data-ex="${esc(ex)}">${papers.map(p => `<option value="${esc(p.id)}" data-info="${p.questions} questions · ${p.maxMarks} marks · ${p.durationMinutes} min">${esc(p.year)}${done.has(p.id) ? " ✓" : ""}</option>`).join("")}</select></div>
+      <p class="small muted" data-info-for="${esc(ex)}" style="margin:0 0 .6rem">${papers[0].questions} questions · ${papers[0].maxMarks} marks · ${papers[0].durationMinutes} min</p>
+      <div class="spacer"></div><div style="display:flex;gap:.5rem;flex-wrap:wrap"><a class="btn primary" data-start="${esc(ex)}" href="test.html?id=${encodeURIComponent(papers[0].id)}">Start timed test</a><a class="btn ghost sm" data-practice="${esc(ex)}" href="test.html?id=${encodeURIComponent(papers[0].id)}&mode=practice" title="No timer, check each answer">Practice</a></div></div>`; }).join("") : "<p class='muted'>Previous year papers coming soon.</p>";
+  document.querySelectorAll("#pyq select").forEach(sel => sel.onchange = () => { const ex = sel.dataset.ex; document.querySelector(`#pyq a[data-start="${ex}"]`).href = "test.html?id=" + encodeURIComponent(sel.value); document.querySelector(`#pyq a[data-practice="${ex}"]`).href = "test.html?id=" + encodeURIComponent(sel.value) + "&mode=practice"; document.querySelector(`#pyq [data-info-for="${ex}"]`).textContent = sel.selectedOptions[0].dataset.info; });
 });
 </script>
 </body></html>

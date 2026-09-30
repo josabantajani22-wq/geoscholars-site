@@ -138,6 +138,20 @@ Before any test, guests (and students with incomplete profiles) enter name, phon
 browser as an enquiry ("Started mock test: …"). After the result an enrolment popup offers a callback (saved as an
 enquiry with the score) plus Classplus / Telegram links. The three GSA tests are now "CIL: Mock Test 1–3".
 
+## Speed (v11)
+Posters are WebP (≈50 KB each), logo 320 px; pages load `data/tests-index.js` (3 KB) instead of the full question bank
+(only test.html and admin.html load `data/tests.js`); Firestore public lists are cached in localStorage and refreshed in
+the background (`store._cached`, 10 min TTL, busted on admin writes); header paints instantly from the last sign-in state
+before Firebase answers; preconnect hints for gstatic/firestore; long cache headers for images and PYQ JSON.
+
+## Student interaction (v11)
+- **Leaderboard** per test (top 10 timed attempts by signed-in students) on the test intro page; `leaderboard` collection.
+- **Practice mode** (`test.html?id=…&mode=practice`): no timer, "Check answer" reveals key + solution per question; not
+  counted for the leaderboard and no enrolment popup.
+- **Share my score** bar on the result page.
+- Admin → **Test takers**: everyone who took a test (guests included) with the name/phone/qualification they entered,
+  scores, WhatsApp follow-up link, "Enquired" flag, CSV; `testleads` collection (create by anyone, read by admin).
+
 ## Add a new test permanently
 Put the `.docx` (GSA table format: Question / Type / Option ×4 / Solution / Marks) in a folder and run:
 ```
