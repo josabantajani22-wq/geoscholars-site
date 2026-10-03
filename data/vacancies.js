@@ -1,7 +1,7 @@
 // Geology vacancy board. Refreshed daily by tools/fetch_freejobalert.py + tools/fetch_linkedin.py (GitHub Actions); edit by hand or add from Admin → Vacancies.
 // status is derived on the page from lastDate: open / closing soon (≤7 days) / closed. Set "upcoming": true for expected notifications.
 window.GSA_VACANCIES = {
-  "updatedAt": "2026-10-02",
+  "updatedAt": "2026-10-03",
   "items": [
     {
       "id": "csir-net-dec-2026",
@@ -116,29 +116,6 @@ window.GSA_VACANCIES = {
       "sourceUrl": "https://www.freejobalert.com/articles/oil-india-recruitment-2026-apply-online-for-deputy-chief-engineer-economist-and-more-posts-3067409",
       "summary": "Listed on FreeJobAlert on 11/09/2026. Qualification: Any Post Graduate, B.Tech/B.E, M.A, M.Sc. Verify details on the official notification before applying.",
       "source": "freejobalert"
-    },
-    {
-      "id": "li-4457081828",
-      "title": "Geologist — SMEC (an SJ Group company)",
-      "organisation": "SMEC (an SJ Group company)",
-      "posts": null,
-      "postNames": "Geologist",
-      "qualification": "See the LinkedIn posting",
-      "ageLimit": "",
-      "fee": "",
-      "startDate": "2026-09-11",
-      "lastDate": "2026-10-11",
-      "upcoming": false,
-      "examDate": "",
-      "location": "Greater Lucknow Area",
-      "tags": [
-        "LinkedIn",
-        "Industry"
-      ],
-      "applyUrl": "https://in.linkedin.com/jobs/view/geologist-at-smec-an-sj-group-company-4457081828",
-      "sourceUrl": "https://in.linkedin.com/jobs/view/geologist-at-smec-an-sj-group-company-4457081828",
-      "summary": "Industry opening listed on LinkedIn (Greater Lucknow Area). Posted 2026-09-11. Apply on LinkedIn; the closing date shown here is an estimate (30 days from posting).",
-      "source": "linkedin"
     },
     {
       "id": "li-4464859069",
@@ -299,6 +276,52 @@ window.GSA_VACANCIES = {
       "applyUrl": "https://in.linkedin.com/jobs/view/development-geoscientist-preference-for-u-s-lower-48-experience-at-stronghold-investment-management-4453010160",
       "sourceUrl": "https://in.linkedin.com/jobs/view/development-geoscientist-preference-for-u-s-lower-48-experience-at-stronghold-investment-management-4453010160",
       "summary": "Industry opening listed on LinkedIn (Bengaluru, Karnataka, India). Posted 2026-09-24. Apply on LinkedIn; the closing date shown here is an estimate (30 days from posting).",
+      "source": "linkedin"
+    },
+    {
+      "id": "li-4460483450",
+      "title": "Geophysical Engineer 1 — Fugro",
+      "organisation": "Fugro",
+      "posts": null,
+      "postNames": "Geophysical Engineer 1",
+      "qualification": "See the LinkedIn posting",
+      "ageLimit": "",
+      "fee": "",
+      "startDate": "2026-09-24",
+      "lastDate": "2026-10-24",
+      "upcoming": false,
+      "examDate": "",
+      "location": "Navi Mumbai, Maharashtra, India",
+      "tags": [
+        "LinkedIn",
+        "Industry"
+      ],
+      "applyUrl": "https://in.linkedin.com/jobs/view/geophysical-engineer-1-at-fugro-4460483450",
+      "sourceUrl": "https://in.linkedin.com/jobs/view/geophysical-engineer-1-at-fugro-4460483450",
+      "summary": "Industry opening listed on LinkedIn (Navi Mumbai, Maharashtra, India). Posted 2026-09-24. Apply on LinkedIn; the closing date shown here is an estimate (30 days from posting).",
+      "source": "linkedin"
+    },
+    {
+      "id": "li-4436312312",
+      "title": "Principal Hydraulic Modeller and Hydrologist — Jacobs",
+      "organisation": "Jacobs",
+      "posts": null,
+      "postNames": "Principal Hydraulic Modeller and Hydrologist",
+      "qualification": "See the LinkedIn posting",
+      "ageLimit": "",
+      "fee": "",
+      "startDate": "2026-09-25",
+      "lastDate": "2026-10-25",
+      "upcoming": false,
+      "examDate": "",
+      "location": "Bengaluru East, Karnataka, India",
+      "tags": [
+        "LinkedIn",
+        "Industry"
+      ],
+      "applyUrl": "https://in.linkedin.com/jobs/view/principal-hydraulic-modeller-and-hydrologist-at-jacobs-4436312312",
+      "sourceUrl": "https://in.linkedin.com/jobs/view/principal-hydraulic-modeller-and-hydrologist-at-jacobs-4436312312",
+      "summary": "Industry opening listed on LinkedIn (Bengaluru East, Karnataka, India). Posted 2026-09-25. Apply on LinkedIn; the closing date shown here is an estimate (30 days from posting).",
       "source": "linkedin"
     },
     {
@@ -598,6 +621,29 @@ window.GSA_VACANCIES = {
       "applyUrl": "https://in.linkedin.com/jobs/view/principal-geophysicist-at-sofomation-4472704612",
       "sourceUrl": "https://in.linkedin.com/jobs/view/principal-geophysicist-at-sofomation-4472704612",
       "summary": "Industry opening listed on LinkedIn (Bengaluru, Karnataka, India). Posted 2026-09-30. Apply on LinkedIn; the closing date shown here is an estimate (30 days from posting).",
+      "source": "linkedin"
+    },
+    {
+      "id": "li-4457081828",
+      "title": "Geologist — SMEC (an SJ Group company)",
+      "organisation": "SMEC (an SJ Group company)",
+      "posts": null,
+      "postNames": "Geologist",
+      "qualification": "See the LinkedIn posting",
+      "ageLimit": "",
+      "fee": "",
+      "startDate": "2026-10-02",
+      "lastDate": "2026-11-01",
+      "upcoming": false,
+      "examDate": "",
+      "location": "Greater Lucknow Area",
+      "tags": [
+        "LinkedIn",
+        "Industry"
+      ],
+      "applyUrl": "https://in.linkedin.com/jobs/view/geologist-at-smec-an-sj-group-company-4457081828",
+      "sourceUrl": "https://in.linkedin.com/jobs/view/geologist-at-smec-an-sj-group-company-4457081828",
+      "summary": "Industry opening listed on LinkedIn (Greater Lucknow Area). Posted 2026-10-02. Apply on LinkedIn; the closing date shown here is an estimate (30 days from posting).",
       "source": "linkedin"
     }
   ]
