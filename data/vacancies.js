@@ -1,7 +1,7 @@
 // Geology vacancy board. Refreshed daily by tools/fetch_freejobalert.py + tools/fetch_linkedin.py (GitHub Actions); edit by hand or add from Admin → Vacancies.
 // status is derived on the page from lastDate: open / closing soon (≤7 days) / closed. Set "upcoming": true for expected notifications.
 window.GSA_VACANCIES = {
-  "updatedAt": "2026-10-03",
+  "updatedAt": "2026-10-04",
   "items": [
     {
       "id": "csir-net-dec-2026",
@@ -116,29 +116,6 @@ window.GSA_VACANCIES = {
       "sourceUrl": "https://www.freejobalert.com/articles/oil-india-recruitment-2026-apply-online-for-deputy-chief-engineer-economist-and-more-posts-3067409",
       "summary": "Listed on FreeJobAlert on 11/09/2026. Qualification: Any Post Graduate, B.Tech/B.E, M.A, M.Sc. Verify details on the official notification before applying.",
       "source": "freejobalert"
-    },
-    {
-      "id": "li-4464859069",
-      "title": "Senior Consultant - Resource Geology — WSP in India",
-      "organisation": "WSP in India",
-      "posts": null,
-      "postNames": "Senior Consultant - Resource Geology",
-      "qualification": "See the LinkedIn posting",
-      "ageLimit": "",
-      "fee": "",
-      "startDate": "2026-09-12",
-      "lastDate": "2026-10-12",
-      "upcoming": false,
-      "examDate": "",
-      "location": "Noida, Uttar Pradesh, India",
-      "tags": [
-        "LinkedIn",
-        "Industry"
-      ],
-      "applyUrl": "https://in.linkedin.com/jobs/view/senior-consultant-resource-geology-at-wsp-in-india-4464859069",
-      "sourceUrl": "https://in.linkedin.com/jobs/view/senior-consultant-resource-geology-at-wsp-in-india-4464859069",
-      "summary": "Industry opening listed on LinkedIn (Noida, Uttar Pradesh, India). Posted 2026-09-12. Apply on LinkedIn; the closing date shown here is an estimate (30 days from posting).",
-      "source": "linkedin"
     },
     {
       "id": "li-4438640948",
@@ -644,6 +621,121 @@ window.GSA_VACANCIES = {
       "applyUrl": "https://in.linkedin.com/jobs/view/geologist-at-smec-an-sj-group-company-4457081828",
       "sourceUrl": "https://in.linkedin.com/jobs/view/geologist-at-smec-an-sj-group-company-4457081828",
       "summary": "Industry opening listed on LinkedIn (Greater Lucknow Area). Posted 2026-10-02. Apply on LinkedIn; the closing date shown here is an estimate (30 days from posting).",
+      "source": "linkedin"
+    },
+    {
+      "id": "li-4464859069",
+      "title": "Senior Consultant - Resource Geology — WSP in India",
+      "organisation": "WSP in India",
+      "posts": null,
+      "postNames": "Senior Consultant - Resource Geology",
+      "qualification": "See the LinkedIn posting",
+      "ageLimit": "",
+      "fee": "",
+      "startDate": "2026-10-03",
+      "lastDate": "2026-11-02",
+      "upcoming": false,
+      "examDate": "",
+      "location": "Noida, Uttar Pradesh, India",
+      "tags": [
+        "LinkedIn",
+        "Industry"
+      ],
+      "applyUrl": "https://in.linkedin.com/jobs/view/senior-consultant-resource-geology-at-wsp-in-india-4464859069",
+      "sourceUrl": "https://in.linkedin.com/jobs/view/senior-consultant-resource-geology-at-wsp-in-india-4464859069",
+      "summary": "Industry opening listed on LinkedIn (Noida, Uttar Pradesh, India). Posted 2026-10-03. Apply on LinkedIn; the closing date shown here is an estimate (30 days from posting).",
+      "source": "linkedin"
+    },
+    {
+      "id": "li-4473869183",
+      "title": "Geoscientist - Petrophysicist — GeoCareerGo",
+      "organisation": "GeoCareerGo",
+      "posts": null,
+      "postNames": "Geoscientist - Petrophysicist",
+      "qualification": "See the LinkedIn posting",
+      "ageLimit": "",
+      "fee": "",
+      "startDate": "2026-10-03",
+      "lastDate": "2026-11-02",
+      "upcoming": false,
+      "examDate": "",
+      "location": "Bengaluru, Karnataka, India",
+      "tags": [
+        "LinkedIn",
+        "Industry"
+      ],
+      "applyUrl": "https://in.linkedin.com/jobs/view/geoscientist-petrophysicist-at-geocareergo-4473869183",
+      "sourceUrl": "https://in.linkedin.com/jobs/view/geoscientist-petrophysicist-at-geocareergo-4473869183",
+      "summary": "Industry opening listed on LinkedIn (Bengaluru, Karnataka, India). Posted 2026-10-03. Apply on LinkedIn; the closing date shown here is an estimate (30 days from posting).",
+      "source": "linkedin"
+    },
+    {
+      "id": "li-4473891565",
+      "title": "Geologist (Hydropower & Pumped Storage Projects) — GeoCareerGo",
+      "organisation": "GeoCareerGo",
+      "posts": null,
+      "postNames": "Geologist (Hydropower & Pumped Storage Projects)",
+      "qualification": "See the LinkedIn posting",
+      "ageLimit": "",
+      "fee": "",
+      "startDate": "2026-10-04",
+      "lastDate": "2026-11-03",
+      "upcoming": false,
+      "examDate": "",
+      "location": "Sadar, Uttar Pradesh, India",
+      "tags": [
+        "LinkedIn",
+        "Industry"
+      ],
+      "applyUrl": "https://in.linkedin.com/jobs/view/geologist-hydropower-pumped-storage-projects-at-geocareergo-4473891565",
+      "sourceUrl": "https://in.linkedin.com/jobs/view/geologist-hydropower-pumped-storage-projects-at-geocareergo-4473891565",
+      "summary": "Industry opening listed on LinkedIn (Sadar, Uttar Pradesh, India). Posted 2026-10-04. Apply on LinkedIn; the closing date shown here is an estimate (30 days from posting).",
+      "source": "linkedin"
+    },
+    {
+      "id": "li-4473882919",
+      "title": "Geoscience&Petrotechnical — GeoCareerGo",
+      "organisation": "GeoCareerGo",
+      "posts": null,
+      "postNames": "Geoscience&Petrotechnical",
+      "qualification": "See the LinkedIn posting",
+      "ageLimit": "",
+      "fee": "",
+      "startDate": "2026-10-04",
+      "lastDate": "2026-11-03",
+      "upcoming": false,
+      "examDate": "",
+      "location": "Greater Kolkata Area",
+      "tags": [
+        "LinkedIn",
+        "Industry"
+      ],
+      "applyUrl": "https://in.linkedin.com/jobs/view/geoscience-petrotechnical-at-geocareergo-4473882919",
+      "sourceUrl": "https://in.linkedin.com/jobs/view/geoscience-petrotechnical-at-geocareergo-4473882919",
+      "summary": "Industry opening listed on LinkedIn (Greater Kolkata Area). Posted 2026-10-04. Apply on LinkedIn; the closing date shown here is an estimate (30 days from posting).",
+      "source": "linkedin"
+    },
+    {
+      "id": "li-4474204045",
+      "title": "Associate - Hydrogeology — GeoCareerGo",
+      "organisation": "GeoCareerGo",
+      "posts": null,
+      "postNames": "Associate - Hydrogeology",
+      "qualification": "See the LinkedIn posting",
+      "ageLimit": "",
+      "fee": "",
+      "startDate": "2026-10-04",
+      "lastDate": "2026-11-03",
+      "upcoming": false,
+      "examDate": "",
+      "location": "Mumbai Metropolitan Region",
+      "tags": [
+        "LinkedIn",
+        "Industry"
+      ],
+      "applyUrl": "https://in.linkedin.com/jobs/view/associate-hydrogeology-at-geocareergo-4474204045",
+      "sourceUrl": "https://in.linkedin.com/jobs/view/associate-hydrogeology-at-geocareergo-4474204045",
+      "summary": "Industry opening listed on LinkedIn (Mumbai Metropolitan Region). Posted 2026-10-04. Apply on LinkedIn; the closing date shown here is an estimate (30 days from posting).",
       "source": "linkedin"
     }
   ]
