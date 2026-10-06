@@ -14,6 +14,8 @@ board = json.loads(re.search(r"=\s*(\{.*\})\s*;\s*$", src, re.S).group(1))
 today = dt.date.today()
 items = []
 for v in board["items"]:
+    if v.get("source") == "linkedin":
+        continue
     if v.get("hidden"): continue
     last = v.get("lastDate") or ""
     try: closed = bool(last) and dt.date.fromisoformat(last) < today

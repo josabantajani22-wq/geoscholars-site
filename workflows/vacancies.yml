@@ -1,4 +1,5 @@
-# Refreshes data/vacancies.js from FreeJobAlert every day and re-publishes the site.
+# Refreshes data/vacancies.js from FreeJobAlert every day, commits it, and deploys the site to Firebase Hosting.
+# (A commit made by the bot does not trigger the separate Deploy workflow — GitHub blocks that — so we deploy here.)
 name: Update geology vacancies
 on:
   schedule:
@@ -23,3 +24,10 @@ jobs:
           git add data/vacancies.js vacancies.html
           git diff --cached --quiet || git commit -m "chore: refresh vacancies $(date -u +%F)"
           git push
+      - name: Deploy to Firebase Hosting
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          channelId: live
+          projectId: geo-scholars-academy-ac558
