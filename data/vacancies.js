@@ -1,7 +1,7 @@
 // Geology vacancy board. Refreshed daily by tools/fetch_freejobalert.py + tools/fetch_linkedin.py (GitHub Actions); edit by hand or add from Admin → Vacancies.
 // status is derived on the page from lastDate: open / closing soon (≤7 days) / closed. Set "upcoming": true for expected notifications.
 window.GSA_VACANCIES = {
-  "updatedAt": "2026-10-06",
+  "updatedAt": "2026-10-07",
   "items": [
     {
       "id": "csir-net-dec-2026",
@@ -118,6 +118,29 @@ window.GSA_VACANCIES = {
       "source": "freejobalert"
     },
     {
+      "id": "li-4467975727",
+      "title": "PF Mines Oprn (Geology) — UltraTech Cement",
+      "organisation": "UltraTech Cement",
+      "posts": null,
+      "postNames": "PF Mines Oprn (Geology)",
+      "qualification": "See the LinkedIn posting",
+      "ageLimit": "",
+      "fee": "",
+      "startDate": "2026-09-16",
+      "lastDate": "2026-10-16",
+      "upcoming": false,
+      "examDate": "",
+      "location": "Rajasthan, India",
+      "tags": [
+        "LinkedIn",
+        "Industry"
+      ],
+      "applyUrl": "https://in.linkedin.com/jobs/view/pf-mines-oprn-geology-at-ultratech-cement-4467975727",
+      "sourceUrl": "https://in.linkedin.com/jobs/view/pf-mines-oprn-geology-at-ultratech-cement-4467975727",
+      "summary": "Industry opening listed on LinkedIn (Rajasthan, India). Posted 2026-09-16. Apply on LinkedIn; the closing date shown here is an estimate (30 days from posting).",
+      "source": "linkedin"
+    },
+    {
       "id": "li-4401618303",
       "title": "Geophysicist - DP — SLB",
       "organisation": "SLB",
@@ -229,6 +252,29 @@ window.GSA_VACANCIES = {
       ],
       "applyUrl": "https://in.linkedin.com/jobs/view/asset-earth-scientist-shale-tight-at-chevron-4461851046",
       "sourceUrl": "https://in.linkedin.com/jobs/view/asset-earth-scientist-shale-tight-at-chevron-4461851046",
+      "summary": "Industry opening listed on LinkedIn (Bengaluru, Karnataka, India). Posted 2026-09-27. Apply on LinkedIn; the closing date shown here is an estimate (30 days from posting).",
+      "source": "linkedin"
+    },
+    {
+      "id": "li-4461828998",
+      "title": "Forecasting Earth Scientist (Shale & Tight) — Chevron",
+      "organisation": "Chevron",
+      "posts": null,
+      "postNames": "Forecasting Earth Scientist (Shale & Tight)",
+      "qualification": "See the LinkedIn posting",
+      "ageLimit": "",
+      "fee": "",
+      "startDate": "2026-09-27",
+      "lastDate": "2026-10-27",
+      "upcoming": false,
+      "examDate": "",
+      "location": "Bengaluru, Karnataka, India",
+      "tags": [
+        "LinkedIn",
+        "Industry"
+      ],
+      "applyUrl": "https://in.linkedin.com/jobs/view/forecasting-earth-scientist-shale-tight-at-chevron-4461828998",
+      "sourceUrl": "https://in.linkedin.com/jobs/view/forecasting-earth-scientist-shale-tight-at-chevron-4461828998",
       "summary": "Industry opening listed on LinkedIn (Bengaluru, Karnataka, India). Posted 2026-09-27. Apply on LinkedIn; the closing date shown here is an estimate (30 days from posting).",
       "source": "linkedin"
     },
@@ -598,6 +644,190 @@ window.GSA_VACANCIES = {
       "applyUrl": "https://in.linkedin.com/jobs/view/hydrogeologist-at-sofomation-4475543007",
       "sourceUrl": "https://in.linkedin.com/jobs/view/hydrogeologist-at-sofomation-4475543007",
       "summary": "Industry opening listed on LinkedIn (India). Posted 2026-10-05. Apply on LinkedIn; the closing date shown here is an estimate (30 days from posting).",
+      "source": "linkedin"
+    },
+    {
+      "id": "li-4474027912",
+      "title": "Consultant, Hydrogeologist — ERM",
+      "organisation": "ERM",
+      "posts": null,
+      "postNames": "Consultant, Hydrogeologist",
+      "qualification": "See the LinkedIn posting",
+      "ageLimit": "",
+      "fee": "",
+      "startDate": "2026-10-06",
+      "lastDate": "2026-11-05",
+      "upcoming": false,
+      "examDate": "",
+      "location": "New Delhi, Delhi, India",
+      "tags": [
+        "LinkedIn",
+        "Industry"
+      ],
+      "applyUrl": "https://in.linkedin.com/jobs/view/consultant-hydrogeologist-at-erm-4474027912",
+      "sourceUrl": "https://in.linkedin.com/jobs/view/consultant-hydrogeologist-at-erm-4474027912",
+      "summary": "Industry opening listed on LinkedIn (New Delhi, Delhi, India). Posted 2026-10-06. Apply on LinkedIn; the closing date shown here is an estimate (30 days from posting).",
+      "source": "linkedin"
+    },
+    {
+      "id": "li-4476339312",
+      "title": "Bangalore Career Fair 21 & 22 November - Geoscientist — ExxonMobil India Careers",
+      "organisation": "ExxonMobil India Careers",
+      "posts": null,
+      "postNames": "Bangalore Career Fair 21 & 22 November - Geoscientist",
+      "qualification": "See the LinkedIn posting",
+      "ageLimit": "",
+      "fee": "",
+      "startDate": "2026-10-06",
+      "lastDate": "2026-11-05",
+      "upcoming": false,
+      "examDate": "",
+      "location": "Bengaluru, Karnataka, India",
+      "tags": [
+        "LinkedIn",
+        "Industry"
+      ],
+      "applyUrl": "https://in.linkedin.com/jobs/view/bangalore-career-fair-21-22-november-geoscientist-at-exxonmobil-india-careers-4476339312",
+      "sourceUrl": "https://in.linkedin.com/jobs/view/bangalore-career-fair-21-22-november-geoscientist-at-exxonmobil-india-careers-4476339312",
+      "summary": "Industry opening listed on LinkedIn (Bengaluru, Karnataka, India). Posted 2026-10-06. Apply on LinkedIn; the closing date shown here is an estimate (30 days from posting).",
+      "source": "linkedin"
+    },
+    {
+      "id": "li-4474044281",
+      "title": "Consultant, Hydrogeologist — ERM",
+      "organisation": "ERM",
+      "posts": null,
+      "postNames": "Consultant, Hydrogeologist",
+      "qualification": "See the LinkedIn posting",
+      "ageLimit": "",
+      "fee": "",
+      "startDate": "2026-10-06",
+      "lastDate": "2026-11-05",
+      "upcoming": false,
+      "examDate": "",
+      "location": "Bengaluru, Karnataka, India",
+      "tags": [
+        "LinkedIn",
+        "Industry"
+      ],
+      "applyUrl": "https://in.linkedin.com/jobs/view/consultant-hydrogeologist-at-erm-4474044281",
+      "sourceUrl": "https://in.linkedin.com/jobs/view/consultant-hydrogeologist-at-erm-4474044281",
+      "summary": "Industry opening listed on LinkedIn (Bengaluru, Karnataka, India). Posted 2026-10-06. Apply on LinkedIn; the closing date shown here is an estimate (30 days from posting).",
+      "source": "linkedin"
+    },
+    {
+      "id": "li-4474948995",
+      "title": "Senior Engineer - Geology — WSP in India",
+      "organisation": "WSP in India",
+      "posts": null,
+      "postNames": "Senior Engineer - Geology",
+      "qualification": "See the LinkedIn posting",
+      "ageLimit": "",
+      "fee": "",
+      "startDate": "2026-10-06",
+      "lastDate": "2026-11-05",
+      "upcoming": false,
+      "examDate": "",
+      "location": "Noida, Uttar Pradesh, India",
+      "tags": [
+        "LinkedIn",
+        "Industry"
+      ],
+      "applyUrl": "https://in.linkedin.com/jobs/view/senior-engineer-geology-at-wsp-in-india-4474948995",
+      "sourceUrl": "https://in.linkedin.com/jobs/view/senior-engineer-geology-at-wsp-in-india-4474948995",
+      "summary": "Industry opening listed on LinkedIn (Noida, Uttar Pradesh, India). Posted 2026-10-06. Apply on LinkedIn; the closing date shown here is an estimate (30 days from posting).",
+      "source": "linkedin"
+    },
+    {
+      "id": "li-4474963458",
+      "title": "Consultant, Hydrogeologist — GeoCareerGo",
+      "organisation": "GeoCareerGo",
+      "posts": null,
+      "postNames": "Consultant, Hydrogeologist",
+      "qualification": "See the LinkedIn posting",
+      "ageLimit": "",
+      "fee": "",
+      "startDate": "2026-10-06",
+      "lastDate": "2026-11-05",
+      "upcoming": false,
+      "examDate": "",
+      "location": "Greater Delhi Area",
+      "tags": [
+        "LinkedIn",
+        "Industry"
+      ],
+      "applyUrl": "https://in.linkedin.com/jobs/view/consultant-hydrogeologist-at-geocareergo-4474963458",
+      "sourceUrl": "https://in.linkedin.com/jobs/view/consultant-hydrogeologist-at-geocareergo-4474963458",
+      "summary": "Industry opening listed on LinkedIn (Greater Delhi Area). Posted 2026-10-06. Apply on LinkedIn; the closing date shown here is an estimate (30 days from posting).",
+      "source": "linkedin"
+    },
+    {
+      "id": "li-4474976010",
+      "title": "Senior Consultant - Resource Geology — GeoCareerGo",
+      "organisation": "GeoCareerGo",
+      "posts": null,
+      "postNames": "Senior Consultant - Resource Geology",
+      "qualification": "See the LinkedIn posting",
+      "ageLimit": "",
+      "fee": "",
+      "startDate": "2026-10-06",
+      "lastDate": "2026-11-05",
+      "upcoming": false,
+      "examDate": "",
+      "location": "Mumbai Metropolitan Region",
+      "tags": [
+        "LinkedIn",
+        "Industry"
+      ],
+      "applyUrl": "https://in.linkedin.com/jobs/view/senior-consultant-resource-geology-at-geocareergo-4474976010",
+      "sourceUrl": "https://in.linkedin.com/jobs/view/senior-consultant-resource-geology-at-geocareergo-4474976010",
+      "summary": "Industry opening listed on LinkedIn (Mumbai Metropolitan Region). Posted 2026-10-06. Apply on LinkedIn; the closing date shown here is an estimate (30 days from posting).",
+      "source": "linkedin"
+    },
+    {
+      "id": "li-4474252478",
+      "title": "Chief Geologist — Mata Amritanandamayi Mandir Trust",
+      "organisation": "Mata Amritanandamayi Mandir Trust",
+      "posts": null,
+      "postNames": "Chief Geologist",
+      "qualification": "See the LinkedIn posting",
+      "ageLimit": "",
+      "fee": "",
+      "startDate": "2026-10-06",
+      "lastDate": "2026-11-05",
+      "upcoming": false,
+      "examDate": "",
+      "location": "Chengalpattu, Tamil Nadu, India",
+      "tags": [
+        "LinkedIn",
+        "Industry"
+      ],
+      "applyUrl": "https://in.linkedin.com/jobs/view/chief-geologist-at-mata-amritanandamayi-mandir-trust-4474252478",
+      "sourceUrl": "https://in.linkedin.com/jobs/view/chief-geologist-at-mata-amritanandamayi-mandir-trust-4474252478",
+      "summary": "Industry opening listed on LinkedIn (Chengalpattu, Tamil Nadu, India). Posted 2026-10-06. Apply on LinkedIn; the closing date shown here is an estimate (30 days from posting).",
+      "source": "linkedin"
+    },
+    {
+      "id": "li-4474691470",
+      "title": "Senior Airborne Survey Geophysicist — AIRBORNE GEOSCIENCE INTERNATIONAL PRIVATE LIMITED",
+      "organisation": "AIRBORNE GEOSCIENCE INTERNATIONAL PRIVATE LIMITED",
+      "posts": null,
+      "postNames": "Senior Airborne Survey Geophysicist",
+      "qualification": "See the LinkedIn posting",
+      "ageLimit": "",
+      "fee": "",
+      "startDate": "2026-10-06",
+      "lastDate": "2026-11-05",
+      "upcoming": false,
+      "examDate": "",
+      "location": "Telangana, India",
+      "tags": [
+        "LinkedIn",
+        "Industry"
+      ],
+      "applyUrl": "https://in.linkedin.com/jobs/view/senior-airborne-survey-geophysicist-at-airborne-geoscience-international-private-limited-4474691470",
+      "sourceUrl": "https://in.linkedin.com/jobs/view/senior-airborne-survey-geophysicist-at-airborne-geoscience-international-private-limited-4474691470",
+      "summary": "Industry opening listed on LinkedIn (Telangana, India). Posted 2026-10-06. Apply on LinkedIn; the closing date shown here is an estimate (30 days from posting).",
       "source": "linkedin"
     }
   ]
