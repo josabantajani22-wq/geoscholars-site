@@ -1,7 +1,7 @@
 // Geology vacancy board. Refreshed daily by tools/fetch_freejobalert.py + tools/fetch_linkedin.py (GitHub Actions); edit by hand or add from Admin → Vacancies.
 // status is derived on the page from lastDate: open / closing soon (≤7 days) / closed. Set "upcoming": true for expected notifications.
 window.GSA_VACANCIES = {
-  "updatedAt": "2026-10-07",
+  "updatedAt": "2026-10-08",
   "items": [
     {
       "id": "csir-net-dec-2026",
@@ -116,29 +116,6 @@ window.GSA_VACANCIES = {
       "sourceUrl": "https://www.freejobalert.com/articles/oil-india-recruitment-2026-apply-online-for-deputy-chief-engineer-economist-and-more-posts-3067409",
       "summary": "Listed on FreeJobAlert on 11/09/2026. Qualification: Any Post Graduate, B.Tech/B.E, M.A, M.Sc. Verify details on the official notification before applying.",
       "source": "freejobalert"
-    },
-    {
-      "id": "li-4467975727",
-      "title": "PF Mines Oprn (Geology) — UltraTech Cement",
-      "organisation": "UltraTech Cement",
-      "posts": null,
-      "postNames": "PF Mines Oprn (Geology)",
-      "qualification": "See the LinkedIn posting",
-      "ageLimit": "",
-      "fee": "",
-      "startDate": "2026-09-16",
-      "lastDate": "2026-10-16",
-      "upcoming": false,
-      "examDate": "",
-      "location": "Rajasthan, India",
-      "tags": [
-        "LinkedIn",
-        "Industry"
-      ],
-      "applyUrl": "https://in.linkedin.com/jobs/view/pf-mines-oprn-geology-at-ultratech-cement-4467975727",
-      "sourceUrl": "https://in.linkedin.com/jobs/view/pf-mines-oprn-geology-at-ultratech-cement-4467975727",
-      "summary": "Industry opening listed on LinkedIn (Rajasthan, India). Posted 2026-09-16. Apply on LinkedIn; the closing date shown here is an estimate (30 days from posting).",
-      "source": "linkedin"
     },
     {
       "id": "li-4401618303",
@@ -828,6 +805,52 @@ window.GSA_VACANCIES = {
       "applyUrl": "https://in.linkedin.com/jobs/view/senior-airborne-survey-geophysicist-at-airborne-geoscience-international-private-limited-4474691470",
       "sourceUrl": "https://in.linkedin.com/jobs/view/senior-airborne-survey-geophysicist-at-airborne-geoscience-international-private-limited-4474691470",
       "summary": "Industry opening listed on LinkedIn (Telangana, India). Posted 2026-10-06. Apply on LinkedIn; the closing date shown here is an estimate (30 days from posting).",
+      "source": "linkedin"
+    },
+    {
+      "id": "li-4467975727",
+      "title": "PF Mines Oprn (Geology) — UltraTech Cement",
+      "organisation": "UltraTech Cement",
+      "posts": null,
+      "postNames": "PF Mines Oprn (Geology)",
+      "qualification": "See the LinkedIn posting",
+      "ageLimit": "",
+      "fee": "",
+      "startDate": "2026-10-07",
+      "lastDate": "2026-11-06",
+      "upcoming": false,
+      "examDate": "",
+      "location": "Rajasthan, India",
+      "tags": [
+        "LinkedIn",
+        "Industry"
+      ],
+      "applyUrl": "https://in.linkedin.com/jobs/view/pf-mines-oprn-geology-at-ultratech-cement-4467975727",
+      "sourceUrl": "https://in.linkedin.com/jobs/view/pf-mines-oprn-geology-at-ultratech-cement-4467975727",
+      "summary": "Industry opening listed on LinkedIn (Rajasthan, India). Posted 2026-10-07. Apply on LinkedIn; the closing date shown here is an estimate (30 days from posting).",
+      "source": "linkedin"
+    },
+    {
+      "id": "li-4476583561",
+      "title": "Geologist – Sediment & Reservoir Studies — Arrakis Ventures",
+      "organisation": "Arrakis Ventures",
+      "posts": null,
+      "postNames": "Geologist – Sediment & Reservoir Studies",
+      "qualification": "See the LinkedIn posting",
+      "ageLimit": "",
+      "fee": "",
+      "startDate": "2026-10-07",
+      "lastDate": "2026-11-06",
+      "upcoming": false,
+      "examDate": "",
+      "location": "Mumbai Metropolitan Region",
+      "tags": [
+        "LinkedIn",
+        "Industry"
+      ],
+      "applyUrl": "https://in.linkedin.com/jobs/view/geologist-%E2%80%93-sediment-reservoir-studies-4476583561",
+      "sourceUrl": "https://in.linkedin.com/jobs/view/geologist-%E2%80%93-sediment-reservoir-studies-4476583561",
+      "summary": "Industry opening listed on LinkedIn (Mumbai Metropolitan Region). Posted 2026-10-07. Apply on LinkedIn; the closing date shown here is an estimate (30 days from posting).",
       "source": "linkedin"
     }
   ]
