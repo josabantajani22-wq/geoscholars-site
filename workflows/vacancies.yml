@@ -1,4 +1,4 @@
-# Refreshes data/vacancies.js from FreeJobAlert every day, commits it, and deploys the site to Firebase Hosting.
+# Daily: FreeJobAlert feed + AI web research (Claude with web search) → data/vacancies.js → commit → deploy to Firebase Hosting.
 # (A commit made by the bot does not trigger the separate Deploy workflow — GitHub blocks that — so we deploy here.)
 name: Update geology vacancies
 on:
@@ -14,8 +14,13 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
-      - run: pip install requests beautifulsoup4 lxml
+      - run: pip install requests beautifulsoup4 lxml anthropic
       - run: python tools/fetch_freejobalert.py --keep-days 30
+      - name: AI web research (all government / PSU geology vacancies)   # needs secret ANTHROPIC_API_KEY; skipped if absent
+        run: python tools/vacancy_agent.py --keep-days 30
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        continue-on-error: true
       - run: python tools/render_static.py
       - name: Commit if changed
         run: |

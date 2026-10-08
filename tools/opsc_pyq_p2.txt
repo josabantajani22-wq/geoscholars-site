@@ -1,0 +1,891 @@
+## Geomorphology
+1. 'Bajada' is a type of:
+(A) Glacial deposit
+(B) Alluvial fan
+(C) Meandering stream
+(D) Sand dune
+=B
+2. A stream consisting of interwoven channels is known as:
+(A) Fluvioglacial stream
+(B) Braided stream
+(C) Meandering stream
+(D) Matured valley stream
+=B
+3. A canyon is a:
+(A) Deep valley with vertical sides
+(B) Deep asymmetrical valley
+(C) Broad, matured stream course
+(D) Valley formed by aeolian activity
+=A
+4. A network of parallel or subparallel streams developed along strike and dip directions is known as:
+(A) Dendritic
+(B) Radial
+(C) Trellis
+(D) Domal
+=C
+5. The term 'eustatic' implies:
+(A) Worldwide changes in sea level
+(B) Erosion of land to peneplanation
+(C) Exhumation of rocks
+(D) Confluence of river streams
+=A
+6. Fiords are formed due to:
+(A) Lacustrine process
+(B) Wind action
+(C) Glacial activity
+(D) Alluvial activity
+=C
+7. Well sorted aeolian deposits are chiefly composed of:
+(A) Clay
+(B) Sand
+(C) Sand and silt
+(D) Silt and clay
+=B
+8. Drainage density of a basin is a measure of:
+(A) Total number of the highest order streams divided by the total number of the next lower order streams
+(B) Length of the largest stream divided by the total area of the basin
+(C) Total length of streams of all orders divided by the total area of the basin
+(D) Total number of streams of all orders
+=C
+9. Moraines are formed in:
+(A) Lacustrine environment
+(B) Glacial environment
+(C) Alluvial environment
+(D) Marine environment
+=B
+10. Karst topography is most commonly developed in:
+(A) Shale bearing areas
+(B) Sandstone bearing areas
+(C) Laterite bearing areas
+(D) Limestone bearing areas
+=D
+11. A sand dune with its long axis transverse to wind direction is called:
+(A) Longitudinal dune
+(B) Sand ridge
+(C) Parallel dune
+(D) Barchan
+=D
+12. Esker is a:
+(A) Thoroughly graded bed
+(B) Deposit formed by wind action
+(C) Glaciofluvial deposit
+(D) Alluvial deposit rich in clay matter
+=C
+13. Development of stalactite and stalagmite is associated with:
+(A) Abrasion of valley floor
+(B) Solution activity
+(C) Sorting process
+(D) Organic activity in ocean beds
+=B
+14. Mass wasting is primarily affected by:
+(A) Force of gravity
+(B) Intensity of oxidation
+(C) Intensity of carbonation
+(D) Strength of streams
+=A
+15. If a region is lacking in structural control, then the drainage pattern in such regions will be:
+(A) Dendritic
+(B) Trellis
+(C) Rectangular
+(D) Radial
+=A
+16. A caldera is:
+(A) A very large crater
+(B) A long mountain chain
+(C) A gorge formed due to faulting
+(D) A U-shaped valley
+=A
+## Structural Geology
+17. Rock flour or gouge is closely linked to:
+(A) Ductile deformation
+(B) Brittle deformation
+(C) Flow of incompetent beds
+(D) Collapse structures
+=B
+18. The angle which the fault plane makes with the vertical plane is known as:
+(A) Net slip
+(B) Heave
+(C) Strike slip
+(D) Hade
+=D
+19. If the hanging wall in a fault is on the downthrown side, it is called:
+(A) Reverse fault
+(B) Normal fault
+(C) Tear fault
+(D) Hinge fault
+=B
+20. The line which is parallel to the hinge in a fold is called:
+(A) Axis of the fold
+(B) Axial plane of the fold
+(C) Crest of the fold
+(D) Plunge of the fold
+=A
+21. If the axial plane of the fold is horizontal, then it is said to be:
+(A) Open fold
+(B) Tight fold
+(C) Recumbent fold
+(D) Isoclinal fold
+=C
+22. A contact of younger sediments deposited over a thick residual soil that grades into underlying bedrock is called:
+(A) Discontinuity
+(B) Non-conformity
+(C) Blended unconformity
+(D) Angular unconformity
+=C
+23. The intersection of bedding and cleavage produces:
+(A) Lineation
+(B) Boudin
+(C) Mullion structure
+(D) Joint
+=A
+24. High angle faults are those that dip greater than:
+(A) 60 degrees
+(B) 65 degrees
+(C) 40 degrees
+(D) 45 degrees
+=D
+25. In which fold could there be two hinges?
+(A) Tight fold
+(B) Isoclinal fold
+(C) Overturned fold
+(D) Box fold
+=D
+26. Thickened crests and troughs with thinner limbs are noticed in:
+(A) Open fold
+(B) Disharmonic fold
+(C) Buckle fold
+(D) Over fold
+=B
+27. On a geological map, if older strata are found to be surrounded by younger strata then it could be:
+(A) An inlier
+(B) An outlier
+(C) An overlap
+(D) A nappe structure
+=A
+28. Horst and graben structures are mainly confined to:
+(A) Transform boundaries
+(B) Subduction zones
+(C) Collision zones
+(D) Divergent boundaries
+=D
+29. Granite usually exhibits:
+(A) Diagonal joints
+(B) Strike joints
+(C) Vertical joints
+(D) Sheet joints
+=D
+30. The fold is said to have plunge if:
+(A) The axis is horizontal
+(B) The axis is not horizontal
+(C) It is asymmetrical
+(D) It is tightly folded
+=B
+## Geodynamics
+31. The two supercontinental blocks separated due to drifting are:
+(A) Pangaea and Laurasia
+(B) Pangaea and Gondwanaland
+(C) Laurasia and Gondwanaland
+(D) Laurasia and Panthalassa
+=C
+32. The convection energy of the earth is commonly released along:
+(A) Transform fault boundaries
+(B) Subduction zones
+(C) Divergent boundaries in oceans
+(D) Collision zones
+=C
+33. Mohorovičić discontinuity separates:
+(A) Crust and mantle
+(B) Inner core from outer core
+(C) Upper mantle from lower mantle
+(D) Mantle and core
+=A
+34. The asthenospheric layer is included in:
+(A) Crust and upper mantle
+(B) Lower and upper mantle
+(C) Crust and mantle
+(D) Mantle and core
+=A
+35. An average density of 10.7 g/cm³ prevails at:
+(A) Upper mantle
+(B) Core
+(C) Lower crust
+(D) Lower mantle
+=B
+36. The process of weathering by exfoliating activity is very effective in:
+(A) Layered rocks
+(B) Massive rocks
+(C) Jointed rocks
+(D) Foliated rocks
+=B
+37. Pelean type of volcano is known for:
+(A) Most violent activity
+(B) Quiet flow
+(C) Submarine flow
+(D) Ropy type flow
+=A
+38. Composite cones are the characteristics of:
+(A) Strato volcanoes
+(B) Cinder cone volcanoes
+(C) Shield volcano
+(D) Lava domes
+=A
+39. According to Airy's theory of isostasy:
+(A) Lighter mountains are floating on the lighter substratum
+(B) Lighter mountains are floating on the denser substratum
+(C) Denser mountains are floating on denser substratum
+(D) Denser mountains are floating on the lighter substratum
+=B
+40. The Atlantic continental margin of North America is known to be:
+(A) An active margin
+(B) Passive margin
+(C) Suture zone
+(D) Collision zone
+=B
+41. The average depth of the ocean is:
+(A) 5,200 metres
+(B) 4,630 metres
+(C) 3,729 metres
+(D) 3,062 metres
+=C
+42. Palaeomagnetic data is useful for understanding:
+(A) Pole reversals
+(B) Composition of mantle
+(C) Internal structure of the earth
+(D) Origin of life on earth
+=A
+43. Guyot is a:
+(A) Ridge of a fold mountain
+(B) Major depression in a continental area
+(C) Flat topped seamount
+(D) Flat topped hill on the surface
+=C
+44. Deep sea trenches are generally associated with:
+(A) Circum-Pacific belt
+(B) Mid-oceanic ridges
+(C) Island arcs
+(D) Collisional areas
+=A
+45. The temperature regime in the upper part of the lower crust is:
+(A) 400–500 °C
+(B) 300–400 °C
+(C) 100–200 °C
+(D) 200–280 °C
+=A
+## Stratigraphy
+46. Which of the following represents the youngest event in the Dharwarian stratigraphy?
+(A) Sargur Group
+(B) Closepet Granite
+(C) Dharwar Supergroup
+(D) Peninsular Gneissic Complex
+=B
+47. Choose the correct pair of stratigraphic formation and its corresponding age:
+(A) Bhander Group — Early Proterozoic
+(B) Niniyur Formation — Cretaceous
+(C) Long Formation — Oligocene
+(D) Bhima Group — Cambrian
+=B
+48. Kutch is the type area in India for:
+(A) Jurassic formation
+(B) Early Archaean rocks
+(C) Late Archaean rocks
+(D) Cambrian formation
+=A
+49. Siwaliks are well known for:
+(A) Dinosaur fossils
+(B) Invertebrate fossils
+(C) Mammal fossils
+(D) Plant fossils
+=C
+50. In Spiti, the Permians are represented by:
+(A) Muth quartzite
+(B) Kanawar Group
+(C) Kuling Group
+(D) Agglomeratic slate
+=C
+51. Delhi system is intruded by:
+(A) Erinpura Granite
+(B) Bijli Rhyolite
+(C) Singhbhum Granite
+(D) Bundelkhand Granite
+=A
+52. Which of the following statements is correct?
+(A) The Mesozoic Bhuj Formation consists predominantly of sandstones
+(B) Kaladgi basin is predominantly made of slates
+(C) Vindhyan Supergroup is devoid of limestone
+(D) Cuddapah basin is predominantly made of metadacites
+=A
+53. Marker horizon for Devonian in Himalaya is called:
+(A) Lipak Formation
+(B) Po Formation
+(C) Muth quartzite
+(D) Syringothyris limestone
+=C
+54. Stromatolites provide insight for:
+(A) Origin and evolution of life
+(B) Recognising boundary between Cambrian and Ordovician
+(C) Glaciation process
+(D) Weathering cycles
+=A
+55. In Himalayas, the Main Boundary Fault separates:
+(A) Siwalik and Tertiary
+(B) Siwalik and Archaean
+(C) Vindhyan and Aravalli
+(D) Siwalik and Delhi Group
+=A
+57. Mesozoic and Cenozoic boundary lies approximately at:
+(A) 75 Ma
+(B) 60 Ma
+(C) 120 Ma
+(D) 65 Ma
+=D
+58. In Kashmir–Hazara area, the Archaean rocks are called:
+(A) Buxa series
+(B) Salkhala series
+(C) Sakarsanahalli series
+(D) Aravalli series
+=B
+59. In the geological history, which of the following occupies the longest time period?
+(A) Palaeozoic
+(B) Mesozoic
+(C) Precambrian
+(D) Cenozoic
+=C
+60. Which of the following is known to be the boundary of mass extinction?
+(A) Proterozoic – Cambrian
+(B) Miocene – Pliocene
+(C) Triassic – Jurassic
+(D) Cretaceous – Tertiary
+=D
+## Palaeontology
+61. Archaeocyatha is confined to:
+(A) Lower Palaeozoic
+(B) Proterozoic
+(C) Jurassic
+(D) Tertiary
+=A
+62. Trilobites lived during:
+(A) Early to late Archaean
+(B) Cambrian to Permian
+(C) Triassic to Cretaceous
+(D) Cambrian to Triassic
+=B
+63. The first group of tetrapods to colonise the land successfully are:
+(A) Aves
+(B) Mammalia
+(C) Amphibia
+(D) Reptilia
+=C
+64. Crinoids range in age from:
+(A) Triassic to Cretaceous
+(B) Cambrian to Ordovician
+(C) Cambrian to Recent
+(D) Jurassic to Cretaceous
+=C
+65. Organisms which live attached to another larger organism are known as:
+(A) Epifauna
+(B) Epitheca
+(C) Epizoic
+(D) Eozoon
+=C
+66. Plankton generally refers to:
+(A) Free swimming organisms
+(B) Bottom dwelling organisms
+(C) Burrowing organisms
+(D) Unicellular organisms
+=A
+67. In the evolution of horse which of the following was the first stage?
+(A) Hyracotherius
+(B) Epihippus
+(C) Mesohippus
+(D) Eohippus
+=D
+68. Amongst the following flora which represents a conifer?
+(A) Schizoneura
+(B) Buriadia
+(C) Gangamopteris
+(D) Glossopteris
+=B
+69. Which of the following is a primate fossil?
+(A) Stegolophodon
+(B) Hipparion
+(C) Ramapithecus
+(D) Equus
+=C
+70. Sutures of the ammonoids belonging to which period are an important feature in recognising their evolution?
+(A) Late Palaeozoic
+(B) Cenozoic
+(C) Mesozoic
+(D) Early Palaeozoic
+=C
+71. Physa — the gastropod genus shows:
+(A) Planispirally coiled
+(B) Dextrally coiled
+(C) Uncoiled nature
+(D) Sinistrally coiled
+=D
+72. Which of the following Brachiopods has a dental system?
+(A) Inarticulata
+(B) Articulata
+(C) Deltidium
+(D) Delthyrium
+=B
+73. Conodont is a:
+(A) Siliceous microfossil
+(B) Phosphatic microfossil
+(C) Fossilised floral species
+(D) Coral shell
+=B
+74. Which amongst the following is a bivalve genus having taxodont type dentition?
+(A) Arca
+(B) Pholadomya
+(C) Venus
+(D) Mytilus
+=A
+75. Ichnofossil is a:
+(A) Fossilised lamellibranch shell
+(B) Fossilised trilobite shell
+(C) Fossilised serpent trail
+(D) Fossilised horse foot print
+=C
+## Igneous Petrology
+76. Generally, acid igneous rocks contain:
+(A) 10% or more free quartz
+(B) 15% or more free quartz
+(C) 60% or more free quartz
+(D) 65% or more free quartz
+=A
+77. Andesite is:
+(A) A coarse grained acid plutonic rock
+(B) A fine grained hypabyssal rock
+(C) An intermediate volcanic rock
+(D) An ultrabasic volcanic rock
+=C
+78. The first mineral formed in the continuous series of Bowen's reaction principle is:
+(A) Sodic-calcic plagioclase
+(B) Potash feldspar
+(C) Calcic-sodic plagioclase
+(D) Calcic plagioclase
+=D
+79. A magmatic rock rich in calcium carbonate and often containing rare earth minerals is:
+(A) Alkali basalt
+(B) Syenite porphyry
+(C) Carbonatite
+(D) Granodiorite
+=C
+80. Generally, a charnockite has a mineral composition of:
+(A) Quartz–Hornblende–Oligoclase
+(B) Quartz–Epidote–Andesine
+(C) Quartz–Feldspar–Hypersthene
+(D) Quartz–Feldspar–Augite
+=C
+81. If the ferromagnesian content of diorite is 100%, then it is called:
+(A) Perknite
+(B) Leptinite
+(C) Meladiorite
+(D) Leucodiorite
+=A
+82. By mineral composition, dolerite is equivalent to:
+(A) Pitchstone
+(B) Syenite
+(C) Peridotite
+(D) Basalt
+=D
+83. Beerbachite is a variety of:
+(A) Gabbro
+(B) Basalt
+(C) Dolerite
+(D) Monzonite
+=C
+84. Adamellite contains:
+(A) Roughly equal amounts of oligoclase and K-feldspar
+(B) Roughly equal amounts of quartz and oligoclase
+(C) Roughly equal amounts of quartz and K-feldspar
+(D) Roughly equal amounts of quartz and albite
+=A
+85. Graphic texture is normally exhibited by:
+(A) Komatiite
+(B) Pegmatite
+(C) Phonolite
+(D) Anorthosite
+=B
+86. An igneous body that has domed up the strata into which it has been inserted is known as:
+(A) Lopolith
+(B) Dyke
+(C) Bysmalith
+(D) Laccolith
+=D
+87. A process whereby magma works its way up into the crust of the earth is known as:
+(A) Magmatic injection
+(B) Magmatic thrusting
+(C) Magmatic stoping
+(D) Magmatic intrusion
+=C
+88. Minette is a type of:
+(A) Diorite
+(B) Tonalite
+(C) Aplite
+(D) Lamprophyre
+=D
+89. The process of complete or partial melting of a rock is known as:
+(A) Migmatisation
+(B) Assimilation
+(C) Juvenile magmatism
+(D) Palingenesis
+=D
+90. Liquid immiscibility generally results from:
+(A) Mixing of two liquids of two different compositions
+(B) Mixing of two liquids of same composition
+(C) Unmixing of two liquids of different composition
+(D) Unmixing of two liquids of same composition
+=C
+## Sedimentology
+91. Arkose contains more than 25% of:
+(A) Micas
+(B) Amphiboles
+(C) Feldspars
+(D) Chlorite
+=C
+92. The silt grade detrital sediments would have a size range of:
+(A) 1/16 mm to 1/256 mm
+(B) Less than 1/256 mm
+(C) 1/16 mm to 2 mm
+(D) 2 mm to 1 mm
+=A
+93. The leaves of hardened clay deposited in a sand or similar sediment as flat or lens shaped structures are called:
+(A) Clay flakes
+(B) Clay balls
+(C) Clay stones
+(D) Clay galls
+=D
+94. Rounded to sub-rounded clast with a diameter between 64 and 256 mm is generally known as:
+(A) Gravel
+(B) Pebble
+(C) Cobble
+(D) Boulder
+=C
+95. If a series of inclined bedding planes show some angular relationship to the direction of current flow, then they are generally called:
+(A) Gradient beds
+(B) Current beds
+(C) Dipping beds
+(D) Convolute beds
+=B
+96. Compaction and cementation of sediments occur during:
+(A) Transportation
+(B) High temperature and pressure medium
+(C) High water pressure
+(D) Diagenesis
+=D
+97. Oscillation ripples are formed in:
+(A) Deep sea environment
+(B) Beach environment
+(C) Alluvial environment
+(D) Desert environment
+=B
+98. Occurrence of ferroan calcite cement in a carbonate rock is an indicator of:
+(A) Deep burial diagenesis
+(B) Vadose diagenesis
+(C) Phreatic diagenesis
+(D) Sea floor diagenesis
+=A
+99. Syn-sedimentary deformation structures are a result of:
+(A) Massive transgression
+(B) Low sedimentation
+(C) Marine regression
+(D) High sedimentation
+=D
+101. In shallow marine environment, generally the palaeocurrent patterns are:
+(A) Polymodal
+(B) Bimodal
+(C) Unimodal
+(D) Both bimodal and polymodal
+=B
+102. A basin with thinner development of sediments and no volcanic rocks, forming adjacent to a craton is called:
+(A) Parageosyncline
+(B) Miogeosyncline
+(C) Rift valley
+(D) Graben
+=B
+104. Which of the following is a depositional sedimentary structure?
+(A) Graded bedding
+(B) Trough cross bedding
+(C) Collapse structure
+(D) Injection structure
+=A
+105. A limestone which contains mainly organic detritus is generally called:
+(A) Spergenite
+(B) Coquina
+(C) Oolite
+(D) Calc-tufa
+=B
+## Rock Mechanics & Engineering Geology
+106. Which type of compressive strength is taken as the most important index property of stones?
+(A) Confined
+(B) Drained
+(C) Undrained
+(D) Unconfined
+=D
+107. What is the maximum force expressed per unit area which a stone can withstand without rupturing?
+(A) Shear strength
+(B) Tensile strength
+(C) Compressive strength
+(D) Bending strength
+=C
+108. Which rocks possess very high compressive strength?
+(A) Igneous
+(B) Sedimentary
+(C) Metamorphic
+(D) Both sedimentary and metamorphic
+=A
+109. Ratio between the total volume of pore spaces to the total volume of the rock is a measure of:
+(A) Void ratio
+(B) Porosity
+(C) Pores ratio
+(D) Bulk density
+=B
+110. The density of the rock with natural moisture content is known as:
+(A) Dry density
+(B) Wet density
+(C) Bulk density
+(D) Natural density
+=C
+111. The impact testing of a stone is done to know the:
+(A) Durability
+(B) Porosity
+(C) Density
+(D) Toughness
+=D
+112. The sudden release of stress in rocks during tunnelling will normally result in:
+(A) Rock fall
+(B) Rock bursts
+(C) Blockage
+(D) Water gush
+=B
+113. Strata dipping at angles up to 45° are called:
+(A) Moderately inclined strata
+(B) Steeply inclined strata
+(C) Plunge
+(D) Overturned
+=A
+114. Which type of geological structure can be rectified by grouting?
+(A) Joints
+(B) Folds
+(C) Faults
+(D) Inclined strata
+=A
+115. When is the strength of a compact rock always greater?
+(A) When stresses are normal to bedding planes
+(B) When stresses are parallel to bedding planes
+(C) When stresses are inclined at 45° to bedding planes
+(D) When stresses are inclined at 60° to bedding planes
+=A
+116. Which of the following could be the best site for a dam construction?
+(A) A site with a granitic bedrock
+(B) A site with good shear fractures
+(C) Lateritic zone
+(D) A site with limestone bedrock
+=A
+117. Which of the following is true about granite?
+(A) It has very high crushing strength
+(B) It takes poor polish
+(C) It is a highly porous rock
+(D) It weathers out faster
+=A
+118. Which of the following is not a desirable property for a road metal?
+(A) Should be hydrophobic
+(B) Should have sufficient crushing strength
+(C) Should be strongly sheared
+(D) Should be highly porous and permeable
+=D
+119. Ease with which a stone can be extracted and dressed is called:
+(A) Consistency
+(B) Workability
+(C) Easability
+(D) Permeability
+=B
+120. Which of the following materials is generally used as a roofing slab?
+(A) Slate
+(B) Granite
+(C) Marble
+(D) Gneiss
+=A
+## Remote Sensing & GIS
+121. The refractive index of ocean water:
+(A) Increases with salinity
+(B) Increases with temperature
+(C) Decreases with salinity
+(D) Decreases with temperature
+=A
+122. Which one of the following geometric errors of satellite sensors is random?
+(A) Scan skew
+(B) Panoramic distortion
+(C) Earth rotation
+(D) Altitude variation
+=D
+123. The instruments which provide electromagnetic radiation of specified wavelength or a band of wavelengths to illuminate the earth surface are called:
+(A) Microwave sensors
+(B) Passive sensors
+(C) Active sensors
+(D) Optical sensors
+=C
+124. The coherence length over which there is a strong relationship between amplitudes is:
+(A) Directly proportional to the bandwidth
+(B) Inversely proportional to the bandwidth
+(C) The square of the bandwidth
+(D) The inverse of square of bandwidth
+=B
+125. The spectral region of the electromagnetic radiation which passes through the atmosphere without much attenuation is known as:
+(A) Ozone hole
+(B) Atmospheric window
+(C) Ozone window
+(D) Black hole
+=B
+126. The value of energy quantum for radiation of any frequency is proportional to:
+(A) The frequency
+(B) The reciprocal of the energy
+(C) The square of the frequency
+(D) The square root of the frequency
+=A
+127. A and B are two towers of equal height diametrically opposite on either side of the nadir point at 3 km and 5 km distances. Then which one of the following statements is correct?
+(A) Height displacement of A will be less than that of B
+(B) Height displacement of B will be less than that of A
+(C) Height displacement of A and B is equal
+(D) Height displacement of A and B will be towards each other
+=A
+128. The most widely used antenna in GPS is:
+(A) Parabolic antenna
+(B) Microstrip antenna
+(C) Horn antenna
+(D) Slotted antenna
+=B
+129. "An electromagnetic wave falls on to a boundary between two less homogeneous media with different refractive indices and a part of the wave is reflected back to the incident medium and the rest is transmitted on to the second medium." This phenomenon is known as:
+(A) Fresnel reflection
+(B) Fresnel refraction
+(C) Snell's law
+(D) Spectral reflectance
+=A
+130. The normal altitude of GPS satellite is about:
+(A) 16,200 km
+(B) 20,200 km
+(C) 24,400 km
+(D) 36,100 km
+=B
+131. For interpretation of satellite data used for monitoring dynamic changes that occur on the earth surface, the most suitable orbit for the satellite is:
+(A) Circular orbit
+(B) Sun-synchronous orbit
+(C) Near polar orbit
+(D) None of these
+=B
+132. The ratio of the total solar radiant energy returned by a planetary body to the total radiant energy incident on the body is called:
+(A) Reflectance
+(B) Reflectance factor
+(C) Albedo
+(D) None of these
+=C
+133. The maximum sun's radiation occurs around:
+(A) 0.4 µm wavelength
+(B) 0.55 µm wavelength
+(C) 0.7 µm wavelength
+(D) None of these
+=B
+134. The resolution (m) of LISS-IV Resourcesat is:
+(A) 5.8 m
+(B) 23.5 m
+(C) 56 m
+(D) 70.5 m
+=A
+135. The art and science of manipulation of digital data including enhancement, classification and rectification is known as:
+(A) Orthorectification
+(B) Image processing
+(C) Rectification
+(D) Geometric correction
+=B
+136. A geographic field is a phenomenon where for every point in the study area:
+(A) A value can be determined
+(B) A value cannot be determined
+(C) A value is not relevant
+(D) A value is missing
+=A
+137. Interpolation is made possible by a principle called:
+(A) Spatial autocorrelation
+(B) Spatial auto-correction
+(C) Thematic autocorrelation
+(D) Thematic auto-correction
+=A
+138. In GIS application, SDI stands for:
+(A) Spatial Data Interface
+(B) Spatial Data Infrastructure
+(C) Spatial Data Intention
+(D) Spatial Data International
+=B
+139. The process of using data points with known values to estimate values at unknown points in any given area is called:
+(A) Spatial prediction
+(B) Spatial interpolation
+(C) Spatial adjustment
+(D) Spatial reflection
+=B
+140. How does a large city generally appear on a 1:25,000 scale map?
+(A) As a single point
+(B) As a cluster of points, lines and polygons
+(C) As a polygon
+(D) As a cluster of points
+=B
+141. What does 1 mm on a map drawn at a scale of 1:50,000 represent on the ground?
+(A) 50 centimetres
+(B) 5 metres
+(C) 50 metres
+(D) 500 centimetres
+=C
+142. What does the abbreviation DBMS stand for?
+(A) Digital Base Mapping System
+(B) Data Borrowing and Movement Software
+(C) Database Management System
+(D) Database Manipulation Software
+=C
+143. For which of the following applications can the buffer operation be used in GIS?
+(A) Calculating the distance from one point to another
+(B) Calculating the area of overlap between two polygon data layers
+(C) Determining the area within a set distance from a point, line or area feature
+(D) Calculating the number of observations within a set distance of a point, line or area feature
+=C
+144. A GIS is "a set of tools for collecting, storing, retrieving, transforming and displaying spatial data from the real world for a particular use" as defined by:
+(A) David Rhind (1991)
+(B) Peter Burrough (1986)
+(C) Mike Goodchild (1997)
+(D) Roger Chorley (1987)
+=B
+145. What is reclassification?
+(A) The process of combining one or more data ranges into a new data range to create a new data layer
+(B) An analytical technique based on point data
+(C) The process of simplifying data in a data layer
+(D) The process of combining two or more data layers
+=A
+146. What is 'point-in-polygon' overlay?
+(A) A method of interpolating point data
+(B) An overlay method used to determine the distance between a point and its nearest neighbouring polygon
+(C) An overlay method used to reclassify polygon data
+(D) An overlay method used to determine which points lie within the boundary of a polygon
+=D
+147. A matrix of cells organised into rows and columns containing a value representing some information is called:
+(A) Crystal
+(B) Raster
+(C) Segment
+(D) Polygon
+=B
+148. Which of the following is not a type of map projection?
+(A) Cylindrical
+(B) Conic
+(C) Azimuthal
+(D) Geographic
+=D
+149. Cartographic modelling is:
+(A) The sequence of modelling of real world entities in a GIS database
+(B) A way of expressing and organising methods by which spatial operations are selected and used to develop a GIS model
+(C) A generic method of creating a GIS map data structure
+(D) The modelling of map inputs to a GIS, using programming language
+=B
+150. Data stream means:
+(A) The process by which raw spatial data is processed into an integrated GIS database
+(B) The flow of data from one user to another
+(C) The process by which maps are transferred between GIS platforms
+(D) The flow of data from user to GIS platform
+=A

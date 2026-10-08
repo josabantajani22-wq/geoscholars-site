@@ -49,9 +49,9 @@ document.addEventListener("gsa:ready", async ({ detail: { user } }) => {
   document.getElementById("search").oninput = render; document.getElementById("cat").onchange = render; render();
   // ---- previous year papers: one card per exam, year dropdown, single Start button ----
   const pyq = store.listPyq().sort((a, b) => (b.sort || "").localeCompare(a.sort || "")); const exams = [...new Set(pyq.map(p => p.exam))];
-  const ICON = { "GATE GG": "🎓", "IIT JAM Geology": "🏛️", "CSIR NET Earth Science": "🔬", "UPSC Geo-Scientist (Prelims)": "🗺️" };
+  const ICON = { "GATE GG": "🎓", "IIT JAM Geology": "🏛️", "CSIR NET Earth Science": "🔬", "UPSC Geo-Scientist (Prelims)": "🗺️", "OPSC Geologist": "⛰️" };
   document.getElementById("pyq").innerHTML = exams.length ? exams.map(ex => { const papers = pyq.filter(p => p.exam === ex); const done = new Set(attempts.map(a => a.testId));
-    return `<div class="card pyq-card"><div style="font-size:1.8rem">${ICON[ex] || "📄"}</div><h3>${esc(ex)}</h3><p class="small muted" style="margin:0 0 .6rem">${papers.length} papers · official answer keys · latest first</p>
+    return `<div class="card pyq-card"><div style="font-size:1.8rem">${ICON[ex] || "📄"}</div><h3>${esc(ex)}</h3><p class="small muted" style="margin:0 0 .6rem">${papers.length} papers · ${ex.startsWith("OPSC") ? "official OPSC booklets · GSA answer key" : "official answer keys · latest first"}</p>
       <div class="field" style="margin:.2rem 0 .6rem"><label>Year / paper</label><select data-ex="${esc(ex)}">${papers.map(p => `<option value="${esc(p.id)}" data-info="${p.questions} questions · ${p.maxMarks} marks · ${p.durationMinutes} min">${esc(p.year)}${done.has(p.id) ? " ✓" : ""}</option>`).join("")}</select></div>
       <p class="small muted" data-info-for="${esc(ex)}" style="margin:0 0 .6rem">${papers[0].questions} questions · ${papers[0].maxMarks} marks · ${papers[0].durationMinutes} min</p>
       <div class="spacer"></div><div style="display:flex;gap:.5rem;flex-wrap:wrap"><a class="btn primary" data-start="${esc(ex)}" href="test.html?id=${encodeURIComponent(papers[0].id)}">Start timed test</a><a class="btn ghost sm" data-practice="${esc(ex)}" href="test.html?id=${encodeURIComponent(papers[0].id)}&mode=practice" title="No timer, check each answer">Practice</a></div></div>`; }).join("") : "<p class='muted'>Previous year papers coming soon.</p>";

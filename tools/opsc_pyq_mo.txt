@@ -1,0 +1,900 @@
+1. Turbidity currents commonly deposit:
+(A) Shale
+(B) Limestone
+(C) Arkose
+(D) Greywacke
+=D
+2. Which kind of information can be determined from sedimentary structures?
+(A) Topping direction
+(B) Means of transport of sediment
+(C) Depositional environment
+(D) All of these
+=D
+3. Which type of cross bedding is a definite indicator of tidal environment?
+(A) Epsilon cross bedding
+(B) Herringbone cross bedding
+(C) Hummocky cross bedding
+(D) Trough cross bedding
+=B
+4. Allochems in limestone consist of:
+(A) Micrite only
+(B) Spar only
+(C) Ooids only
+(D) Bioclasts and ooids
+=D
+5. Which of the following does not contain information about palaeocurrents?
+(A) Planar cross bedding
+(B) Parting lineation
+(C) Asymmetric ripples
+(D) Laminar bedding
+=D
+6. The diameter of a sand grain is 1 mm. In phi (φ) grade, it is equivalent to:
+(A) −1
+(B) 0
+(C) 1
+(D) 2
+=B
+7. Breccia and conglomerate differ in:
+(A) Size of the clasts
+(B) Shape of the clasts
+(C) Cementing materials
+(D) Environment of deposition
+=B
+8. Which of the following properties does not affect the permeability of sandstone?
+(A) Pore size
+(B) Sorting
+(C) Tortuosity of the pores
+(D) Mineralogy of the framework grains
+=D
+9. A salt dome is characterised by:
+(A) Low velocity and low density
+(B) Low velocity and high density
+(C) High velocity and high density
+(D) High velocity and low density
+=D
+10. Rift valleys are bounded by:
+(A) Normal faults
+(B) Reverse faults
+(C) Strike slip faults
+(D) Transform faults
+=A
+11. Which of the following sedimentary rocks indicates long distance transportation of the sediments?
+(A) Quartz sandstone
+(B) Breccia
+(C) Arkose (sandstone with lots of feldspar particles)
+(D) None of these
+=A
+12. ______ is a well-sorted sandstone containing up to 75% quartz, with rock fragments in excess of feldspar.
+(A) Arkose
+(B) Lithic arenite
+(C) Quartz arenite
+(D) Feldspathic arenite
+=B
+13. Mud-supported limestone containing greater than 10% allochems is called:
+(A) Packstone
+(B) Wackestone
+(C) Grainstone
+(D) Mudstone
+=B
+14. A vertical sequence of rocks that changes from sandstone at the base through shale to limestone at the top of the sequence indicates a:
+(A) Transgression
+(B) Regression
+(C) Lagoonal environment
+(D) Braided river
+=A
+15. Shale displays fissility because of the:
+(A) Recrystallisation of minerals
+(B) Parallel arrangement of clay minerals
+(C) Shearing
+(D) Presence of mica plates
+=B
+16. Prior to compaction, deposits of sand in a quiet environment may have:
+(A) 20–30% volume open pore space
+(B) 80–90% volume open pore space
+(C) 40–50% volume open pore space
+(D) 60–70% volume open pore space
+=C
+17. Cubic packing of uniform size grains results in:
+(A) 48% porosity
+(B) 26% porosity
+(C) 32% porosity
+(D) 65% porosity
+=A
+18. Coral reefs are generally found in:
+(A) Polar regions
+(B) Tropical regions
+(C) Mid-latitude region
+(D) Subtropical region
+=B
+19. Amongst the following rock types, we can expect best porosity in:
+(A) Shaly siltstone
+(B) Granular sandstone
+(C) Medium grained sandstone
+(D) Silty shale
+=C
+20. In a rift basin, sandstones are likely to be:
+(A) Arkosic in composition
+(B) Litharenitic in composition
+(C) Quartz arenitic in composition
+(D) Greywacke in composition
+=A
+21. The Siwalik basin is classified as:
+(A) Back-arc basin
+(B) Fore-arc basin
+(C) Foreland basin
+(D) Intracratonic basin
+=C
+22. Guano is:
+(A) Calcareous deposit
+(B) Phosphatic deposit
+(C) Ferruginous deposit
+(D) Siliceous deposit
+=B
+23. Which of the following methods is used for detailed exploration of oil and gas?
+(A) Gravity method
+(B) Seismic refraction method
+(C) Magnetic method
+(D) Seismic reflection method
+=D
+24. Seismic survey is used in exploration most often to determine:
+(A) The presence or absence of ore minerals associated with petroleum
+(B) The presence or absence of a petroleum deposit
+(C) Whether there are rock structures that could trap petroleum
+(D) Whether there have been changes in petroleum deposits over time
+=C
+25. Reservoirs with grains that have the same size are called:
+(A) Well sorted
+(B) Poorly sorted
+(C) Half sorted
+(D) Fully sorted
+=A
+26. The distribution of grain sizes within a reservoir refers to:
+(A) Compaction
+(B) Sorting
+(C) Packing
+(D) Cementation
+=B
+27. Primary porosity is defined as:
+(A) Pore space created by dissolution or fracturing of rock
+(B) Pore space that is interconnected
+(C) Pore space that is isolated or not interconnected
+(D) Pore space created during deposition of sediments
+=D
+28. For seismic S-wave velocity (V), the rigidity modulus (μ) is proportional to:
+(A) √V
+(B) V²
+(C) V³
+(D) V
+=B
+29. Which of the following logging techniques is best suited to estimate the shaliness of hydrocarbon reservoirs?
+(A) Resistivity
+(B) Sonic
+(C) Induction
+(D) Gamma ray
+=D
+30. Choose the correct combination of the ore and location of its deposits:
+(A) Uranium – Jaduguda
+(B) Lead – Khetri
+(C) Gold – Panna
+(D) Iron – Malanjkhand
+=A
+31. Which of the following varieties of limestone is entirely composed of organic matter?
+(A) Coquina
+(B) Encrinite
+(C) Spergenite
+(D) Oolite
+=A
+32. Which of the following structures is that of Bombay High?
+(A) Doubly-plunging anticline
+(B) Doubly-plunging syncline
+(C) Non-plunging anticline
+(D) Non-plunging syncline
+=A
+33. The polished and striated surface resulting due to friction along a fault plane is called:
+(A) Slickenside
+(B) Lamination
+(C) Ventifact
+(D) None of these
+=A
+34. The resulting movement in a transcurrent fault is predominantly:
+(A) Vertical
+(B) Horizontal
+(C) Along the dip of fault
+(D) Along the dip of bed
+=B
+35. The isotope ¹⁴C is produced in the earth's atmosphere by the interaction of cosmic rays with:
+(A) ¹⁶O resulting in release of α particles
+(B) ¹⁴N absorbing the neutron and releasing the proton
+(C) ¹⁰B resulting in the addition of two α particles
+(D) ¹³C absorbing a neutron
+=B
+36. Ratios of elemental abundances of the bulk earth are similar to that of:
+(A) Moon
+(B) Fe-Ni meteorites
+(C) Chondrites
+(D) Basaltic chondrites
+=C
+37. The space lattice structure of minerals is determined by:
+(A) Chemical analysis
+(B) Scanning Electron Microscopy
+(C) X-ray diffraction
+(D) ICP-MS
+=C
+38. Which of the following represents the correct order of abundance of elements in the earth's crust?
+(A) Si > O > Fe > Al > Ca > Mg
+(B) O > Al > Fe > Mg > Ca > Si
+(C) O > Si > Fe > Mg > Ca > Al
+(D) O > Si > Al > Fe > Mg > Ca
+=D
+39. Platinum Group Elements are:
+(A) Lithophile only
+(B) Chalcophile only
+(C) Siderophile only
+(D) Both chalcophile and siderophile
+=D
+40. The wavelength range of the microwave region of electromagnetic radiation is:
+(A) 0.4 to 0.7 µm
+(B) 1 mm to 1 m
+(C) 1.3 to 3 µm
+(D) 3 to 14 µm
+=B
+41. GPS is used as:
+(A) Gravity Profiling System
+(B) Gas Prospective System
+(C) Ground Penetrating System
+(D) Geographic Location System
+=D
+42. An igneous rock comprising predominantly of quartz and K-feldspar can be classified as:
+(A) Gabbro
+(B) Granite
+(C) Peridotite
+(D) Tonalite
+=B
+43. The surface expression of the lithosphere descending into the asthenosphere is known as:
+(A) Island arc
+(B) Benioff zone
+(C) Canyon
+(D) Trench
+=D
+44. Which of the following formations is rich in lignite with its correct stratigraphic age?
+(A) Palana Formation – Paleocene
+(B) Disang Formation – Eocene
+(C) Subathu Formation – Eocene
+(D) Kopili Formation – Oligocene
+=A
+45. In India, bituminous coals are found at:
+(A) Palana
+(B) Neyveli
+(C) Jharia
+(D) Kutch
+=C
+46. Phosphorite deposits are found in which stratigraphic unit?
+(A) Udaipur Group
+(B) Sausar Group
+(C) Nallamalai Group
+(D) Kaimur Group
+=A
+47. The disappearance of dinosaurs marks the end of which geological era?
+(A) Precambrian
+(B) Cambrian
+(C) Mesozoic
+(D) Cenozoic
+=C
+48. The earthquakes with deep foci (~700 km) are common in:
+(A) Mid-oceanic ridges
+(B) Continental rifts
+(C) Himalayan mountain belts
+(D) Island arcs
+=D
+49. 'Ediacaran fossils' have significance in determining the:
+(A) Archaean/Proterozoic boundary
+(B) Precambrian/Cambrian boundary
+(C) Permian/Triassic boundary
+(D) Cretaceous/Tertiary boundary
+=B
+50. Ammonoids are abundantly present in which of the following rock sequences?
+(A) Gondwana
+(B) Cuddapah
+(C) Jurassic of Kutch
+(D) Siwalik
+=C
+51. Conversion of remains of plants and animals into rocks is known as:
+(A) Transformation
+(B) Petrification
+(C) Alteration
+(D) Lithification
+=B
+52. The fossils which had short geological duration but wide geographical distribution are called:
+(A) Type fossils
+(B) Rare fossils
+(C) Index fossils
+(D) Typical fossils
+=C
+53. Most faults in the Himalayas are:
+(A) Strike-slip
+(B) Thrust
+(C) Normal
+(D) Transform
+=B
+54. Which of the following minerals in Mohs' scale of hardness is a silicate?
+(A) Topaz
+(B) Apatite
+(C) Fluorite
+(D) Corundum
+=A
+55. Find the odd one out of the following:
+(A) Enstatite
+(B) Hypersthene
+(C) Anthophyllite
+(D) Diopside
+=C
+56. Tetrahedral structure of a silicate mineral develops Si : O ratio of 4 : 11. The silicate structure of the mineral is:
+(A) Nesosilicate
+(B) Inosilicate
+(C) Tectosilicate
+(D) Sorosilicate
+=B
+57. Find the odd one out of the following pairs:
+(A) Aragonite – Calcite
+(B) Diamond – Graphite
+(C) Quartz – Chalcedony
+(D) Microcline – Labradorite
+=D
+58. Mesozoic–Cenozoic boundary is placed at:
+(A) 75 Ma
+(B) 65 Ma
+(C) 45 Ma
+(D) 110 Ma
+=B
+59. A line on a map connecting points of equal elevation is called:
+(A) Map line
+(B) Base line
+(C) Contour line
+(D) Isotherm
+=C
+60. In which of the following regions is the thickness of the crust maximum?
+(A) Continental rifts
+(B) Mid-oceanic ridges
+(C) Orogenic belts
+(D) Passive margins
+=C
+61. Reverse faults are responsible for:
+(A) Lengthening of the strata
+(B) Shortening of the strata
+(C) Overturning of the strata
+(D) Thinning of the strata
+=B
+62. If the heave of a fault is zero, then the fault is:
+(A) High angle fault
+(B) Low angle fault
+(C) Horizontal fault
+(D) Vertical fault
+=D
+63. Taking a photograph of an object on a clear bright day is an example of:
+(A) Active remote sensing
+(B) Passive remote sensing
+(C) Microwave remote sensing
+(D) Thermal remote sensing
+=B
+64. Which one of the following was the first Indian Remote Sensing Satellite?
+(A) Rohini
+(B) IRS-1A
+(C) Bhaskara-1
+(D) Cartosat
+=B
+65. Which one of the following methods is used for dating recent geological events?
+(A) ²³⁵U – ²⁰⁶Pb
+(B) ¹⁴C
+(C) ⁴⁰K – ⁴⁰Ar
+(D) ⁸⁷Rb – ⁸⁷Sr
+=B
+66. Which of the following is the ore of tungsten?
+(A) Psilomelane
+(B) Azurite
+(C) Scheelite
+(D) Pyrite
+=C
+67. The petroleum deposits of Digboi oil field occur in the rock formation of:
+(A) Miocene age
+(B) Oligocene age
+(C) Eocene age
+(D) Jurassic age
+=A
+68. Fault line, railway line and roads are best represented in GIS by:
+(A) TIN models
+(B) Raster data models
+(C) Vector data models
+(D) Georelational data models
+=C
+69. Geiger–Müller counter is commonly used for the exploration of:
+(A) Uranium deposits
+(B) Bauxite deposits
+(C) Iron ore deposits
+(D) Copper ore deposits
+=A
+70. How many silicate minerals are there in Mohs' scale of hardness?
+(A) 7
+(B) 5
+(C) 3
+(D) 4
+=D
+71. Which one is the main constituent of the gas form of petroleum?
+(A) Propane
+(B) Butane
+(C) Methane
+(D) Ethene
+=C
+72. Which of the following minerals is most resistant to weathering?
+(A) Muscovite
+(B) Biotite
+(C) Calcite
+(D) Quartz
+=D
+73. Twinning observed in plagioclase:
+(A) Carlsbad twinning
+(B) Polysynthetic twinning
+(C) Penetration twinning
+(D) Cross-hatch twinning
+=B
+74. Which mineral is used for the age determination of the Vindhyan Sandstone?
+(A) Quartz
+(B) Pyrite
+(C) Glauconite
+(D) Ilmenite
+=C
+75. 'Smith test' is used to determine which of the following properties of a building stone?
+(A) Density
+(B) Porosity
+(C) Durability
+(D) Permeability
+=C
+76. Which of the following is a geostationary satellite?
+(A) Landsat
+(B) INSAT
+(C) SPOT
+(D) IRS
+=B
+77. The graphite deposits of Odisha are associated with:
+(A) Granite
+(B) Basic granulite
+(C) Charnockite
+(D) Khondalite
+=D
+78. Manganese deposits of Madhya Pradesh and Maharashtra belt are associated with rocks of:
+(A) Sakoli Group
+(B) Mahakoshal Group
+(C) Bababudan Group
+(D) Sausar Group
+=D
+79. The volcanic equivalent of diorite is:
+(A) Rhyolite
+(B) Andesite
+(C) Trachyte
+(D) Basalt
+=B
+80. If the colour of gossan is black, it indicates the presence of:
+(A) Copper
+(B) Iron
+(C) Manganese
+(D) Graphite
+=C
+81. Heavy minerals are those which have specific gravity of more than:
+(A) 3.52
+(B) 2.87
+(C) 3.00
+(D) 3.87
+=B
+82. The bauxite of the East-coast bauxite deposit is formed from rock like:
+(A) Granite
+(B) Basalt
+(C) Khondalite
+(D) Charnockite
+=C
+83. Which of the following formations contains asbestos deposits in Andhra Pradesh?
+(A) Gulcheru
+(B) Vempalle
+(C) Cumbum
+(D) Bairenkonda
+=B
+84. Maximum separation of the reflectance values of vegetation, soil and water is seen in:
+(A) Green band
+(B) Red band
+(C) Infrared band
+(D) Blue band
+=C
+85. Bauxite is a:
+(A) Residual deposit
+(B) Chemical deposit
+(C) Transported deposit
+(D) Ferruginous deposit
+=A
+86. Fuel ratio of a coal is defined by:
+(A) Organic sulphur / Organic phosphorus
+(B) Moisture / Volatile matter
+(C) Volatile matter / Ash content
+(D) Fixed carbon / Volatile matter
+=D
+87. Spatial resolution of the passive sensors depends on their:
+(A) GPS
+(B) FOV
+(C) IFOV
+(D) Pixel
+=C
+88. Which of the following data gives maximum vertical accuracy?
+(A) RADAR
+(B) LiDAR
+(C) Thermal image
+(D) Microwave
+=B
+89. Kimberlite indicates the possibility of the presence of:
+(A) Ruby
+(B) Diamond
+(C) Kyanite
+(D) Sapphire
+=B
+90. The primary source of energy that moves heat and water through the hydrosphere and atmosphere is:
+(A) Wind energy
+(B) Solar energy
+(C) Heat energy released from the earth
+(D) None of these
+=B
+91. What percentage of earth's water is fresh water?
+(A) 50%
+(B) 22%
+(C) 3%
+(D) 7%
+=C
+92. Best grade chromite in India is mined in which state?
+(A) Rajasthan
+(B) Bihar
+(C) Odisha
+(D) Jharkhand
+=C
+93. The study of earthquakes is called:
+(A) Petrology
+(B) Seismology
+(C) Palaeontology
+(D) Petrography
+=B
+94. The point of origin of earthquakes below the earth's surface is called:
+(A) Isocentre
+(B) Focus
+(C) Epicentre
+(D) Isopoint
+=B
+95. The magnitude of an earthquake is based on:
+(A) Time period
+(B) Frequency
+(C) Amplitude
+(D) Intensity
+=C
+96. Which one of the following is a trace fossil?
+(A) Shells
+(B) Bones
+(C) Teeth
+(D) Burrows
+=D
+97. In the IR band a water body is marked by which of the following colours?
+(A) Dark colour
+(B) White colour
+(C) Red colour
+(D) Blue colour
+=A
+98. The average radius of the Earth (km) is:
+(A) 5420
+(B) 6370
+(C) 9880
+(D) 3340
+=B
+99. Oldham discontinuity marks the boundary between:
+(A) Crust and upper mantle
+(B) Mantle and outer core
+(C) Outer core and inner core
+(D) Upper mantle and lower mantle
+=B
+100. The average thickness of the earth's crust is:
+(A) 11 km
+(B) 22 km
+(C) 33 km
+(D) 65 km
+=C
+101. What is the average height of the GPS satellite from the earth's surface?
+(A) 36100 km
+(B) 20200 km
+(C) 40000 km
+(D) 45000 km
+=B
+102. The abbreviation DEM in remote sensing stands for:
+(A) Digital Electro Magnetism
+(B) Digital Elevation Model
+(C) Digitally Enhanced Measurement
+(D) Digital Exponential Magnitude
+=B
+103. Name the first Indian satellite:
+(A) Rohini
+(B) Bhaskar
+(C) INSAT-1
+(D) Aryabhatta
+=D
+104. The arrangement of terrain features which provide shape, size and textural attributes is called:
+(A) Temporal variation
+(B) Spectral variation
+(C) Altitude variation
+(D) Spatial variation
+=D
+105. Unconformity between igneous and sedimentary strata is called:
+(A) Angular unconformity
+(B) Disconformity
+(C) Non-conformity
+(D) Local unconformity
+=C
+106. The age of Nautilus is:
+(A) Triassic to present
+(B) Cretaceous to present
+(C) Jurassic to present
+(D) Cambrian to present
+=D
+107. The grade of an ore body which can be economically mined is named as:
+(A) Average grade
+(B) Cut-off grade
+(C) Absolute grade
+(D) Mill grade
+=B
+108. Which rock has maximum specific yield?
+(A) Khondalite
+(B) Limestone
+(C) Sandstone
+(D) Unconsolidated sand
+=D
+109. Altimeter is used in aerial photography:
+(A) For recording temperature
+(B) For recording speed of aeroplane
+(C) For recording atmospheric pressure
+(D) For recording height from MSL
+=D
+110. For stereoscopic study, the overlap of aerial photographs should be better if overlap is:
+(A) 5%
+(B) 66%
+(C) 30%
+(D) 15%
+=B
+111. The gem variety of olivine is:
+(A) Epidote
+(B) Ruby
+(C) Peridot
+(D) Zirconium
+=C
+112. Lahar deposits are formed by:
+(A) Detrital sediments
+(B) Organic sediments
+(C) Chemical sediments
+(D) Volcaniclastic sediments
+=D
+113. The eutectic intergrowth of orthoclase and quartz produces the well known rock:
+(A) Perthite
+(B) Syenite
+(C) Graphic granite
+(D) Graphic rhyolite
+=C
+114. What are the cleavage angles in hornblende?
+(A) 60° and 86°
+(B) 56° and 124°
+(C) 66° and 184°
+(D) 87° and 93°
+=B
+115. The drifting of continents began in:
+(A) Late Precambrian
+(B) Permo-Carboniferous
+(C) Mesozoic
+(D) Devonian
+=C
+116. Columnar joints in basalt are:
+(A) Shear joints
+(B) Tension joints
+(C) Dip joints
+(D) Strike joints
+=B
+117. Presence of unconformity in a rock sequence can be recognised by:
+(A) Angular relationship
+(B) Presence of conglomerate
+(C) Residual soil
+(D) All of these
+=D
+118. The space-based remote sensing sensors operate from an altitude between:
+(A) 40–100 km
+(B) 100–300 km
+(C) 200–20000 km
+(D) 200–1000 km
+=C
+119. Which one of the following is GIS software?
+(A) ArcGIS
+(B) MapInfo
+(C) IDRISI
+(D) All of these
+=D
+120. Indian satellite CARTOSAT-2 was launched by ISRO in the year:
+(A) 2007
+(B) 2006
+(C) 2012
+(D) 2016
+=A
+121. Wavelength of radio wave is:
+(A) > 20 cm
+(B) Between 10–30 cm
+(C) > 30 cm
+(D) > 50 cm
+=C
+122. The live planet is known as:
+(A) Venus
+(B) Pluto
+(C) Earth
+(D) Mars
+=C
+123. In a 1 : 50,000 scale topographic map a distance of 0.25 cm represents:
+(A) 1250 m
+(B) 125 m
+(C) 250 m
+(D) 500 m
+=B
+124. Coral reefs are generally found in the latitudinal extensions of:
+(A) 20°N – 20°S
+(B) 30°N – 30°S
+(C) 60°N – 60°S
+(D) 50°N – 50°S
+=B
+125. The 'Idukki' dam in Kerala belongs to which type of dam?
+(A) Gravity dam
+(B) Arch dam
+(C) Earthen dam
+(D) Buttress dam
+=B
+126. Gold mine in India is located at:
+(A) Khetri
+(B) Kolar
+(C) Zawar
+(D) Jaduguda
+=B
+127. Which one of the following is a fertiliser mineral?
+(A) Quartz
+(B) Feldspar
+(C) Gypsum
+(D) Mica
+=C
+128. What percentage of the earth's atmosphere does O₂ comprise?
+(A) 21%
+(B) 71%
+(C) 45%
+(D) 3%
+=A
+129. Which gas makes the majority of our atmosphere?
+(A) Oxygen
+(B) Carbon dioxide
+(C) Nitrogen
+(D) Ozone
+=C
+130. Wave generated by underwater earthquakes is called:
+(A) El-Niño
+(B) Tidal wave
+(C) Tsunami
+(D) Microwave
+=C
+131. The 'seismic shadow zone angle' that exists from the epicentre is:
+(A) 48° to 92°
+(B) 105° to 143°
+(C) 145° to 165°
+(D) 165° to 178°
+=B
+132. Seismic P-waves can travel through:
+(A) Crust only
+(B) Mantle only
+(C) Mantle and core
+(D) Crust, mantle and core
+=D
+133. The total number of Rare Earth Elements (REE) is:
+(A) 15
+(B) 17
+(C) 18
+(D) 26
+=B
+134. The core of the earth is made up of:
+(A) Nickel and iron
+(B) Nickel and chromium
+(C) Iron and calcium
+(D) Silica and iron
+=A
+135. Lapsa Buru mineral deposit is famous for which mineral?
+(A) Kyanite
+(B) Actinolite
+(C) Mica
+(D) Uranium
+=A
+136. Bisalpur Dam is constructed on which river?
+(A) Chambal River
+(B) Banas River
+(C) Luni River
+(D) Son River
+=B
+137. An example of embankment dam is:
+(A) Bisalpur Dam
+(B) Hirakud Dam
+(C) Sai Dam
+(D) Mahi Dam
+=B
+138. Monazite is produced most abundantly in:
+(A) Bihar
+(B) Odisha
+(C) Rajasthan
+(D) Kerala
+=D
+139. Goldschmidt's phase rule is expressed as:
+(A) F = C + 2 − P
+(B) F = C + P − 2
+(C) F = C + 2
+(D) F = C − P + 1
+=A
+140. The age of the Singhbhum Granite is:
+(A) 2000–2400 Ma
+(B) 3000–3400 Ma
+(C) 1000–1400 Ma
+(D) 100–400 Ma
+=B
+141. Which is the radiogenic isotope of lead?
+(A) Pb²⁰⁴
+(B) Pb²⁰⁶
+(C) Pb²⁰⁷
+(D) Pb²⁰⁸
+=B
+142. Athgarh (Odisha) is known for:
+(A) Cretaceous fossils
+(B) Cambrian fossils
+(C) Carboniferous fossils
+(D) Jurassic fossils
+=A
+143. The red colour iron-rich soil is known as:
+(A) Loamy soil
+(B) Alluvial soil
+(C) Laterite
+(D) Lime soil
+=C
+144. A static test conducted to know the in-situ deformation of rocks is known as:
+(A) RQD
+(B) Jill test
+(C) Crushing test
+(D) Jack test
+=D
+145. The property of a rock to transmit fluids through it is known as:
+(A) Porosity
+(B) Permeability
+(C) Transmissivity
+(D) Hydraulic conductivity
+=B
+146. Which planet has the highest density among these?
+(A) Mercury
+(B) Earth
+(C) Mars
+(D) Venus
+=B
+147. Which one is a high temperature feldspar?
+(A) Sanidine
+(B) Microcline
+(C) Orthoclase
+(D) Albite
+=A
+148. Which one is a pyroclastic rock?
+(A) Pitchstone
+(B) Ignimbrite
+(C) Rhyolite
+(D) Obsidian
+=B
+149. Destructive plate boundary is also known as:
+(A) Conservative plate boundary
+(B) Diverging plate boundary
+(C) Converging plate boundary
+(D) Transform plate boundary
+=C
+150. Major part of Odisha state comes under which seismic zone?
+(A) II
+(B) III
+(C) I
+(D) V
+=A

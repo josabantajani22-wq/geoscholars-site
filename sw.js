@@ -1,5 +1,5 @@
 // Geo Scholars Academy — service worker: offline shell + faster repeat visits. Network-first for pages/data, cache-first for assets.
-const VERSION = "gsa-v11";
+const VERSION = "gsa-v13";
 const SHELL = ["/", "/index.html", "/css/style.css", "/js/config.js", "/js/store.js", "/js/app.js", "/data/site.js", "/assets/logo.png", "/assets/hero-contours.svg", "/assets/bg-contours.svg"];
 self.addEventListener("install", (e) => { e.waitUntil(caches.open(VERSION).then(c => c.addAll(SHELL).catch(() => {})).then(() => self.skipWaiting())); });
 self.addEventListener("activate", (e) => { e.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(k => k !== VERSION).map(k => caches.delete(k)))).then(() => self.clients.claim())); });

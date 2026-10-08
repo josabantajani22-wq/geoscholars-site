@@ -103,16 +103,20 @@ uploader skipped the hidden `.github` folder, create them by hand: repo → Add 
 - **AI vacancy agent** — `tools/vacancy_agent.py` (see below).
 - Style: Playfair Display + Inter, contour-line hero, animated counters, news ticker, reveal-on-scroll, card hover.
 
-## AI vacancy agent
-```
-pip install anthropic
-set ANTHROPIC_API_KEY=sk-ant-...       # get one at console.anthropic.com
-python tools/vacancy_agent.py --dry-run   # preview
-python tools/vacancy_agent.py             # writes data/vacancies.js
-```
-It searches official portals (UPSC, ONGC, GSI, CGWB, NMDC, Coal India, NTA, state PSCs…) with Claude + web search,
-merges results into the board, drops items closed > 30 days, and keeps any summary you mark `"locked": true`.
-Run weekly (Windows Task Scheduler / cron) and re-upload `data/vacancies.js`.
+## AI vacancy agent — "search the whole web" every morning
+`tools/vacancy_agent.py` asks Claude (with live web search, 15–30 searches) for every open or upcoming **government / PSU /
+public-university** geology recruitment in India — UPSC, GSI, CGWB, ONGC, NMDC, Coal India, Oil India, MECL, HCL, UCIL, AMD,
+NHPC, Singareni, all state PSCs and Directorates of Mines & Geology, CSIR NET, JRF posts at IITs/NITs/CSIR labs — verifies
+dates on official pages, and merges them into `data/vacancies.js` (private-sector items are dropped; duplicates of the
+FreeJobAlert feed are merged). It runs inside the daily GitHub workflow **only if** the repo has the secret
+`ANTHROPIC_API_KEY`; without it the step is skipped and the FreeJobAlert feed still runs.
+
+One-time setup (10 min, ~₹5–15 per day in API usage):
+1. https://console.anthropic.com → sign up → **Billing** → add a card / prepaid credit (US$5 lasts weeks).
+2. **API Keys** → Create key → copy it (starts `sk-ant-`).
+3. GitHub repo → Settings → Secrets and variables → Actions → New repository secret → Name `ANTHROPIC_API_KEY` → paste → Add.
+4. Actions → Update geology vacancies → Run workflow. The log step "AI web research" lists what it found.
+Run by hand: `pip install anthropic`, set `ANTHROPIC_API_KEY`, `python tools/vacancy_agent.py --dry-run`.
 
 ## Folder map
 ```
@@ -239,7 +243,7 @@ Free, and it also runs the FreeJobAlert vacancy refresh every morning.
 - Every enquiry is also stored for Admin → Enquiries (site-wide once Firebase is on) with an "Emailed" yes/no flag.
 
 ## LinkedIn industry jobs
-`tools/fetch_linkedin.py` reads LinkedIn's public (logged-out) job search for geologist / geology / hydrogeologist /
+`tools/fetch_linkedin.py` (not used by the workflow) reads LinkedIn's public (logged-out) job search for geologist / geology / hydrogeologist /
 mining geologist / geophysicist / exploration geologist in India, keeps geology-relevant titles, and merges them into the
 board tagged "LinkedIn" (shown under the *Industry (LinkedIn)* filter, expiring 30 days after posting). It is NOT part of the daily workflow (removed on request — the site shows a single "Search on LinkedIn" link instead); run it by hand only if you want LinkedIn jobs merged in. A "Search geologist jobs on LinkedIn"
 button on the vacancies page always works regardless.
@@ -275,3 +279,11 @@ and merges into `data/vacancies.js`. Run by hand with `pip install requests beau
 Any static host works: Firebase Hosting (`firebase deploy`), Netlify / Vercel / Cloudflare Pages
 (drag-and-drop the `site` folder), GitHub Pages, or cPanel `public_html`.
 Point your domain at it and you're done.
+
+
+## OPSC Geologist mock (v12)
+`tools/opsc_mock1.py` builds **OPSC Geologist: Mock Test 1 (Paper II – Geology)** — 100 GSA-authored MCQs, +2/−0.5, 120 min, 11 syllabus sections (Odisha-focused) — into `data/tests.js` and regenerates `data/tests-index.js`. Re-run it after editing the question list. Not an official OPSC paper.
+
+
+## OPSC Geologist previous-year papers (v13)
+`tools/opsc_pyq.py` builds the three official OPSC 2019 booklets (Paper I General Studies 100 Q; Paper II Geology 147 of 150 Q; Mining Officer Paper II Applied Geology 150 Q) from the hand-checked text files `tools/opsc_pyq_*.txt` into `data/pyq/opsc-*.json` and merges them into `data/pyq-index.js` as exam **OPSC Geologist**. OPSC never published a key, so the key is GSA's; 2019 had no negative marking. The 2022 booklet (exam 7 Aug 2022) is not available online. Re-run after editing the text files.
