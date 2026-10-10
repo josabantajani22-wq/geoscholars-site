@@ -1,7 +1,7 @@
 // Geology vacancy board. Refreshed daily by tools/fetch_freejobalert.py + tools/fetch_linkedin.py (GitHub Actions); edit by hand or add from Admin → Vacancies.
 // status is derived on the page from lastDate: open / closing soon (≤7 days) / closed. Set "upcoming": true for expected notifications.
 window.GSA_VACANCIES = {
-  "updatedAt": "2026-10-09",
+  "updatedAt": "2026-10-10",
   "items": [
     {
       "id": "csir-net-dec-2026",
@@ -116,29 +116,6 @@ window.GSA_VACANCIES = {
       "sourceUrl": "https://www.freejobalert.com/articles/oil-india-recruitment-2026-apply-online-for-deputy-chief-engineer-economist-and-more-posts-3067409",
       "summary": "Listed on FreeJobAlert on 11/09/2026. Qualification: Any Post Graduate, B.Tech/B.E, M.A, M.Sc. Verify details on the official notification before applying.",
       "source": "freejobalert"
-    },
-    {
-      "id": "li-4401618303",
-      "title": "Geophysicist - DP — SLB",
-      "organisation": "SLB",
-      "posts": null,
-      "postNames": "Geophysicist - DP",
-      "qualification": "See the LinkedIn posting",
-      "ageLimit": "",
-      "fee": "",
-      "startDate": "2026-09-18",
-      "lastDate": "2026-10-18",
-      "upcoming": false,
-      "examDate": "",
-      "location": "Navi Mumbai, Maharashtra, India",
-      "tags": [
-        "LinkedIn",
-        "Industry"
-      ],
-      "applyUrl": "https://in.linkedin.com/jobs/view/geophysicist-dp-at-slb-4401618303",
-      "sourceUrl": "https://in.linkedin.com/jobs/view/geophysicist-dp-at-slb-4401618303",
-      "summary": "Industry opening listed on LinkedIn (Navi Mumbai, Maharashtra, India). Posted 2026-09-18. Apply on LinkedIn; the closing date shown here is an estimate (30 days from posting).",
-      "source": "linkedin"
     },
     {
       "id": "li-4453010160",
@@ -713,6 +690,98 @@ window.GSA_VACANCIES = {
       "applyUrl": "https://in.linkedin.com/jobs/view/geologist-at-slb-4474827692",
       "sourceUrl": "https://in.linkedin.com/jobs/view/geologist-at-slb-4474827692",
       "summary": "Industry opening listed on LinkedIn (Navi Mumbai, Maharashtra, India). Posted 2026-10-08. Apply on LinkedIn; the closing date shown here is an estimate (30 days from posting).",
+      "source": "linkedin"
+    },
+    {
+      "id": "li-4401618303",
+      "title": "Geophysicist - DP — SLB",
+      "organisation": "SLB",
+      "posts": null,
+      "postNames": "Geophysicist - DP",
+      "qualification": "See the LinkedIn posting",
+      "ageLimit": "",
+      "fee": "",
+      "startDate": "2026-10-09",
+      "lastDate": "2026-11-08",
+      "upcoming": false,
+      "examDate": "",
+      "location": "Navi Mumbai, Maharashtra, India",
+      "tags": [
+        "LinkedIn",
+        "Industry"
+      ],
+      "applyUrl": "https://in.linkedin.com/jobs/view/geophysicist-dp-at-slb-4401618303",
+      "sourceUrl": "https://in.linkedin.com/jobs/view/geophysicist-dp-at-slb-4401618303",
+      "summary": "Industry opening listed on LinkedIn (Navi Mumbai, Maharashtra, India). Posted 2026-10-09. Apply on LinkedIn; the closing date shown here is an estimate (30 days from posting).",
+      "source": "linkedin"
+    },
+    {
+      "id": "li-4476819602",
+      "title": "Junior Geologist — GeoWater Discoveries",
+      "organisation": "GeoWater Discoveries",
+      "posts": null,
+      "postNames": "Junior Geologist",
+      "qualification": "See the LinkedIn posting",
+      "ageLimit": "",
+      "fee": "",
+      "startDate": "2026-10-09",
+      "lastDate": "2026-11-08",
+      "upcoming": false,
+      "examDate": "",
+      "location": "Belgaum, Karnataka, India",
+      "tags": [
+        "LinkedIn",
+        "Industry"
+      ],
+      "applyUrl": "https://in.linkedin.com/jobs/view/junior-geologist-4476819602",
+      "sourceUrl": "https://in.linkedin.com/jobs/view/junior-geologist-4476819602",
+      "summary": "Industry opening listed on LinkedIn (Belgaum, Karnataka, India). Posted 2026-10-09. Apply on LinkedIn; the closing date shown here is an estimate (30 days from posting).",
+      "source": "linkedin"
+    },
+    {
+      "id": "li-4472735667",
+      "title": "Senior Geophysicist – GaffneyCline Energy Advisory — Baker Hughes",
+      "organisation": "Baker Hughes",
+      "posts": null,
+      "postNames": "Senior Geophysicist – GaffneyCline Energy Advisory",
+      "qualification": "See the LinkedIn posting",
+      "ageLimit": "",
+      "fee": "",
+      "startDate": "2026-10-09",
+      "lastDate": "2026-11-08",
+      "upcoming": false,
+      "examDate": "",
+      "location": "Mumbai Metropolitan Region",
+      "tags": [
+        "LinkedIn",
+        "Industry"
+      ],
+      "applyUrl": "https://in.linkedin.com/jobs/view/senior-geophysicist-%E2%80%93-gaffneycline-energy-advisory-at-baker-hughes-4472735667",
+      "sourceUrl": "https://in.linkedin.com/jobs/view/senior-geophysicist-%E2%80%93-gaffneycline-energy-advisory-at-baker-hughes-4472735667",
+      "summary": "Industry opening listed on LinkedIn (Mumbai Metropolitan Region). Posted 2026-10-09. Apply on LinkedIn; the closing date shown here is an estimate (30 days from posting).",
+      "source": "linkedin"
+    },
+    {
+      "id": "li-4472752242",
+      "title": "Senior Geophysicist – GaffneyCline Energy Advisory — Baker Hughes",
+      "organisation": "Baker Hughes",
+      "posts": null,
+      "postNames": "Senior Geophysicist – GaffneyCline Energy Advisory",
+      "qualification": "See the LinkedIn posting",
+      "ageLimit": "",
+      "fee": "",
+      "startDate": "2026-10-09",
+      "lastDate": "2026-11-08",
+      "upcoming": false,
+      "examDate": "",
+      "location": "Gurgaon, Haryana, India",
+      "tags": [
+        "LinkedIn",
+        "Industry"
+      ],
+      "applyUrl": "https://in.linkedin.com/jobs/view/senior-geophysicist-%E2%80%93-gaffneycline-energy-advisory-at-baker-hughes-4472752242",
+      "sourceUrl": "https://in.linkedin.com/jobs/view/senior-geophysicist-%E2%80%93-gaffneycline-energy-advisory-at-baker-hughes-4472752242",
+      "summary": "Industry opening listed on LinkedIn (Gurgaon, Haryana, India). Posted 2026-10-09. Apply on LinkedIn; the closing date shown here is an estimate (30 days from posting).",
       "source": "linkedin"
     }
   ]
