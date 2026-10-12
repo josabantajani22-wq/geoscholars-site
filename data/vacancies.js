@@ -1,7 +1,7 @@
 // Geology vacancy board. Refreshed daily by tools/fetch_freejobalert.py + tools/fetch_linkedin.py (GitHub Actions); edit by hand or add from Admin → Vacancies.
 // status is derived on the page from lastDate: open / closing soon (≤7 days) / closed. Set "upcoming": true for expected notifications.
 window.GSA_VACANCIES = {
-  "updatedAt": "2026-10-11",
+  "updatedAt": "2026-10-12",
   "items": [
     {
       "id": "csir-net-dec-2026",
@@ -782,6 +782,29 @@ window.GSA_VACANCIES = {
       "applyUrl": "https://in.linkedin.com/jobs/view/senior-geophysicist-%E2%80%93-gaffneycline-energy-advisory-at-baker-hughes-4472752242",
       "sourceUrl": "https://in.linkedin.com/jobs/view/senior-geophysicist-%E2%80%93-gaffneycline-energy-advisory-at-baker-hughes-4472752242",
       "summary": "Industry opening listed on LinkedIn (Gurgaon, Haryana, India). Posted 2026-10-09. Apply on LinkedIn; the closing date shown here is an estimate (30 days from posting).",
+      "source": "linkedin"
+    },
+    {
+      "id": "li-4477246284",
+      "title": "Bangalore Career Fair 21 & 22 November – Geoscientist — GeoCareerGo",
+      "organisation": "GeoCareerGo",
+      "posts": null,
+      "postNames": "Bangalore Career Fair 21 & 22 November – Geoscientist",
+      "qualification": "See the LinkedIn posting",
+      "ageLimit": "",
+      "fee": "",
+      "startDate": "2026-10-11",
+      "lastDate": "2026-11-10",
+      "upcoming": false,
+      "examDate": "",
+      "location": "Bengaluru, Karnataka, India",
+      "tags": [
+        "LinkedIn",
+        "Industry"
+      ],
+      "applyUrl": "https://in.linkedin.com/jobs/view/bangalore-career-fair-21-22-november-%E2%80%93-geoscientist-at-geocareergo-4477246284",
+      "sourceUrl": "https://in.linkedin.com/jobs/view/bangalore-career-fair-21-22-november-%E2%80%93-geoscientist-at-geocareergo-4477246284",
+      "summary": "Industry opening listed on LinkedIn (Bengaluru, Karnataka, India). Posted 2026-10-11. Apply on LinkedIn; the closing date shown here is an estimate (30 days from posting).",
       "source": "linkedin"
     }
   ]
