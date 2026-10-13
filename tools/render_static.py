@@ -46,5 +46,13 @@ ld = ('<script type="application/ld+json">' + json.dumps(postings, ensure_ascii=
 
 page = open(PAGE, encoding="utf-8").read()
 new = re.sub(r"(<!-- SSR:START[^>]*-->).*?(<!-- SSR:END -->)", lambda m: m.group(1) + "\n" + static + ld + "\n    " + m.group(2), page, flags=re.S)
+# cache-bust: stamp the data <script> tag with updatedAt so browsers / the CDN fetch the fresh file
+ver = board.get("updatedAt") or today.isoformat()
+new = re.sub(r'src="data/vacancies\.js(\?v=[^"]*)?"', f'src="data/vacancies.js?v={ver}"', new)
 open(PAGE, "w", encoding="utf-8").write(new)
+for other in ("index.html", "admin.html"):
+    op = os.path.join(SITE, other)
+    if os.path.exists(op):
+        t = open(op, encoding="utf-8").read(); t2 = re.sub(r'src="data/vacancies\.js(\?v=[^"]*)?"', f'src="data/vacancies.js?v={ver}"', t)
+        if t2 != t: open(op, "w", encoding="utf-8").write(t2)
 print(f"rendered {len(rows)} vacancies, {len(postings)} JobPosting entries into vacancies.html")
