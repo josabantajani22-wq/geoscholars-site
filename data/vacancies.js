@@ -1,7 +1,7 @@
 // Geology vacancy board. Refreshed daily by tools/fetch_freejobalert.py + tools/fetch_linkedin.py (GitHub Actions); edit by hand or add from Admin → Vacancies.
 // status is derived on the page from lastDate: open / closing soon (≤7 days) / closed. Set "upcoming": true for expected notifications.
 window.GSA_VACANCIES = {
-  "updatedAt": "2026-10-12",
+  "updatedAt": "2026-10-13",
   "items": [
     {
       "id": "csir-net-dec-2026",
@@ -690,6 +690,29 @@ window.GSA_VACANCIES = {
       "applyUrl": "https://in.linkedin.com/jobs/view/geologist-at-slb-4474827692",
       "sourceUrl": "https://in.linkedin.com/jobs/view/geologist-at-slb-4474827692",
       "summary": "Industry opening listed on LinkedIn (Navi Mumbai, Maharashtra, India). Posted 2026-10-08. Apply on LinkedIn; the closing date shown here is an estimate (30 days from posting).",
+      "source": "linkedin"
+    },
+    {
+      "id": "li-4477138944",
+      "title": "Assistant Manager – Hydrologist — Iora Ecological Solutions",
+      "organisation": "Iora Ecological Solutions",
+      "posts": null,
+      "postNames": "Assistant Manager – Hydrologist",
+      "qualification": "See the LinkedIn posting",
+      "ageLimit": "",
+      "fee": "",
+      "startDate": "2026-10-08",
+      "lastDate": "2026-11-07",
+      "upcoming": false,
+      "examDate": "",
+      "location": "Delhi, Delhi, India",
+      "tags": [
+        "LinkedIn",
+        "Industry"
+      ],
+      "applyUrl": "https://in.linkedin.com/jobs/view/assistant-manager-%E2%80%93-hydrologist-at-iora-ecological-solutions-4477138944",
+      "sourceUrl": "https://in.linkedin.com/jobs/view/assistant-manager-%E2%80%93-hydrologist-at-iora-ecological-solutions-4477138944",
+      "summary": "Industry opening listed on LinkedIn (Delhi, Delhi, India). Posted 2026-10-08. Apply on LinkedIn; the closing date shown here is an estimate (30 days from posting).",
       "source": "linkedin"
     },
     {
