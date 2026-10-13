@@ -1,13 +1,69 @@
 {
   "hosting": {
     "public": ".",
-    "ignore": ["firebase.json", ".firebaserc", "firestore.rules", "firestore.indexes.json", "**/.*", "**/node_modules/**", "tools/**", "README.md", "CNAME", "*.zip"],
+    "ignore": [
+      "firebase.json",
+      ".firebaserc",
+      "firestore.rules",
+      "firestore.indexes.json",
+      "**/.*",
+      "**/node_modules/**",
+      "tools/**",
+      "README.md",
+      "CNAME",
+      "*.zip"
+    ],
     "cleanUrls": false,
     "headers": [
-      { "source": "**/*.@(js|css)", "headers": [{ "key": "Cache-Control", "value": "max-age=3600" }] },
-      { "source": "**/*.@(jpg|jpeg|png|svg|webp|woff2)", "headers": [{ "key": "Cache-Control", "value": "max-age=2592000, immutable" }] },
-      { "source": "data/pyq/*.json", "headers": [{ "key": "Cache-Control", "value": "max-age=86400" }] }
+      {
+        "source": "data/vacancies.js",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "no-cache, max-age=0, must-revalidate"
+          }
+        ]
+      },
+      {
+        "source": "vacancies.html",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "no-cache, max-age=0, must-revalidate"
+          }
+        ]
+      },
+      {
+        "source": "**/*.@(js|css)",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=3600"
+          }
+        ]
+      },
+      {
+        "source": "**/*.@(jpg|jpeg|png|svg|webp|woff2)",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=2592000, immutable"
+          }
+        ]
+      },
+      {
+        "source": "data/pyq/*.json",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=86400"
+          }
+        ]
+      }
     ]
   },
-  "firestore": { "rules": "firestore.rules", "indexes": "firestore.indexes.json" }
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  }
 }
