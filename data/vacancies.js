@@ -1,7 +1,7 @@
 // Geology vacancy board. Updated by tools/vacancy_agent.py (AI research agent) — or edit by hand / add from Admin → Vacancies.
 // status is derived on the page from lastDate: open / closing soon (≤7 days) / closed. Set "upcoming": true for expected notifications.
 window.GSA_VACANCIES = {
-  "updatedAt": "2026-10-20",
+  "updatedAt": "2026-10-21",
   "items": [
     {
       "id": "csir-net-dec-2026",
