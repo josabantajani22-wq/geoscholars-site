@@ -1,7 +1,7 @@
 // Geology vacancy board. Updated by tools/vacancy_agent.py (AI research agent) — or edit by hand / add from Admin → Vacancies.
 // status is derived on the page from lastDate: open / closing soon (≤7 days) / closed. Set "upcoming": true for expected notifications.
 window.GSA_VACANCIES = {
-  "updatedAt": "2026-10-22",
+  "updatedAt": "2026-10-23",
   "items": [
     {
       "id": "csir-net-dec-2026",
@@ -74,31 +74,6 @@ window.GSA_VACANCIES = {
       "applyUrl": "https://www.nhpcindia.com/en/careers",
       "sourceUrl": "https://www.nhpcindia.com",
       "summary": "NHPC recruits Trainee Officers (Geology) through GATE in most years. No 2027 notification yet.",
-      "source": "agent"
-    },
-    {
-      "id": "upsc-cgse-2027",
-      "title": "UPSC Combined Geo-Scientist 2027 — 127 posts (GSI 111 + CGWB 16) · Prelims 10 Jan 2027",
-      "organisation": "UPSC (for GSI & CGWB)",
-      "posts": 127,
-      "postNames": "Geologist 29 · Chemist 7 · Asst Geologist 34 · Asst Geophysicist 35 · Asst Chemist 6 · Scientist B (Hydrogeology 5, Chemical 1, Geophysics 1) · Asst Hydrogeologist 7 · Asst Chemist CGWB 1 · Asst Geophysicist CGWB 1",
-      "qualification": "Master's in Geology / Applied Geology / Earth Science / Geochemistry etc. (Geologist); Geophysics/Physics (Geophysicist); Chemistry (Chemist)",
-      "ageLimit": "21–32 years (Group A); 21–30 (Group B); relaxations apply",
-      "fee": "₹200 (exempt: Female/SC/ST/PwBD)",
-      "startDate": "2026-09-02",
-      "lastDate": "2026-09-22",
-      "upcoming": false,
-      "examDate": "Prelims 10 January 2027 · Mains 19–20 June 2027",
-      "location": "All India",
-      "tags": [
-        "UPSC",
-        "GSI",
-        "CGWB",
-        "Geologist"
-      ],
-      "applyUrl": "https://upsconline.nic.in",
-      "sourceUrl": "https://upsc.gov.in",
-      "summary": "Notification 2 Sept 2026; applications closed 22 Sept. Prelims admit cards usually ~3 weeks before the exam. Solve the CGSE 2021–2024 papers in our Test Series.",
       "source": "agent"
     },
     {
