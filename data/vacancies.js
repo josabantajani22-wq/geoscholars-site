@@ -1,7 +1,7 @@
 // Geology vacancy board. Updated by tools/vacancy_agent.py (AI research agent) — or edit by hand / add from Admin → Vacancies.
 // status is derived on the page from lastDate: open / closing soon (≤7 days) / closed. Set "upcoming": true for expected notifications.
 window.GSA_VACANCIES = {
-  "updatedAt": "2026-11-03",
+  "updatedAt": "2026-11-04",
   "items": [
     {
       "id": "csir-net-dec-2026",
@@ -168,6 +168,28 @@ window.GSA_VACANCIES = {
       "sourceUrl": "https://jam.iitkgp.ac.in",
       "summary": "Last date extended to 19 October 2026 on the JOAPS portal (joaps.iitkgp.ac.in). GG paper: 60 questions, 100 marks, MCQ/MSQ/NAT.",
       "source": "agent"
+    },
+    {
+      "id": "fja-3078334",
+      "title": "OIL — Contractual Geologist",
+      "organisation": "OIL",
+      "posts": 3,
+      "postNames": "Contractual Geologist",
+      "qualification": "M.E/M.Tech, M.Phil/Ph.D, M.Sc",
+      "ageLimit": "18 - 40 Years",
+      "fee": "Have a Question",
+      "startDate": "2026-11-04",
+      "lastDate": "2026-12-03",
+      "upcoming": false,
+      "examDate": "",
+      "location": "India",
+      "tags": [
+        "FreeJobAlert"
+      ],
+      "applyUrl": "https://www.oil-india.com",
+      "sourceUrl": "https://www.freejobalert.com/articles/oil-recruitment-2026-contractual-geologist-3078334",
+      "summary": "Listed on FreeJobAlert on 04/11/2026. Qualification: M.E/M.Tech, M.Phil/Ph.D, M.Sc. Verify details on the official notification before applying.",
+      "source": "freejobalert"
     }
   ]
 };
