@@ -1,7 +1,7 @@
 // Geology vacancy board. Updated by tools/vacancy_agent.py (AI research agent) — or edit by hand / add from Admin → Vacancies.
 // status is derived on the page from lastDate: open / closing soon (≤7 days) / closed. Set "upcoming": true for expected notifications.
 window.GSA_VACANCIES = {
-  "updatedAt": "2026-11-04",
+  "updatedAt": "2026-11-05",
   "items": [
     {
       "id": "csir-net-dec-2026",
@@ -177,7 +177,7 @@ window.GSA_VACANCIES = {
       "postNames": "Contractual Geologist",
       "qualification": "M.E/M.Tech, M.Phil/Ph.D, M.Sc",
       "ageLimit": "18 - 40 Years",
-      "fee": "Have a Question",
+      "fee": "About OIL",
       "startDate": "2026-11-04",
       "lastDate": "2026-12-03",
       "upcoming": false,
