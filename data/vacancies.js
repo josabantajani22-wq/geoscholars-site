@@ -1,7 +1,7 @@
 // Geology vacancy board. Updated by tools/vacancy_agent.py (AI research agent) — or edit by hand / add from Admin → Vacancies.
 // status is derived on the page from lastDate: open / closing soon (≤7 days) / closed. Set "upcoming": true for expected notifications.
 window.GSA_VACANCIES = {
-  "updatedAt": "2026-11-07",
+  "updatedAt": "2026-11-08",
   "items": [
     {
       "id": "csir-net-dec-2026",
@@ -74,30 +74,6 @@ window.GSA_VACANCIES = {
       "applyUrl": "https://www.nhpcindia.com/en/careers",
       "sourceUrl": "https://www.nhpcindia.com",
       "summary": "NHPC recruits Trainee Officers (Geology) through GATE in most years. No 2027 notification yet.",
-      "source": "agent"
-    },
-    {
-      "id": "opsc-geologist-2026-exam",
-      "title": "OPSC Geologist 2026 (Advt. 10/2026-27) — written exam 15 November",
-      "organisation": "OPSC / Dept. of Water Resources, Odisha",
-      "posts": 5,
-      "postNames": "Geologist, Group-A (Junior Branch)",
-      "qualification": "Second-class Master's in Geology / Applied Geology / Earth Science + Odia (Class VII/HSC)",
-      "ageLimit": "21–42 years",
-      "fee": "Nil (OPSC)",
-      "startDate": "2026-09-08",
-      "lastDate": "2026-10-08",
-      "upcoming": false,
-      "examDate": "Written exam Sunday 15 November 2026 at Cuttack / Bhubaneswar — Paper I GS 75 Q/150 marks/90 min, Paper II Geology 150 Q/300 marks/3 h, −0.5 per wrong answer; Personality test 50 marks",
-      "location": "Odisha",
-      "tags": [
-        "OPSC",
-        "Geologist",
-        "Odisha"
-      ],
-      "applyUrl": "https://www.opsc.gov.in",
-      "sourceUrl": "https://www.opsc.gov.in",
-      "summary": "Applications closed 8 Oct 2026. Admit cards expected ~1 week before the exam on opsc.gov.in. Practise with our OPSC Geologist 2019 papers and Mock Test 1 in the Test Series.",
       "source": "agent"
     },
     {
