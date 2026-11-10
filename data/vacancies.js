@@ -1,7 +1,7 @@
 // Geology vacancy board. Updated by tools/vacancy_agent.py (AI research agent) — or edit by hand / add from Admin → Vacancies.
 // status is derived on the page from lastDate: open / closing soon (≤7 days) / closed. Set "upcoming": true for expected notifications.
 window.GSA_VACANCIES = {
-  "updatedAt": "2026-11-09",
+  "updatedAt": "2026-11-10",
   "items": [
     {
       "id": "csir-net-dec-2026",
@@ -75,29 +75,6 @@ window.GSA_VACANCIES = {
       "sourceUrl": "https://www.nhpcindia.com",
       "summary": "NHPC recruits Trainee Officers (Geology) through GATE in most years. No 2027 notification yet.",
       "source": "agent"
-    },
-    {
-      "id": "fja-3067409",
-      "title": "Oil India — Deputy Chief Engineer, Economist and More",
-      "organisation": "Oil India",
-      "posts": 3,
-      "postNames": "Deputy Chief Engineer, Economist and More",
-      "qualification": "Postgraduate Degree in Chemistry, Bachelor's/ Master's Degree in Petroleum Engineering or Business Economics",
-      "ageLimit": "Max: 49 years",
-      "fee": "Review all details carefully before submitting the form.",
-      "startDate": "2026-09-11",
-      "lastDate": "2026-10-10",
-      "upcoming": false,
-      "examDate": "",
-      "location": "India",
-      "tags": [
-        "FreeJobAlert",
-        "PSU"
-      ],
-      "applyUrl": "#",
-      "sourceUrl": "https://www.freejobalert.com/articles/oil-india-recruitment-2026-apply-online-for-deputy-chief-engineer-economist-and-more-posts-3067409",
-      "summary": "Listed on FreeJobAlert on 11/09/2026. Qualification: Any Post Graduate, B.Tech/B.E, M.A, M.Sc. Verify details on the official notification before applying.",
-      "source": "freejobalert"
     },
     {
       "id": "gate-2027",
