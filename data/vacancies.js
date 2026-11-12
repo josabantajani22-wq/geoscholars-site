@@ -1,7 +1,7 @@
 // Geology vacancy board. Updated by tools/vacancy_agent.py (AI research agent) — or edit by hand / add from Admin → Vacancies.
 // status is derived on the page from lastDate: open / closing soon (≤7 days) / closed. Set "upcoming": true for expected notifications.
 window.GSA_VACANCIES = {
-  "updatedAt": "2026-11-11",
+  "updatedAt": "2026-11-12",
   "items": [
     {
       "id": "csir-net-dec-2026",
@@ -74,29 +74,6 @@ window.GSA_VACANCIES = {
       "applyUrl": "https://www.nhpcindia.com/en/careers",
       "sourceUrl": "https://www.nhpcindia.com",
       "summary": "NHPC recruits Trainee Officers (Geology) through GATE in most years. No 2027 notification yet.",
-      "source": "agent"
-    },
-    {
-      "id": "gate-2027",
-      "title": "GATE 2027 — Geology & Geophysics (GG) · exam 6–21 Feb 2027",
-      "organisation": "IIT Madras (GATE 2027)",
-      "posts": null,
-      "postNames": "Qualifying exam used by ONGC, Coal India, NHPC, IOCL, OIL, NMDC etc. for Geologist / Geophysicist trainee recruitment",
-      "qualification": "B.Sc.(3rd yr+)/M.Sc. Geology, Geophysics, Applied Geology or allied",
-      "ageLimit": "No age limit",
-      "fee": "₹900 / ₹1,800 regular (closed); late fee window closed 12 Oct",
-      "startDate": "2026-08-28",
-      "lastDate": "2026-10-12",
-      "upcoming": false,
-      "examDate": "Exam 6, 7, 13, 14, 20, 21 February 2027 · Result 19 March 2027",
-      "location": "All India (CBT)",
-      "tags": [
-        "GATE",
-        "PSU"
-      ],
-      "applyUrl": "https://gate2027.iitm.ac.in",
-      "sourceUrl": "https://gate2027.iitm.ac.in",
-      "summary": "Registration (incl. late-fee window) closed 12 October 2026. PSU recruitments through GATE 2027 scores (ONGC, CIL, NHPC, OIL, IOCL) are expected to be notified Feb–Apr 2027 — watch this board.",
       "source": "agent"
     },
     {
