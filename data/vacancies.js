@@ -1,7 +1,7 @@
 // Geology vacancy board. Updated by tools/vacancy_agent.py (AI research agent) — or edit by hand / add from Admin → Vacancies.
 // status is derived on the page from lastDate: open / closing soon (≤7 days) / closed. Set "upcoming": true for expected notifications.
 window.GSA_VACANCIES = {
-  "updatedAt": "2026-11-18",
+  "updatedAt": "2026-11-19",
   "items": [
     {
       "id": "csir-net-dec-2026",
@@ -74,29 +74,6 @@ window.GSA_VACANCIES = {
       "applyUrl": "https://www.nhpcindia.com/en/careers",
       "sourceUrl": "https://www.nhpcindia.com",
       "summary": "NHPC recruits Trainee Officers (Geology) through GATE in most years. No 2027 notification yet.",
-      "source": "agent"
-    },
-    {
-      "id": "iit-jam-2027",
-      "title": "IIT JAM 2027 — Geology (GG) · registration open till 19 Oct",
-      "organisation": "IIT Kharagpur (JAM 2027)",
-      "posts": null,
-      "postNames": "Admission test for M.Sc. Geology / Applied Geology at IITs, IISc & NITs (not a job post)",
-      "qualification": "B.Sc. with Geology (any year of pass); final-year students eligible",
-      "ageLimit": "No age limit",
-      "fee": "₹900 (Female/SC/ST/PwD) · ₹1,800 (others); +₹900 second paper",
-      "startDate": "2026-09-11",
-      "lastDate": "2026-10-19",
-      "upcoming": false,
-      "examDate": "Exam February 2027 (CBT); data-correction window ~10 Nov 2026",
-      "location": "All India (CBT)",
-      "tags": [
-        "IIT JAM",
-        "Admission"
-      ],
-      "applyUrl": "https://jam.iitkgp.ac.in",
-      "sourceUrl": "https://jam.iitkgp.ac.in",
-      "summary": "Last date extended to 19 October 2026 on the JOAPS portal (joaps.iitkgp.ac.in). GG paper: 60 questions, 100 marks, MCQ/MSQ/NAT.",
       "source": "agent"
     },
     {
