@@ -1,7 +1,7 @@
 // Geology vacancy board. Updated by tools/vacancy_agent.py (AI research agent) — or edit by hand / add from Admin → Vacancies.
 // status is derived on the page from lastDate: open / closing soon (≤7 days) / closed. Set "upcoming": true for expected notifications.
 window.GSA_VACANCIES = {
-  "updatedAt": "2026-11-20",
+  "updatedAt": "2026-11-21",
   "items": [
     {
       "id": "csir-net-dec-2026",
@@ -96,6 +96,50 @@ window.GSA_VACANCIES = {
       "applyUrl": "https://www.oil-india.com",
       "sourceUrl": "https://www.freejobalert.com/articles/oil-recruitment-2026-contractual-geologist-3078334",
       "summary": "Listed on FreeJobAlert on 04/11/2026. Qualification: M.E/M.Tech, M.Phil/Ph.D, M.Sc. Verify details on the official notification before applying.",
+      "source": "freejobalert"
+    },
+    {
+      "id": "fja-3083422",
+      "title": "ECL — Advisor (Geology)",
+      "organisation": "ECL",
+      "posts": 1,
+      "postNames": "Advisor (Geology)",
+      "qualification": "Anganwadi Jobs",
+      "ageLimit": "60 - 65 Years",
+      "fee": "About ECL",
+      "startDate": "2026-11-21",
+      "lastDate": "2026-12-05",
+      "upcoming": false,
+      "examDate": "",
+      "location": "India",
+      "tags": [
+        "FreeJobAlert"
+      ],
+      "applyUrl": "https://www.easterncoalfields.in",
+      "sourceUrl": "https://www.freejobalert.com/articles/ecl-advisor-geology-recruitment-2026-3083422",
+      "summary": "Listed on FreeJobAlert on 21/11/2026. Qualification: Post Graduate. Verify details on the official notification before applying.",
+      "source": "freejobalert"
+    },
+    {
+      "id": "fja-3083202",
+      "title": "CCI — Mines Geologist",
+      "organisation": "CCI",
+      "posts": 1,
+      "postNames": "Mines Geologist",
+      "qualification": "Anganwadi Jobs",
+      "ageLimit": "35 Years (Max)",
+      "fee": "About CCI Mines Geologist",
+      "startDate": "2026-11-20",
+      "lastDate": "2026-12-10",
+      "upcoming": false,
+      "examDate": "",
+      "location": "India",
+      "tags": [
+        "FreeJobAlert"
+      ],
+      "applyUrl": "https://www.cciltd.in",
+      "sourceUrl": "https://www.freejobalert.com/articles/cci-mines-geologist-recruitment-2026-3083202",
+      "summary": "Listed on FreeJobAlert on 20/11/2026. Qualification: Post Graduate. Verify details on the official notification before applying.",
       "source": "freejobalert"
     }
   ]
